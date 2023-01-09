@@ -1,9 +1,0 @@
-/**
- * 
- */
-/**
- * @author huytran
- *
- */
-module OopProject {
-}
