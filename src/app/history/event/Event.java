@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.history.person.Person;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class Event {
 	
@@ -12,17 +14,18 @@ public class Event {
 	private String time;
 	private String destination;
 	private String description;
-	private List<Person> relativePersons = new ArrayList<Person>();
+	private List<String> relativePersonsName = new ArrayList<String>();
+	ObservableList<Person> relativePersons = FXCollections.observableArrayList();
+	private String imgPath;
 	private int id;
 	
-	public Event(String time, String destination, String description, List<Person> relativePersons, int id,
-			String name) {
+	public Event(String name, String time, String destination, String description, String imgPath, List<String> relativePersonsName) {
 		this.id = cnt++;
 		this.time = time;
 		this.destination = destination;
 		this.description = description;
-		this.relativePersons = relativePersons;
-		this.id = id;
+		this.imgPath = imgPath;
+		this.relativePersonsName = relativePersonsName;
 		this.name = name;
 	}
 
@@ -58,12 +61,12 @@ public class Event {
 		this.description = description;
 	}
 
-	public List<Person> getRelativePersons() {
-		return relativePersons;
+	public List<String> getRelativePersons() {
+		return relativePersonsName;
 	}
 
-	public void setRelativePersons(List<Person> relativePersons) {
-		this.relativePersons = relativePersons;
+	public void setRelativePersons(List<String> relativePersonsName) {
+		this.relativePersonsName = relativePersonsName;
 	}
 
 	public int getId() {

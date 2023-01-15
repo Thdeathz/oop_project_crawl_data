@@ -6,29 +6,47 @@ import java.util.List;
 import app.history.event.Event;
 import app.history.person.Person;
 import app.history.relic.Relic;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class Festival {
-	
+
 	public static int cnt = 0;
 	private String name;
 	private String time;
 	private String destination;
 	private String description;
-	private List<Event> relativeEvents = new ArrayList<Event>();
-	private List<Person> relativeCharacter = new ArrayList<Person>();
-	private List<Relic> relativeRelic = new ArrayList<Relic>();
+	private List<String> relativeEventsName = new ArrayList<String>();
+	private List<String> relativeCharacterName = new ArrayList<String>();
+	private List<String> relativeRelicName = new ArrayList<String>();
+	ObservableList<Event> relativeEvents = FXCollections.observableArrayList();
+	ObservableList<Person> relativeCharacters = FXCollections.observableArrayList();
+	ObservableList<Relic> relativeRelics = FXCollections.observableArrayList();
 	private int id;
-
-	public Festival(String name, String time, String destination, String description, List<Event> relativeEvents,
-			List<Person> relativeCharacter, List<Relic> relativeRelic, int id) {
-		this.id = cnt++;
+	
+	public Festival(String name, String time, String destination, String description, List<String> relativeEventsName,
+			List<String> relativeCharacterName, List<String> relativeRelicName, ObservableList<Event> relativeEvents,
+			ObservableList<Person> relativeCharacters, ObservableList<Relic> relativeRelics, int id) {
+		super();
 		this.name = name;
 		this.time = time;
 		this.destination = destination;
 		this.description = description;
+		this.relativeEventsName = relativeEventsName;
+		this.relativeCharacterName = relativeCharacterName;
+		this.relativeRelicName = relativeRelicName;
 		this.relativeEvents = relativeEvents;
-		this.relativeCharacter = relativeCharacter;
-		this.relativeRelic = relativeRelic;
+		this.relativeCharacters = relativeCharacters;
+		this.relativeRelics = relativeRelics;
+		this.id = cnt++;
+	}
+
+	public Festival(String name, String time, String destination, String description) {
+		this.name = name;
+		this.time = time;
+		this.destination = destination;
+		this.description = description;
+		this.id = cnt++;
 	}
 
 	public String getName() {
@@ -63,32 +81,56 @@ public class Festival {
 		this.description = description;
 	}
 
-	public List<Event> getRelativeEvents() {
+	public int getId() {
+		return id;
+	}
+
+	public List<String> getRelativeEventsName() {
+		return relativeEventsName;
+	}
+
+	public void setRelativeEventsName(List<String> relativeEventsName) {
+		this.relativeEventsName = relativeEventsName;
+	}
+
+	public List<String> getRelativeCharacterName() {
+		return relativeCharacterName;
+	}
+
+	public void setRelativeCharacterName(List<String> relativeCharacterName) {
+		this.relativeCharacterName = relativeCharacterName;
+	}
+
+	public List<String> getRelativeRelicName() {
+		return relativeRelicName;
+	}
+
+	public void setRelativeRelicName(List<String> relativeRelicName) {
+		this.relativeRelicName = relativeRelicName;
+	}
+
+	public ObservableList<Event> getRelativeEvents() {
 		return relativeEvents;
 	}
 
-	public void setRelativeEvents(List<Event> relativeEvents) {
+	public void setRelativeEvents(ObservableList<Event> relativeEvents) {
 		this.relativeEvents = relativeEvents;
 	}
 
-	public List<Person> getRelativeCharacter() {
-		return relativeCharacter;
+	public ObservableList<Person> getRelativeCharacters() {
+		return relativeCharacters;
 	}
 
-	public void setRelativeCharacter(List<Person> relativeCharacter) {
-		this.relativeCharacter = relativeCharacter;
+	public void setRelativeCharacters(ObservableList<Person> relativeCharacters) {
+		this.relativeCharacters = relativeCharacters;
 	}
 
-	public List<Relic> getRelativeRelic() {
-		return relativeRelic;
+	public ObservableList<Relic> getRelativeRelics() {
+		return relativeRelics;
 	}
 
-	public void setRelativeRelic(List<Relic> relativeRelic) {
-		this.relativeRelic = relativeRelic;
-	}
-
-	public int getId() {
-		return id;
+	public void setRelativeRelics(ObservableList<Relic> relativeRelics) {
+		this.relativeRelics = relativeRelics;
 	}
 	
 	public boolean equals(Object obj) {
@@ -98,5 +140,4 @@ public class Festival {
 		}
 		return false;
 	}
-
 }
