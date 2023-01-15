@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.history.person.Person;
+import app.history.store.Store;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class Event {
-	
+
 	public static int cnt = 0;
 	private String name;
 	private String time;
@@ -18,7 +19,9 @@ public class Event {
 	ObservableList<Person> relativePersons = FXCollections.observableArrayList();
 	private String imgPath;
 	private int id;
-	
+
+	public Event() {}
+
 	public Event(String name, String time, String destination, String description, String imgPath, List<String> relativePersonsName) {
 		this.id = cnt++;
 		this.time = time;
@@ -72,7 +75,20 @@ public class Event {
 	public int getId() {
 		return id;
 	}
-	
+
+	public void addPerson() {
+		for (String name: relativePersonsName) {
+			Person person = new Person(name);
+			int index = Store.persons.indexOf(person);
+			if (index != -1 && !relativePersons.contains(person)){
+				relativePersons.add(Store.persons.get(index));
+				System.out.println("Them thanh cong " + name);
+			} else {
+				System.out.println("Khong thanh cong " + name);
+			}
+		}
+	}
+
 	public boolean equals(Object obj) {
 		if (obj instanceof Event) {
 			Event t = (Event) obj;

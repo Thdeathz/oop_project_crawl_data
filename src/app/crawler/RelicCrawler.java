@@ -26,11 +26,12 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 import com.google.gson.reflect.TypeToken;
 
+import app.crawler.base.ICrawler;
 import app.history.relic.Relic;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class RelicCrawler {
+public class RelicCrawler implements ICrawler {
 
 	String url;
 	String jsonStoreUrls;
@@ -81,7 +82,7 @@ public class RelicCrawler {
 
 	/**
 	 * Hàm dùng để lấy một danh sách các người liên quan đến di tích lịch sử
-	 * 
+	 *
 	 * @return đanh sách tên các người liên quan
 	 */
 	public List<String> getPersonName(String link) {
@@ -111,7 +112,7 @@ public class RelicCrawler {
 
 	/**
 	 * Hàm này sẽ lấy title và ghi hoa chữ cái đầu
-	 * 
+	 *
 	 */
 	public String getTitle(String title) {
 		if (title.isEmpty() || title == null)
@@ -263,6 +264,5 @@ public class RelicCrawler {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 	}
 }

@@ -1,0 +1,262 @@
+[
+  {
+    "id": 1,
+    "name": "Đào Tấn",
+    "givenName": "Không rõ",
+    "father": "Đào Đức Ngạc",
+    "dateOfBirth": "Đào Đăng Tấn 3 tháng 4, 1845 Tuy Phước, An Nhơn, Bình Định",
+    "dateOfDeath": "23 tháng 8, 1907 (62 tuổi)",
+    "description": "Đào Tấn (1845 – 1907), tự là Chỉ Thúc, hiệu là Tô Giang và Mộng Mai, biệt hiệu là Tiểu Linh Phong Mai Tăng hoặc Mai Tăng, là một nhà soạn tuồng nổi tiếng Việt Nam. Ông là vị quan thanh liêm thời nhà Nguyễn, đã từng giữ chức vụ Tổng đốc An – Tĩnh (Nghệ An – Hà Tĩnh), Công Bộ Thượng thư.",
+    "dynastyName": "Không rõ"
+  },
+  {
+    "id": 2,
+    "name": "Hoàng Xuân Hãn",
+    "givenName": "Không rõ",
+    "father": "Tú tài Hoàng Xuân Ức",
+    "dateOfBirth": "8 tháng 3 năm 1908 làng Yên Hồ, huyện La Sơn, Hà Tĩnh, Liên bang Đông Dương",
+    "dateOfDeath": "10 tháng 3 năm 1996 (88 tuổi) Bệnh viện Orsay, Paris, Pháp",
+    "description": "Hoàng Xuân Hãn (1908–1996) là một nhà sử học, nhà ngôn ngữ học, nhà nghiên cứu văn hóa, giáo dục Việt Nam đồng thời là một kỹ sư, nhà toán học. Ông là người soạn thảo và ban hành Chương trình Trung học Việt Nam đầu tiên.",
+    "dynastyName": "Không rõ"
+  },
+  {
+    "id": 3,
+    "name": "Mạc Đĩnh Chi",
+    "givenName": "Không rõ",
+    "father": "Không rõ",
+    "dateOfBirth": "1272 Hải Dương",
+    "dateOfDeath": "1346（74 tuổi) Thăng Long",
+    "description": "Mạc Đĩnh Chi (chữ Hán: 莫挺之, 1280 - 1346), tên tự là Tiết Phu (節夫), hiệu là Tích Am (僻庵) là một quan đại thần triều Trần trong lịch sử Việt Nam.",
+    "dynastyName": "nhà Trần"
+  },
+  {
+    "id": 4,
+    "name": "Ngô Thì Sĩ",
+    "givenName": "Không rõ",
+    "father": "Ngô Thì Ức",
+    "dateOfBirth": "15 tháng 10 năm 1726 hương Tả Thanh Oai, huyện Thanh Oai, trấn Sơn Nam Hạ, Đại Việt",
+    "dateOfDeath": "22 tháng 10 năm 1780 (54 tuổi) Lạng Sơn",
+    "description": "Ngô Thì Sĩ (tiếng Trung: 吳時仕, 1726 - 1780), tự Thế Lộc, hiệu Ngọ Phong (午峰), đạo hiệu Nhị Thanh cư sĩ; là nhà sử học, nhà văn, nhà thơ nổi tiếng ở thế kỷ 18 tại Việt Nam; được Phan Huy Chú đánh giá là người có \"học vấn sâu rộng, văn chương hùng vĩ, làm rạng rỡ cho tông phái nho gia, là một đại gia ở Nam Châu\".",
+    "dynastyName": "hậu Lê -Tây Sơn"
+  },
+  {
+    "id": 5,
+    "name": "Nguyễn Du",
+    "givenName": "Không rõ",
+    "father": "Không rõ",
+    "dateOfBirth": "(1766-01-03)3 tháng 1, 1766 Nghi Xuân, Hà Tĩnh",
+    "dateOfDeath": "16 tháng 9, 1820(1820-09-16) (54 tuổi) Huế",
+    "description": "Nguyễn Du (chữ Hán: 阮攸; sinh ngày 3 tháng 1 năm 1766–1820) tên tự Tố Như (素如), hiệu Thanh Hiên (清軒), biệt hiệu Hồng Sơn lạp hộ (鴻山獵戶), Nam Hải điếu đồ (南海釣屠), là một nhà thơ, nhà văn hóa lớn thời Lê mạt, Nguyễn sơ ở Việt Nam. Ông được người Việt kính trọng tôn xưng là \"Đại thi hào dân tộc\". Tác phẩm Truyện Kiều của ông được xem là một kiệt tác văn học, một trong những thành tựu tiêu biểu nhất trong nền văn học trung đại Việt Nam.",
+    "dynastyName": "Lê mạt Nguyễn sơ"
+  },
+  {
+    "id": 6,
+    "name": "Nguyễn Thiếp",
+    "givenName": "Không rõ",
+    "father": "Nguyễn Quang Trạch",
+    "dateOfBirth": "25/8/1723",
+    "dateOfDeath": "6/2/1804 (81 tuổi)",
+    "description": "Nguyễn Thiếp (chữ Hán: 阮浹, 1723 - 1804), tự: Khải Xuyên, là danh sĩ cuối đời Hậu Lê và Tây Sơn trong lịch sử Việt Nam.",
+    "dynastyName": "Tây Sơn"
+  },
+  {
+    "id": 7,
+    "name": "Nguyễn Trãi",
+    "givenName": "Không rõ",
+    "father": "Nguyễn Phi Khanh",
+    "dateOfBirth": "1380 Thăng Long, Đại Việt",
+    "dateOfDeath": "19 tháng 9 năm 1442 (62 tuổi)[1]",
+    "description": "Nguyễn Trãi (chữ Hán: 阮廌, 1380 – 19 tháng 9 năm 1442), hiệu là Ức Trai (抑齋), là một nhà chính trị, nhà thơ dưới thời nhà Hồ và nhà Lê sơ Việt Nam. Thi đỗ Thái học sinh năm 1400, Nguyễn Trãi làm quan dưới triều Hồ, nhà Minh xâm lược, cha ông là Nguyễn Phi Khanh đầu hàng rồi bị bắt giải về Trung Quốc, Nguyễn Trãi đi theo. Đến ải Nam Quan,cha ông khuyên ông nên quay về để trả nợ nước,báo thù nhà, ông làm theo. Sau khi nước Đại Ngu rơi vào sự cai trị của nhà Minh, Nguyễn Trãi tham gia vào cuộc khởi nghĩa Lam Sơn do Lê Lợi lãnh đạo chống lại ách Minh thuộc. Ông trở thành mưu sĩ của nghĩa quân Lam Sơn trong việc bày tính mưu kế cũng như soạn thảo các văn thư ngoại giao với quân Minh. Năm 1442, toàn thể gia đình Nguyễn Trãi bị tru di tam tộc trong vụ án Lệ Chi Viên. Năm 1464, vua Lê Thánh Tông xuống chiếu giải oan cho ông. Nguyễn Trãi là một nhà văn hoá lớn, có đóng góp to lớn vào sự phát triển của văn học và tư tưởng Việt Nam. Ông nằm trong danh sách 14 anh hùng dân tộc Việt Nam.",
+    "dynastyName": "Nguyễn Trãi"
+  },
+  {
+    "id": 8,
+    "name": "Nguyễn Văn Siêu",
+    "givenName": "Không rõ",
+    "father": "Không rõ",
+    "dateOfBirth": "Không rõ",
+    "dateOfDeath": "Không rõ",
+    "description": "Nguyễn Văn Siêu (chữ Hán: 阮文超, 1799 - 1872), ban đầu tên là Định, sau đổi là Siêu,Còn gọi là Án Sát Siêu, tự: Tốn Ban, hiệu: Phương Đình; là nhà thơ, nhà nghiên cứu văn hóa Việt Nam ở thế kỷ 19 . Ông thường được gọi là Nguyễn Siêu - trùng tên với một sứ tướng thời loạn 12 sứ quân.",
+    "dynastyName": "thời loạn 12 sứ quân"
+  },
+  {
+    "id": 9,
+    "name": "Nguyễn Văn Tố",
+    "givenName": "Không rõ",
+    "father": "Không rõ",
+    "dateOfBirth": "(1889-06-05)5 tháng 6, 1889 tỉnh Hà Đông, Đông Dương thuộc Pháp",
+    "dateOfDeath": "7 tháng 10, 1947(1947-10-07) (58 tuổi) Bắc Kạn, Việt Nam",
+    "description": "Nguyễn Văn Tố (1889-1947), bút hiệu Ứng Hoè, sinh ngày 5 tháng 6 năm 1889, quê ở Hà Đông (nay thuộc Hà Nội). Thuở nhỏ ông học chữ Hán, sau sang Pháp học đỗ bằng Thành chung (Trung học). Về nước ông làm việc tại trường Viễn Đông Bác Cổ Hà Nội, chuyên về văn học cổ Việt Nam. Ông từng làm Hội trưởng hội Trí Tri, Hội truyền bá chữ Quốc ngữ trước năm 1945. Sau Cách mạng tháng Tám, ông giữ chức Bộ trưởng Cứu tế Xã hội trong chính phủ cách mạng lâm thời. Ông là Đại biểu quốc hội, Chủ tịch Quốc hội khóa I, Quốc vụ khanh trong Chính phủ liên hiệp Việt Nam lâm thời (1946).",
+    "dynastyName": "Không rõ"
+  },
+  {
+    "id": 10,
+    "name": "Trần Văn Giáp",
+    "givenName": "Không rõ",
+    "father": "Không rõ",
+    "dateOfBirth": "năm 1902 hay (1898-11-26)26 tháng 11, 1898 Hà Nội",
+    "dateOfDeath": "(1973-11-25)25 tháng 11, 1973 Hà Nội",
+    "description": "Trần Văn Giáp (1902-1973), tự Thúc Ngọc là một học giả Việt Nam thế kỷ 20.",
+    "dynastyName": "Không rõ"
+  },
+  {
+    "id": 11,
+    "name": "Trịnh Hoài Đức",
+    "givenName": "Không rõ",
+    "father": "Khánh",
+    "dateOfBirth": "1765 Phú Xuân, Đại Việt",
+    "dateOfDeath": "Tháng 05/1825 Huế",
+    "description": "Trịnh Hoài Đức (chữ Hán: 鄭懷德; 1765 - 1825), còn có tên là An(安), tự Chỉ Sơn(止山), hiệu Cấn Trai(艮齋); là một công thần của triều Nguyễn, là một nhà thơ, nhà văn và là một sử gia nổi tiếng của Việt Nam trong thế kỷ 18-19. Sinh thời, ông từng được vua nhà Nguyễn ban tước An Toàn hầu . Đặc biệt, quyển Gia Định thành thông chí của ông cho đến nay vẫn được xem là một trong những sử liệu quan trọng nhất cho các nhà nghiên cứu sử học và địa lý của miền Nam Việt Nam.",
+    "dynastyName": "triều Nguyễn"
+  },
+  {
+    "id": 12,
+    "name": "Vương Hồng Sển",
+    "givenName": "Không rõ",
+    "father": "Không rõ",
+    "dateOfBirth": "27 tháng 9 năm 1902 Sóc Trăng, Liên bang Đông Dương",
+    "dateOfDeath": "9 tháng 12, 1996(1996-12-09) (94 tuổi) Thành phố Hồ Chí Minh",
+    "description": "Vương Hồng Sển (1902-1996), bút hiệu Anh Vương, Vân Đường, Đạt Cổ Trai, là một nhà văn hóa, học giả, nhà sưu tập đồ cổ nổi tiếng. Ông được xem là người có hiểu biết sâu rộng về miền Nam và rất được kính trọng trong giới sử học và khảo cổ ở Việt Nam. Khi chết ông đã hiến tặng ngôi nhà (Vân đường phủ) và toàn bộ sưu tập đồ cổ của mình cho Nhà nước Việt Nam (tổng cộng 849 cổ vật khác nhau) với hy vọng thành lập một bảo tàng mang tên ông. Năm 2003, Ủy ban Nhân dân Thành phố Hồ Chí Minh ra quyết định xếp hạng di tích lịch sử cấp thành phố ngôi nhà này (địa chỉ: số 9/1 đường Nguyễn Thiện Thuật, phường 14, Quận Bình Thạnh).",
+    "dynastyName": "Không rõ"
+  },
+  {
+    "id": 13,
+    "name": "Đinh Tiên Hoàng",
+    "givenName": "Đinh Bộ Lĩnh 丁部領 Đinh Hoàn 丁桓",
+    "father": "Đinh Công Trứ",
+    "dateOfBirth": "22 tháng 3 năm 924 Gia Viễn, Ninh Bình, Tĩnh Hải quân",
+    "dateOfDeath": "Tháng 10 năm 979 Hoa Lư, Ninh Bình, Đại Cồ Việt",
+    "description": "Đinh Tiên Hoàng (chữ Hán: 丁先皇; 22 tháng 3 năm 924 - tháng 10 năm 979), tên húy là Đinh Bộ Lĩnh (丁部領) hoặc có sách gọi Đinh Hoàn (丁桓) (xem mục Tên gọi bên dưới), là vị hoàng đế sáng lập triều đại nhà Đinh, nước Đại Cồ Việt trong lịch sử Việt Nam. Ông là người có công đánh dẹp loạn 12 sứ quân, thống nhất giang sơn và trở thành hoàng đế đầu tiên của Việt Nam sau thời Bắc thuộc. Đại Cồ Việt là nhà nước mở đầu cho thời đại độc lập, tự chủ, xây dựng chế độ quân chủ tập quyền ở Việt Nam.[1] Đinh Bộ Lĩnh mở nước, lập đô, lấy niên hiệu với tư cách người đứng đầu một vương triều bề thế: Thời kỳ phục quốc của Việt Nam, từ họ Khúc chỉ xưng làm Tiết độ sứ, tới Ngô Quyền xưng vương và tới vua Đinh xưng làm hoàng đế. Sau một số vị vua xưng Đế từ trước và giữa thời Bắc thuộc[2] rồi bị thất bại trước hoạ ngoại xâm, đến thời nhà Đinh, người cầm quyền Việt Nam mới thực sự vươn tới đỉnh cao ngôi vị và danh hiệu, khẳng định vị thế vững chắc của quốc gia độc lập, thống nhất qua các triều đại Đinh – Lê – Lý – Trần và buộc các điển lễ, sách phong của cường quyền phương Bắc phải công nhận là một nước độc lập. Từ Đinh Bộ Lĩnh trở về sau, các Vua không xưng Vương hay Tiết độ sứ nữa mà đều xưng Hoàng đế như một dòng chính thống. Đinh Tiên Hoàng là vị hoàng đế đặt nền móng sáng lập nhà nước phong kiến trung ương tập quyền đầu tiên ở Việt Nam[3][4][5], vì thế mà ông còn được gọi là người mở nền chính thống cho các triều đại phong kiến trong lịch sử.",
+    "dynastyName": "Nhà Đinh"
+  },
+  {
+    "id": 14,
+    "name": "Hai Bà Trưng",
+    "givenName": "Không rõ",
+    "father": "ông Trưng Định (Hùng Định)",
+    "dateOfBirth": "13 tháng 9 năm 14",
+    "dateOfDeath": "5 tháng 3 năm 43 (29 tuổi)",
+    "description": "Hai Bà Trưng (chữ Nôm: ?婆徵) là thời kỳ xen giữa Bắc thuộc lần 1 và Bắc thuộc lần 2 trong lịch sử Việt Nam. Đây là tên gọi chung của hai chị em Trưng Trắc (chữ Hán: 徵側) và Trưng Nhị (徵貳), là anh hùng dân tộc của người Việt, những thủ lĩnh khởi binh chống lại nhà Đông Hán của Trung Quốc, lập ra một quốc gia với kinh đô tại Mê Linh và tự phong là Nữ vương. Sau khi cuộc khởi nghĩa này bị quân Đông Hán dưới sự chỉ huy của Mã Viện đánh bại, tục truyền rằng vì không muốn chịu khuất phục, Hai Bà Trưng đã gieo mình xuống dòng sông Hát Giang tuẫn tiết, địa danh Hát Môn - Hát Giang là nơi thánh tích Hai Bà dựng cờ khởi nghĩa chống quân Đông Hán xâm lược và cũng là nơi Hai Bà hóa thân vào cõi bất diệt. Đền Hát Môn thờ Hai Bà Trưng là Di tích lịch sử Quốc gia đặc biệt được Thủ tướng Chính phủ công nhận tại QĐ số 2383/QĐ-TTg ngày 09/12/2013, ngôi đền Hát Môn cổ kính với nhiều hàng cây cổ thụ, khung cảnh trang nghiêm yên tĩnh quanh năm. Đại Việt Sử ký Toàn thư coi Trưng Trắc là một vị vua trong lịch sử Việt Nam.",
+    "dynastyName": "Thời kì của hai Bà xen giữa thời kỳ Bắc thuộc lần 1 và Bắc thuộc lần 2 trong lịch sử Việt Nam"
+  },
+  {
+    "id": 15,
+    "name": "Hồ Chí Minh",
+    "givenName": "Không rõ",
+    "father": "Nguyễn Sinh Sắc",
+    "dateOfBirth": "(1890-05-19)19 tháng 5 năm 1890 Kim Liên, Nam Đàn, Nghệ An, Trung Kỳ, Liên bang Đông Dương (Nay là Cộng hòa Xã hội Chủ nghĩa Việt Nam)",
+    "dateOfDeath": "2 tháng 9 năm 1969(1969-09-02) (79 tuổi) Hà Nội, Việt Nam Dân chủ Cộng hòa",
+    "description": "Hồ Chí Minh (19 tháng 5 năm 1890 – 2 tháng 9 năm 1969) tên khai sinh: Nguyễn Sinh Cung, là nhà cách mạng, người sáng lập Đảng Cộng sản Việt Nam, một trong những người đặt nền móng và lãnh đạo công cuộc đấu tranh giành độc lập, toàn vẹn lãnh thổ cho Việt Nam trong thế kỷ 20, một chiến sĩ cộng sản quốc tế. Ông là người viết và đọc bản Tuyên ngôn Độc lập Việt Nam khai sinh nước Việt Nam Dân chủ Cộng hòa ngày 2 tháng 9 năm 1945 tại quảng trường Ba Đình, Hà Nội, là Chủ tịch nước Việt Nam Dân chủ Cộng hòa trong thời gian 1945 – 1969, Chủ tịch Ban Chấp hành Trung ương Đảng Lao động Việt Nam trong thời gian 1951 – 1969. Là lãnh tụ được nhiều người ngưỡng mộ và tôn sùng, lăng của ông được xây ở Hà Nội, nhiều tượng đài của ông được đặt ở khắp mọi miền Việt Nam, hình ảnh của ông được nhiều người dân treo trong nhà, đặt trên bàn thờ,[2][3][4][5] và được in ở hầu hết mệnh giá đồng tiền Việt Nam. Ông được thờ cúng ở một số đền thờ và chùa Việt Nam.[6][7][8] Ông đồng thời cũng là nhà văn, nhà thơ và nhà báo với nhiều tác phẩm viết bằng tiếng Việt, tiếng Hán và tiếng Pháp. Ông được tạp chí Time bình chọn là 1 trong 100 người có ảnh hưởng nhất của thế kỷ 20.[9][10][11]",
+    "dynastyName": "Nhà Hồ"
+  },
+  {
+    "id": 16,
+    "name": "Hùng Vương",
+    "givenName": "Không rõ",
+    "father": "Lạc Long Quân",
+    "dateOfBirth": "Năm mất",
+    "dateOfDeath": "Ghi chú",
+    "description": "Hùng Vương (chữ Hán: 雄王, chữ Nôm:?雄), là cách gọi các vị vua nước Văn Lang của người Lạc Việt. Hùng Vương thứ I là con trai của Lạc Long Quân, lên ngôi vào năm 2879 trước công nguyên, đặt quốc hiệu là Văn Lang, chia nước làm 15 bộ, truyền đời đến năm 258 trước công nguyên thì bị Thục Phán (An Dương Vương) chiếm mất nước.[1]",
+    "dynastyName": "triều đầu tiên của người Việt, được cho là tồn tại từ khoảng thiên niên kỷ thứ 3 trước Công nguyên cho đến khoảng thế kỷ thứ 3 trước Công nguyên"
+  },
+  {
+    "id": 17,
+    "name": "Lê Đại Hành",
+    "givenName": "Lê Hoàn (黎桓)",
+    "father": "Lê Mịch[1]",
+    "dateOfBirth": "10 tháng 8, 941 Tĩnh Hải quân",
+    "dateOfDeath": "18 tháng 4, 1005(1005-04-18) (63 tuổi) Hoa Lư, Đại Cồ Việt",
+    "description": "Lê Đại Hành (chữ Hán: 黎大行; 941 – 1005), húy là Hoàn (桓), là vị hoàng đế sáng lập nhà Tiền Lê nước Đại Cồ Việt, trị vì nước Đại Cồ Việt 24 năm,băng tại điện Trường Xuân, Hoa Lư, thọ 65 tuổi. Vua quê ở Ái châu (Thanh Hóa), làm quan cho nhà Đinh dưới thời vua Đinh Bộ Lĩnh, đến chức Thập đạo tướng quân. Năm 979, viên quan Đỗ Thích giết vua Đinh Bộ Lĩnh và người con Đinh Liễn, người con thứ tên Đinh Toàn nối ngôi lúc 6 tuổi, Lê Hoàn làm Nhiếp chính, xưng là Phó vương. Nhân sự kiện này, nước Tống phát binh xâm lược Đại Cồ Việt năm 980. Thái hậu nhà Đinh sai Lê Hoàn chọn dũng sĩ đi chống quân Tống, phong Phạm Cự Lạng làm Đại tướng quân. Triều đình đang họp bàn, Phạm Cự Lạng dẫn các tướng quân khác vào cung, khuyên triều đình nên lập Lê Hoàn làm vua, thái hậu nhà Đinh đồng ý.",
+    "dynastyName": "Nhà Tiền Lê"
+  },
+  {
+    "id": 18,
+    "name": "Lê Thái Tổ",
+    "givenName": "Lê Lợi (黎利)",
+    "father": "Lê Khoáng",
+    "dateOfBirth": "10 tháng 9, 1385 Lam Sơn, Thanh Hóa",
+    "dateOfDeath": "5 tháng 10, 1433(1433-10-05) (48 tuổi) Đông Kinh, Đại Việt",
+    "description": "Lê Thái Tổ (chữ Hán: 黎太祖; 10 tháng 9, 1385[2] – 5 tháng 10, 1433 (22 tháng Tám năm Quý Sửu)), tên thật là Lê Lợi (黎利), là vị hoàng đế đầu tiên của nhà Hậu Lê – triều đại lâu dài nhất trong lịch sử Việt Nam. Ông trị vì từ năm 1428 đến khi qua đời, và sử dụng niên hiệu Thuận Thiên (順天). Lê Lợi xuất thân trong một gia đình quân trưởng ở Thanh Hóa, trưởng thành trong thời kỳ nhà Minh đô hộ nước Việt. Năm 1418, Lê Lợi tổ chức cuộc khởi nghĩa Lam Sơn chống lại quân đội chiếm đóng. Dưới sự lãnh đạo của ông, nghĩa quân sau 10 năm chiến đấu gian khổ đã đánh bại quân Minh và giành lại độc lập cho người Việt. Mùa xuân năm 1428, Lê Lợi lên ngôi hoàng đế, sáng lập nhà Lê sơ và khôi phục quốc hiệu Đại Việt. Nhà vua đã xây dựng lại khoa cử, luật lệ, kinh tế, chế tác lễ nhạc, đồng thời thu thập lại sách vở, mở mang trường học... làm cho nước Đại Việt được thịnh trị.[3][4] Ông còn thành công trong việc trấn áp các cuộc bạo động ở vùng tây bắc, thu châu Phục Lễ. Ông được các sử gia đánh giá cao ở tài năng chính trị, quân sự, kinh tế, nhưng một số sử gia hiện đại lại chỉ trích vì cho rằng ông đã làm hại hai công thần Trần Nguyên Hãn và Phạm Văn Xảo.[5][6] Tuy nhiên, các sử gia Lê Quý Đôn, Trần Quốc Vượng và Tạ Chí Đại Trường cho rằng Trần Nguyên Hãn và Phạm Văn Xảo đã phạm tội.[7][8][9]",
+    "dynastyName": "Nhà Lê sơ"
+  },
+  {
+    "id": 19,
+    "name": "Lý Nam Đế",
+    "givenName": "Lý Bí hoặc Lý Bôn (李賁)",
+    "father": "Lý Cạnh hay Lý Toản",
+    "dateOfBirth": "(503-10-17)17 tháng 10, 503 Giao Châu",
+    "dateOfDeath": "13 tháng 4, 548(548-04-13) (44 tuổi) Vạn Xuân",
+    "description": "Lý Nam Đế (chữ Hán: 李南帝; 503–548), húy là Lý Bí hoặc Lý Bôn (李賁) (xem mục Tên gọi bên dưới), là vị vua đầu tiên của nhà Tiền Lý và nước Vạn Xuân.",
+    "dynastyName": "Nhà Tiền Lý"
+  },
+  {
+    "id": 20,
+    "name": "Lý Thái Tổ",
+    "givenName": "Không rõ",
+    "father": "Hiển Khánh vương",
+    "dateOfBirth": "8/3/974 Từ Sơn, Bắc Ninh",
+    "dateOfDeath": "31/3/1028 (54 tuổi) Điện Long An, Thăng Long",
+    "description": "Lý Thái Tổ (chữ Hán: 李太祖; 8 tháng 3 năm 974 – 31 tháng 3 năm 1028), tên thật là Lý Công Uẩn (李公蘊), là vị hoàng đế sáng lập nhà Lý trong lịch sử Việt Nam, trị vì từ năm 1009 đến khi qua đời vào năm 1028. Xuất thân là một võ quan cao cấp dưới triều nhà Tiền Lê, năm 1009, nhân khi vị vua cuối cùng của nhà Tiền Lê là Lê Long Đĩnh qua đời, con trai còn nhỏ, Lý Công Uẩn được lực lượng của Đào Cam Mộc và thiền sư Vạn Hạnh tôn làm Hoàng đế. Trong thời kỳ trị vì của mình, ông dành nhiều thời gian để đánh dẹp các nơi phản loạn, vì cơ bản nước Đại Cồ Việt vẫn chưa thu phục được lòng tin của các tộc người vùng biên cương. Triều đình trung ương dần được củng cố, các thế lực phiến quân bị đánh dẹp, kinh đô được dời từ Hoa Lư về thành Đại La vào tháng 7 năm 1010, và thành này được đổi tên thành Thăng Long, mở đầu cho sự phát triển lâu dài của nhà Lý tồn tại hơn 200 năm.",
+    "dynastyName": "Nhà Lý"
+  },
+  {
+    "id": 21,
+    "name": "Lý Thường Kiệt",
+    "givenName": "Không rõ",
+    "father": "Ngô An Ngữ",
+    "dateOfBirth": "Không rõ",
+    "dateOfDeath": "Không rõ",
+    "description": "Lý Thường Kiệt[1] (chữ Hán: 李常傑; 1019 – 1105) là nhà quân sự, nhà chính trị thời nhà Lý nước Đại Việt, làm quan qua 3 triều vua Lý Thái Tông, Lý Thánh Tông và Lý Nhân Tông. Ông nổi bật với việc chinh phạt Chiêm Thành (1069), đánh phá 3 châu Khâm, Ung, Liêm nước Tống (1075-1076), rồi đánh bại cuộc xâm lược Đại Việt của quân Tống do Quách Quỳ, Triệu Tiết chỉ huy (1077). Ông đã làm tể tướng hai lần dưới thời Lý Nhân Tông và là một trong 3 người phụ chính khi vua này còn nhỏ tuổi. Năm 2013, Bộ Văn hóa, Thể và Du lịch liệt ông vào trong những 14 vị anh hùng dân tộc tiêu biểu nhất trong lịch sử Việt Nam.",
+    "dynastyName": "nhà Lý nước Đại Việt"
+  },
+  {
+    "id": 22,
+    "name": "Ngô Quyền",
+    "givenName": "Ngô Quyền (吳權)",
+    "father": "Ngô Mân",
+    "dateOfBirth": "17 tháng 4 năm 898 Đường Lâm, Tĩnh Hải quân",
+    "dateOfDeath": "14 tháng 2 năm 944 (45 tuổi) Tĩnh Hải quân",
+    "description": "Ngô Quyền (chữ Hán: 吳權, 897 - 944), còn được biết đến với tên gọi Tiền Ngô Vương (前吳王), là vị vua đầu tiên của nhà Ngô trong lịch sử Việt Nam. Năm 938, ông là người lãnh đạo nhân dân đánh bại quân Nam Hán trong trận Bạch Đằng nổi tiếng, chính thức kết thúc gần một thiên niên kỉ Bắc thuộc, mở ra một thời kì độc lập lâu dài của Việt Nam. Sau chiến thắng này, ông lên ngôi vua, trị vì từ năm 939 đến năm 944. Ngô Quyền nằm trong danh sách 14 anh hùng dân tộc tiêu biểu của Việt Nam, là vị \"vua đứng đầu các vua\"[1], là vị Tổ trung hưng[2] của Việt Nam.",
+    "dynastyName": "Nhà Ngô"
+  },
+  {
+    "id": 23,
+    "name": "Nguyễn Huệ",
+    "givenName": "Không rõ",
+    "father": "Nguyễn Phi Phúc",
+    "dateOfBirth": "1753 Bình Định, Đàng Trong, Đại Việt",
+    "dateOfDeath": "16 tháng 9, 1792(1792-09-16) (38–39 tuổi) Phú Xuân, Đại Việt",
+    "description": "Nguyễn Huệ (1753 – 1792), tức Quang Trung Hoàng đế (光中皇帝) hay Bắc Bình Vương, là vị hoàng đế thứ hai của nhà Tây Sơn, sau khi Thái Đức Hoàng đế Nguyễn Nhạc thoái vị và nhường ngôi cho ông. Nguyễn Huệ không những là một trong những vị tướng lĩnh quân sự xuất sắc mà còn là một nhà cai trị tài giỏi, đưa ra nhiều cải cách kinh tế, xã hội nổi bật trong lịch sử Việt Nam. Nguyễn Huệ và hai người anh em của ông, được biết đến với tên gọi Anh em Tây Sơn, là những lãnh đạo của cuộc khởi nghĩa Tây Sơn đã chấm dứt cuộc nội chiến Trịnh-Nguyễn phân tranh giữa hai tập đoàn phong kiến Trịnh ở phía bắc và Nguyễn ở phía nam, lật đổ hai tập đoàn này cùng nhà Hậu Lê, chấm dứt tình trạng phân liệt Đàng Trong - Đàng Ngoài kéo dài suốt 2 thế kỷ. Ngoài ra, Nguyễn Huệ còn là người đánh bại các cuộc xâm lược Đại Việt của Xiêm La từ phía nam, của Đại Thanh từ phía bắc; đồng thời còn là vị vua có tài cai trị khi đề ra nhiều kế hoạch cải cách tiến bộ xây dựng Đại Việt.[1] (xem những cải cách của vua Quang Trung)",
+    "dynastyName": "Nhà Tây Sơn"
+  },
+  {
+    "id": 24,
+    "name": "Nguyễn Trãi",
+    "givenName": "Không rõ",
+    "father": "Nguyễn Phi Khanh",
+    "dateOfBirth": "1380 Thăng Long, Đại Việt",
+    "dateOfDeath": "19 tháng 9 năm 1442 (62 tuổi)[1]",
+    "description": "Nguyễn Trãi (chữ Hán: 阮廌, 1380 – 19 tháng 9 năm 1442), hiệu là Ức Trai (抑齋), là một nhà chính trị, nhà thơ dưới thời nhà Hồ và nhà Lê sơ Việt Nam. Thi đỗ Thái học sinh năm 1400, Nguyễn Trãi làm quan dưới triều Hồ, nhà Minh xâm lược, cha ông là Nguyễn Phi Khanh đầu hàng rồi bị bắt giải về Trung Quốc, Nguyễn Trãi đi theo. Đến ải Nam Quan,cha ông khuyên ông nên quay về để trả nợ nước,báo thù nhà, ông làm theo. Sau khi nước Đại Ngu rơi vào sự cai trị của nhà Minh, Nguyễn Trãi tham gia vào cuộc khởi nghĩa Lam Sơn do Lê Lợi lãnh đạo chống lại ách Minh thuộc. Ông trở thành mưu sĩ của nghĩa quân Lam Sơn trong việc bày tính mưu kế cũng như soạn thảo các văn thư ngoại giao với quân Minh. Năm 1442, toàn thể gia đình Nguyễn Trãi bị tru di tam tộc trong vụ án Lệ Chi Viên. Năm 1464, vua Lê Thánh Tông xuống chiếu giải oan cho ông. Nguyễn Trãi là một nhà văn hoá lớn, có đóng góp to lớn vào sự phát triển của văn học và tư tưởng Việt Nam. Ông nằm trong danh sách 14 anh hùng dân tộc Việt Nam.",
+    "dynastyName": "Nguyễn Trãi"
+  },
+  {
+    "id": 25,
+    "name": "Trần Hưng Đạo",
+    "givenName": "Không rõ",
+    "father": "Khâm Minh đại vương Trần Liễu",
+    "dateOfBirth": "1231 Tức Mặc, Mỹ Lộc, lộ Thiên Trường",
+    "dateOfDeath": "3 tháng 10, 1300(1300-10-03) (68–69 tuổi) Vạn Kiếp, Đại Việt nay là (Chí Linh, Hải Dương, Việt Nam)",
+    "description": "Trần Hưng Đạo (chữ Hán: 陳興道; ? - 20 tháng 8, 1300), còn được gọi là Hưng Đạo đại vương (興道大王) hay Nhân Vũ Hưng Đạo Đại Vương (仁武興道大王) là một anh hùng dân tộc kiệt xuất, một nhà chính trị, nhà văn cũng như là Tư lệnh tối cao chỉ huy quân đội toàn quốc của Đại Việt thời nhà Trần. Ông nổi tiếng trong lịch sử nước Việt với vai trò chỉ huy quân đội Đại Việt ba lần đẩy lùi quân Nguyên - Mông trong thế kỷ 13 (1258-1288). Chiến thắng của ông trước đội quân Nguyên - Mông dưới thời Hốt Tất Liệt được đánh giá là một trong những chiến công vĩ đại của lịch sử quân sự thế giới. Được coi là một trong những nhà quân sự kiệt xuất nhất trong lịch sử dân tộc.Tư tưởng quân sự của ông đã được thể hiện rõ trong các luận thuyết, tác phẩm của mình.",
+    "dynastyName": "Nhà Trần"
+  },
+  {
+    "id": 26,
+    "name": "Trần Nhân Tông",
+    "givenName": "Trần Khâm (陳昑)",
+    "father": "Trần Thánh Tông",
+    "dateOfBirth": "(1258-12-07)7 tháng 12 năm 1258 Thăng Long, Đại Việt",
+    "dateOfDeath": "16 tháng 12 năm 1308(1308-12-16) (50 tuổi) Am Ngọa Vân, núi Yên Tử",
+    "description": "Trần Nhân Tông (chữ Hán: 陳仁宗; 7 tháng 12 năm 1258 – 14 hoặc 16 tháng 12 năm 1308) là vị hoàng đế thứ ba của vương triều Trần trong lịch sử Việt Nam. Ông trị vì từ năm 1278 đến năm 1293, sau đó làm Thái thượng hoàng từ năm 1293 cho đến khi qua đời. Trần Nhân Tông được nhiều sử gia đánh giá là một vị vua anh minh, đã có nhiều đóng góp cho sự phát triển bền vững của Đại Việt cuối thế kỷ 13, cũng như việc bảo vệ nền độc lập và mở rộng cương thổ đất nước.[1][2] Ngoài ra, ông cũng là một thiền sư lớn của Phật giáo Việt Nam thời trung đại.[3] Là con trai trưởng của Trần Thánh Tông, Trần Nhân Tông đã được truyền ngôi vào tháng 11 năm 1278 – lúc ông chưa đầy 20 tuổi. Vị hoàng đế trẻ sớm phải đương đầu với hiểm họa xâm lược từ đế quốc Mông-Nguyên hùng mạnh ở phương Bắc. Do vậy, ngay sau khi lên ngôi Trần Nhân Tông đã triển khai nhiều biện pháp nhằm nâng cao sức mạnh kinh tế và ổn định chính trị – xã hội của Đại Việt, đồng thời xây dựng quan hệ tích cực với nước láng giềng phía nam là Chiêm Thành. Năm 1285, hoàng đế nhà Nguyên Hốt Tất Liệt huy động một lực lượng lớn (theo Đại Việt Sử ký Toàn thư là 50 vạn người) tấn công Đại Việt.[4][5] Quân dân Đại Việt ban đầu gặp nhiều tổn thất; nhưng dưới sự chỉ huy của vua Nhân Tông, thượng hoàng Thánh Tông và Quốc công Tiết chế Trần Hưng Đạo, người Việt đã dần dần xoay chuyền tình thế và đánh bật quân Nguyên về nước. Sau đó, 2 vua Trần và Hưng Đạo vương tiếp tục lãnh đạo dân Việt đánh bại một cuộc xâm lược khác của Mông–Nguyên vào năm 1287.",
+    "dynastyName": "nhà Trần nước Đại Việt"
+  }
+]

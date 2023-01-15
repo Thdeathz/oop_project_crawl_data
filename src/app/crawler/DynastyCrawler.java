@@ -7,63 +7,53 @@ import java.util.List;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import com.google.gson.Gson;
 
+import app.crawler.base.BaseWebsiteCrawler;
+import app.crawler.base.ICrawler;
 import app.history.dynasty.Dynasty;
-
-import java.io.IOException;
-import java.io.StringReader;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-public class DynastyCrawler {
+public class DynastyCrawler extends BaseWebsiteCrawler implements ICrawler {
 	String url;
 	String jsonStoreUrls;
-	
+
 	public DynastyCrawler()
 	{
-		this.url = "https://vi.wikipedia.org/wiki/Vua_Vi%E1%BB%87t_Nam";
-		this.jsonStoreUrls = "src/app/history/store/json";
+		super("https://vi.wikipedia.org/wiki/Vua_Vi%E1%BB%87t_Nam", "src/app/history/store/json");
 	}
-	
-	public String getUrl() {
-		return url;
-	}
-	
-	public String getJsonStoreUrls() {
-		return jsonStoreUrls;
-	}
-	
-	public void crawl()
+
+	@Override
+	public void crawl() throws IOException
 	{
 		DynastyCrawler dynastyCrawler = new DynastyCrawler();
 		String url = dynastyCrawler.getUrl();
-		try 
+		try
 		{
 			Document doc = Jsoup.connect(url).get();
-			
+
 			Elements elements = doc.getElementsByTag("h3");
 			Elements elements3 = doc.select("#mw-content-text > div.mw-parser-output > table > tbody > tr:nth-child(2) > td:nth-child(6)");
-			Elements elements4 = doc.select("#mw-content-text > div.mw-parser-output > table > tbody > tr > td:nth-child(6)");	
+			Elements elements4 = doc.select("#mw-content-text > div.mw-parser-output > table > tbody > tr > td:nth-child(6)");
 			Elements elements5 = doc.select("#mw-content-text > div.mw-parser-output > table:nth-child(91) > tbody > tr > td:nth-child(4)");
-			
-			
+
+
 			List <String> dynastyName = new ArrayList <String> ();
 			List <String> ele3ToString = new ArrayList <String>(); // list các vua đầu tiên của từng triều đại.
 			List <String> ele4ToString = new ArrayList <String> (); // list tất cả vua crawl được.
 			List <String> capital = new ArrayList <String> ();
-			
+
 			List <ArrayList <String> > listKing = new ArrayList <> ();
 			List <String> king = new ArrayList <> ();
 			int start = 0;
-			
+
 			List <String> exitedTimeL = new ArrayList <String> ();
-			
+
 			// loại bỏ [] thừa của data. ex Bắc Ninh[gk] thì bỏ [gk].
 			for (int j = 0; j < elements.size(); j++)
 			{
@@ -77,13 +67,13 @@ public class DynastyCrawler {
 			    result = result.replaceAll("\\[.*?\\]", "");
 			    ele3ToString.add(result);
 			}
-			
+
 			for (int j = 0; j < elements4.size(); j++) {
 			    String result = elements4.get(j).text();
 			    result = result.replaceAll("\\[.*?\\]", "");
 			    ele4ToString.add(result);
 			}
-			
+
 			// tìm danh sách các vua ứng với từng triều đại.
 			for (int j = 0; j < ele4ToString.size(); j++)
 			{
@@ -105,7 +95,7 @@ public class DynastyCrawler {
 				king.add(ele4);
 			}
 			listKing.add((ArrayList<String>) king); // bổ sung nốt thông tin về triều đại cuối.
-			
+
 			// tách xâu crawl được gồm tên + thời gian thành 2 xâu tên và thời gian riêng biệt.
 			for (int i = 0; i < dynastyName.size(); i++) {
 			    String s = dynastyName.get(i);
@@ -124,8 +114,8 @@ public class DynastyCrawler {
 			    s = s.replace("và", " và");
 			    dynastyName.set(i, s);
 			}
-			
-			
+
+
 			// crawl về kinh thành.
 			for (int j = 1; j < elements5.size(); j++)
 			{
@@ -136,7 +126,7 @@ public class DynastyCrawler {
 				capital.add(s);
 			}
 			// trường hợp đặc biệt bảng kinh thành match cột thiếu với bảng triều đại - vua.
-			capital.add(17, "chưa có dữ liệu"); 
+			capital.add(17, "chưa có dữ liệu");
 			capital.add(20, "chưa có dữ liệu");
 
 			List<Dynasty> dataList = new ArrayList<>();
@@ -152,11 +142,11 @@ public class DynastyCrawler {
 	            dynastiesData.setName(dynasty);
 	            dataList.add(dynastiesData);
 	        }
-	        
+
 	        // Chuyển đổi danh sách thành JSON
 	        Gson gson = new Gson();
 	        String json = gson.toJson(dataList);
-	        
+
 	        // Ghi JSON vào file
 	        try (FileWriter writer = new FileWriter(dynastyCrawler.getJsonStoreUrls() + "dynastiesData.json")) {
 	            writer.write(json);
@@ -166,18 +156,17 @@ public class DynastyCrawler {
 	        }
 
 		}
-		
-		
+
+
 		catch (IOException e)
 		{
-			
+
 		}
-	
+
 	}
-	public static void main(String [] args) 
+	public static void main(String [] args) throws IOException
 	{
-		DynastyCrawler dynastyCrawler = new DynastyCrawler();
+		ICrawler dynastyCrawler = new DynastyCrawler();
 		dynastyCrawler.crawl();
 	}
 }
-

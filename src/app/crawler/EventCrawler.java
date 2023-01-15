@@ -14,14 +14,15 @@ import org.jsoup.select.Elements;
 
 import com.google.gson.Gson;
 
+import app.crawler.base.ICrawler;
 import app.history.event.Event;
 
-public class EventCrawler {
+public class EventCrawler implements ICrawler {
 
 //	static String mainUrl = "https://nguoikesu.com";
 //	static String imgStoreUrls = "src/app/history/store/media/event";
 //	static String jsonStoreUrls = "src/app/history/store/json/event.json";
-	
+
 	String mainUrl;
 	String jsonStoreUrls;
 	String imgStoreUrls;
@@ -31,7 +32,7 @@ public class EventCrawler {
 		this.jsonStoreUrls = "src/app/history/store/json";
 		this.imgStoreUrls = "src/app/history/store/img/event";
 	}
-	
+
 	public String getImgStoreUrls() {
 		return imgStoreUrls;
 	}
@@ -65,13 +66,13 @@ public class EventCrawler {
             e.printStackTrace();
         }
     }
-	
+
 	public void crawl() {
 		List<Event> list = new ArrayList<Event>();
 		Gson gson = new Gson();
 		try {
 			int endIndex = 70;
-			
+
 			for (int i = 0; i <= endIndex; i+=5) {
 				String url;
 				if (i == 0) {
@@ -86,11 +87,11 @@ public class EventCrawler {
 					// Lay ten cua su kien
 		            Elements elm_row = elms.get(j).getElementsByTag("a");
 		            String name = elm_row.text();
-		            
+
 		            // Lay mo ta cua su kien
 		            Elements elms_desc = elms_descs.get(j).getElementsByTag("p");
 		            String description = elms_desc.text().substring(0, elms_desc.text().length() - 1 - 11); // dung subString loc bo "Xem them..." o cuoi
-		            
+
 		            // Lay link anh cua su kien
 		            String imgUrl;
 		            Element elms_img = document.selectFirst("div.leading-" + j + "> div.pull-none.item-image > a > img");
@@ -102,18 +103,18 @@ public class EventCrawler {
 		            }
 		            System.out.println(imgUrl);
 		            saveImg(imgUrl, name.replace(" ", "").toLowerCase() + ".png", getImgStoreUrls());
-		            
+
 		            // Lay link chi tiet cua su kien
 		            String link_event = elm_row.first().absUrl("href");
 		            Document document2 = Jsoup.parse(new URL(link_event).openStream(), "UTF-8", link_event);
-		            
+
 		            // Lay thoi gian cua su kien
 		            String time = document2.select("#jm-maincontent > div > div:nth-child(4) > div.infobox > table > tbody > tr > td > table > tbody > tr:nth-child(4) > td > table > tbody > tr:nth-child(1) > td:nth-child(2)").text();
 		            String destination = document2.select("#jm-maincontent > div > div:nth-child(4) > div.infobox > table > tbody > tr > td > table > tbody > tr:nth-child(4) > td > table > tbody > tr:nth-child(2) > td:nth-child(2)").text();
 
-		            // Lay danh sach nhung nguoi lien quan den su kien 
+		            // Lay danh sach nhung nguoi lien quan den su kien
 		            List<String> relativePersons = new ArrayList<String>();
-		            Elements first_col = document2.select("#jm-maincontent > div > div:nth-child(4) > div.infobox > table > tbody > tr > td > table > tbody > tr:nth-child(8) > td:nth-child(1)"); 
+		            Elements first_col = document2.select("#jm-maincontent > div > div:nth-child(4) > div.infobox > table > tbody > tr > td > table > tbody > tr:nth-child(8) > td:nth-child(1)");
 		            Elements second_col = document2.select("#jm-maincontent > div > div:nth-child(4) > div.infobox > table > tbody > tr > td > table > tbody > tr:nth-child(8) > td:nth-child(2)");
 		            if (first_col.size() > 0) {
 		            	for (int k = 0; k < first_col.size(); k++) {
@@ -133,10 +134,10 @@ public class EventCrawler {
 			            	}
 			            }
 		            }
-		            
+
 		            // Tao su kien
 		            Event event = new Event(name, time, destination, description, getImgStoreUrls() + "/" + name.replace(" ", "").toLowerCase()+ ".png", relativePersons);
-		            
+
 		            // Them su kien vao danh sach su kien
 		            if (!list.contains(event)) {
 		            	list.add(event);
@@ -154,7 +155,7 @@ public class EventCrawler {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static void main(String[] args) {
 		EventCrawler eventCrawler = new EventCrawler();
 		eventCrawler.crawl();

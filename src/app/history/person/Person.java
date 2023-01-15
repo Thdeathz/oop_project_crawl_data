@@ -1,9 +1,8 @@
 package app.history.person;
 
-import java.util.List;
 
 import app.history.dynasty.Dynasty;
-import app.history.event.Event;
+import app.history.store.Store;
 
 public class Person {
 	private int id;
@@ -14,7 +13,7 @@ public class Person {
 	private String dateOfDeath = "Không rõ";
 	private String description;
 	private Dynasty dynasty;
-	private List<Event> lstEvent;
+	private String dynastyName;
 	private static int nbPerson = 0;
 
 	public int getId() {
@@ -53,52 +52,43 @@ public class Person {
 		return dynasty;
 	}
 
-	public List<Event> getLstEvent() {
-		return lstEvent;
+	public String getDynastyName() {
+		return dynastyName;
 	}
 
-	/*
-	 * thêm sự kiện liên quan
-	 * return true nếu thành công
-	 * return false nếu đã tồn tại
-	 */
-	public boolean addEvent(Event e) {
-		if (lstEvent.contains(e)) {
-			System.out.println("Already exist");
-			return false;
+	public void setDynasty() {
+		int index = Store.dynasties.indexOf(new Dynasty(dynastyName));
+		if (index != -1){
+			dynasty = Store.dynasties.get(index);
+			System.out.println("Them thanh cong " + dynastyName);
 		} else {
-			getLstEvent().add(e);
-			System.out.println("Add successfully");
-			return true;
+			System.out.println("Khong thanh cong ");
 		}
 	}
 
-	public boolean removeEvent(Event e) {
-		if (lstEvent.remove(e)) {
-			System.out.println("Remove successfully");
-			return true;
-		} else {
-			System.out.println("Event list empty or not found event");
-			return false;
-		}
+	public Person() {};
+
+	public Person(String name) {
+		this.name = name;
 	}
 
-	public Person(String name, String givenName, String father, String dob, String dod, String desc, Dynasty dynasty) {
+	public Person(String name, String givenName, String father, String reign, String dob, String dod, String desc, String dynasty) {
 		this.id = ++nbPerson;
 		this.name = name;
 		this.givenName = givenName;
 		this.father = father;
+		this.reign = reign;
 		this.dateOfBirth = dob;
 		this.dateOfDeath = dod;
 		this.description = desc;
-		this.dynasty = dynasty;
+		this.dynastyName = dynasty;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof Person) {
 			Person p2 = (Person) obj;
-			return getName().equals(p2.getName()) && getFather().equals(p2.getFather());
+			return getName().equals(p2.getName());
 		}
 		return false;
 	}
