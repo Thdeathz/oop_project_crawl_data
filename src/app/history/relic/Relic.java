@@ -1,8 +1,8 @@
 package app.history.relic;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import app.history.festival.Festival;
 import app.history.person.Person;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,24 +11,53 @@ public class Relic {
 	// id = ++cnt; cnt dùng để đếm
 	public static int cnt = 0;
 	int id;
+
 	String title;
 	String content;
 	String address;
-	ObservableList<Festival> relatedFestival = FXCollections.observableArrayList();
 	ObservableList<Person> relatedHistoricalPerson = FXCollections.observableArrayList();
+	// danh sách tên người liên quan
+	List<String> nameList = new ArrayList<String>();
+	// danh sách ảnh liên quan đến di tích
+	String imgUrl;
 
-	public Relic(int id, String title, String content, String address) {
+	public Relic(String title, String content, String address, List<String> nameList, String imgUrl) {
 		this.id = ++cnt;
 		this.title = title;
 		this.content = content;
 		this.address = address;
+		this.nameList = nameList;
+		this.imgUrl = imgUrl;
+	}
 
+	public String getTitle() {
+		return title;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public List<String> getNameList() {
+		return nameList;
+	}
+
+	public String getImgUrl() {
+		return imgUrl;
+	}
+
+	public void setRelatedHistoricalPerson(ObservableList<Person> relatedHistoricalPerson) {
+		this.relatedHistoricalPerson = relatedHistoricalPerson;
 	}
 
 	/**
 	 * Đinh nghĩa bằng nhau khi title của chúng bằng nhau
 	 * 
-	 * @return true : if (title1 == title2)
+	 * @return true : if (name2 == name2)
 	 * 
 	 */
 	@Override
@@ -40,41 +69,8 @@ public class Relic {
 		return false;
 	}
 
-	public String getTitle() {
-		return title;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public String getContent() {
-		return content;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public List<Festival> getRelatedFestival() {
-		return relatedFestival;
-	}
-
-	public List<Person> getRelatedHistoricalPerson() {
+	public ObservableList<Person> getRelatedHistoricalPerson() {
 		return relatedHistoricalPerson;
-	}
-
-	/**
-	 * Hàm này dùng để thêm lễ hội vào relatedFestival
-	 * 
-	 */
-	public void addFestival(Festival festival) {
-		// check if festival not exist in relatedFestival. If not I will add
-		if (!relatedFestival.contains(festival)) {
-			relatedFestival.add(festival);
-		} else
-			System.out.print("This festival has existed");
-
 	}
 
 	/**
