@@ -14,6 +14,7 @@ public class Person {
 	private String dateOfDeath = "Không rõ";
 	private String description;
 	private Dynasty dynasty;
+	private String dynastyName;
 	private List<Event> lstEvent;
 	private static int nbPerson = 0;
 
@@ -83,7 +84,9 @@ public class Person {
 		}
 	}
 
-	public Person(String name, String givenName, String father, String dob, String dod, String desc, Dynasty dynasty) {
+	public Person() {};
+
+	public Person(String name, String givenName, String father, String dob, String dod, String desc, String dynasty) {
 		this.id = ++nbPerson;
 		this.name = name;
 		this.givenName = givenName;
@@ -91,7 +94,7 @@ public class Person {
 		this.dateOfBirth = dob;
 		this.dateOfDeath = dod;
 		this.description = desc;
-		this.dynasty = dynasty;
+		this.dynastyName = dynasty;
 	}
 
 	@Override
