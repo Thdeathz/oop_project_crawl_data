@@ -13,24 +13,14 @@ import org.jsoup.select.Elements;
 
 import com.google.gson.Gson;
 
+import app.crawler.base.BaseWebsiteCrawler;
 import app.crawler.base.ICrawler;
 import app.history.festival.Festival;
 
-public class FestivalCrawler implements ICrawler {
-	String mainUrl;
-	String jsonStoreUrls;
+public class FestivalCrawler extends BaseWebsiteCrawler implements ICrawler {
 
 	public FestivalCrawler() {
-		this.mainUrl = "https://vi.wikipedia.org/wiki/L%E1%BB%85_h%E1%BB%99i_Vi%E1%BB%87t_Nam";
-		this.jsonStoreUrls = "src/app/history/store/json";
-	}
-
-	public String getMainUrl() {
-		return mainUrl;
-	}
-
-	public String getJsonStoreUrls() {
-		return jsonStoreUrls;
+		super("https://vi.wikipedia.org/wiki/L%E1%BB%85_h%E1%BB%99i_Vi%E1%BB%87t_Nam", "src/app/history/store/json");
 	}
 
 	public void crawl() {
