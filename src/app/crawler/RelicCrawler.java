@@ -26,33 +26,16 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 import com.google.gson.reflect.TypeToken;
 
+import app.crawler.base.BaseWebsiteCrawler;
 import app.crawler.base.ICrawler;
 import app.history.relic.Relic;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class RelicCrawler implements ICrawler {
-
-	String url;
-	String jsonStoreUrls;
-	String imgStoreUrls;
+public class RelicCrawler extends BaseWebsiteCrawler implements ICrawler {
 
 	public RelicCrawler() {
-		this.url = "https://nguoikesu.com";
-		this.jsonStoreUrls = "src/app/history/store/json";
-		this.imgStoreUrls = "src/app/history/store/img/relic";
-	}
-
-	public String getImgStoreUrls() {
-		return imgStoreUrls;
-	}
-
-	public String getJsonStoreUrls() {
-		return jsonStoreUrls;
-	}
-
-	public String getUrl() {
-		return url;
+		super("https://nguoikesu.com", "src/app/history/store/json", "src/app/history/store/img/relic");
 	}
 
 	// dùng title để get addr
@@ -104,7 +87,6 @@ public class RelicCrawler implements ICrawler {
 				}
 			}
 		} catch (IOException e) {
-
 			return nameList;
 		}
 		return nameList;
