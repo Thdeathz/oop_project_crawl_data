@@ -26,11 +26,12 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 import com.google.gson.reflect.TypeToken;
 
+import app.crawler.base.ICrawler;
 import app.history.relic.Relic;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class RelicCrawler {
+public class RelicCrawler implements ICrawler {
 
 	String url;
 	String jsonStoreUrls;
@@ -81,7 +82,7 @@ public class RelicCrawler {
 
 	/**
 	 * Hàm dùng để lấy một danh sách các người liên quan đến di tích lịch sử
-	 * 
+	 *
 	 * @return đanh sách tên các người liên quan
 	 */
 	public List<String> getPersonName(String link) {
@@ -111,7 +112,7 @@ public class RelicCrawler {
 
 	/**
 	 * Hàm này sẽ lấy title và ghi hoa chữ cái đầu
-	 * 
+	 *
 	 */
 	public String getTitle(String title) {
 		if (title.isEmpty() || title == null)
@@ -221,48 +222,8 @@ public class RelicCrawler {
 
 			// Ghi vào file json
 			writeJsonFile(relicList);
-
 		} catch (IOException e) {
 			System.out.print(e);
 		}
-	}
-
-	private static class ObservableListDeserializer implements JsonDeserializer<ObservableList> {
-		@Override
-		public ObservableList deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
-				throws JsonParseException {
-			JsonArray jsonArray = json.getAsJsonArray();
-			ArrayList<Relic> list = context.deserialize(jsonArray, new TypeToken<ArrayList<Relic>>() {
-			}.getType());
-			return FXCollections.observableArrayList(list);
-		}
-	}
-
-	public static void main(String args[]) {
-		RelicCrawler relicCrawler = new RelicCrawler();
-		File directory = new File(relicCrawler.getJsonStoreUrls() + "/" + "relic.json");
-		if (!directory.exists()) {
-			relicCrawler.crawl();
-		}
-		// Read JSON file
-		FileReader reader;
-		try {
-			reader = new FileReader(relicCrawler.getJsonStoreUrls() + "/" + "relic.json");
-			GsonBuilder gsonBuilder = new GsonBuilder();
-			// đổi kiểu trả về thành observableArrayList
-			gsonBuilder.registerTypeAdapter(ObservableList.class, new ObservableListDeserializer());
-			Gson gson = gsonBuilder.create();
-			List<Relic> relicList = gson.fromJson(reader, new TypeToken<List<Relic>>() {
-			}.getType());
-			System.out.println(relicList.get(0).getTitle());
-			System.out.println(relicList.get(0).getNameList());
-			System.out.println(relicList.get(0).getImgUrl());
-			System.out.println(relicList.get(0).getAddress());
-			System.out.println(relicList.get(0).getContent());
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
 	}
 }
