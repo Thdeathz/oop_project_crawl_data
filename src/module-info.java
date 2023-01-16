@@ -1,6 +1,5 @@
 module OopProject {
 	exports app.history.person;
-	exports app.ui;
 	exports app.history.relic;
 	exports app.crawler;
 	exports app.history.event;
@@ -12,7 +11,10 @@ module OopProject {
 	requires java.desktop;
 	requires javafx.base;
 	requires org.jsoup;
-	opens app.crawler to com.google.gson;
+    requires javafx.graphics;
+	requires javafx.fxml;
+//	requires javafx.web;
+    opens app.crawler to com.google.gson;
 	opens app.history.person to com.google.gson;
 	opens app.history.dynasty to com.google.gson;
 	opens app.history.event to com.google.gson;
