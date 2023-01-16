@@ -55,7 +55,7 @@ public class Store<T>{
 			ICrawler eventCrawler = new EventCrawler();
 			eventCrawler.crawl();
 		}
-		dynasties = readFromFile("src/app/history/store/json/dynatiesData.json", Dynasty[].class);
+		dynasties = readFromFile("src/app/history/store/json/dynasty.json", Dynasty[].class);
 		persons = readFromFile("src/app/history/store/json/person.json", Person[].class);
 		events = readFromFile("src/app/history/store/json/event.json", Event[].class);
 		relics = readFromFile("src/app/history/store/json/relic.json", Relic[].class);

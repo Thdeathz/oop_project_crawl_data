@@ -29,7 +29,9 @@ public class Dynasty {
 		this.kingNameL = kingNameL;
 	}
 
-	public Dynasty() {}
+	public Dynasty() {
+		id = ++cnt;
+	}
 
 	public Dynasty(String name) {
 		this.name = name;

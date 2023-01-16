@@ -62,7 +62,7 @@ public class Person {
 			dynasty = Store.dynasties.get(index);
 			System.out.println("Them thanh cong " + dynastyName);
 		} else {
-			System.out.println("Khong thanh cong ");
+			System.out.println("Khong thanh cong" + dynastyName);
 		}
 	}
 
