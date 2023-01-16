@@ -181,11 +181,4 @@ public class PersonCrawler implements ICrawler {
         }
 
     }
-
-    public static void main(String[] args) throws IOException {
-        PersonCrawler personCrawler = new PersonCrawler();
-        // personCrawler.crawl();
-        // personCrawler.store();
-        // personCrawler.update();
-    }
 }

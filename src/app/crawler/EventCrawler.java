@@ -155,9 +155,4 @@ public class EventCrawler implements ICrawler {
 			e.printStackTrace();
 		}
 	}
-
-	public static void main(String[] args) {
-		EventCrawler eventCrawler = new EventCrawler();
-		eventCrawler.crawl();
-	}
 }

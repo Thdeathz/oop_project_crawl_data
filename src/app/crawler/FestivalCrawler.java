@@ -82,9 +82,4 @@ public class FestivalCrawler implements ICrawler {
 			e.printStackTrace();
 		}
 	}
-
-	public static void main(String[] args) {
-		FestivalCrawler festivalCrawler = new FestivalCrawler();
-		festivalCrawler.crawl();
-	}
 }
