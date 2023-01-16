@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.history.person.Person;
+import app.history.store.Store;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -20,6 +21,9 @@ public class Relic {
 	List<String> nameList = new ArrayList<String>();
 	// danh sách ảnh liên quan đến di tích
 	String imgUrl;
+
+	public Relic() {
+	}
 
 	public Relic(String title, String content, String address, List<String> nameList, String imgUrl) {
 		this.id = ++cnt;
@@ -56,9 +60,9 @@ public class Relic {
 
 	/**
 	 * Đinh nghĩa bằng nhau khi title của chúng bằng nhau
-	 * 
+	 *
 	 * @return true : if (name2 == name2)
-	 * 
+	 *
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -73,9 +77,22 @@ public class Relic {
 		return relatedHistoricalPerson;
 	}
 
+	public void addPerson() {
+		for (String name : nameList) {
+			Person person = new Person(name);
+			int index = Store.persons.indexOf(person);
+			if (index != -1 && !relatedHistoricalPerson.contains(person)) {
+				relatedHistoricalPerson.add(Store.persons.get(index));
+				System.out.println("Them thanh cong " + name);
+			} else {
+				System.out.println("Khong thanh cong " + name);
+			}
+		}
+	}
+
 	/**
 	 * Hàm này dùng để thêm nhân vật lịch sử vào relatedHistoricalPerson
-	 * 
+	 *
 	 */
 	public void addHistoricalPerson(Person person) {
 		// check if person not exist in relatedHistoricalPerson. If not I will add
@@ -85,5 +102,4 @@ public class Relic {
 			System.out.print("This person has existed");
 
 	}
-
 }
