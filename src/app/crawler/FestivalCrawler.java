@@ -27,7 +27,7 @@ public class FestivalCrawler extends BaseWebsiteCrawler implements ICrawler {
 		Gson gson = new Gson();
 		List<Festival> list = new ArrayList<Festival>();
 		try {
-			Document document = Jsoup.parse(new URL(getMainUrl()).openStream(), "UTF-8", getMainUrl());
+			Document document = Jsoup.parse(new URL(getUrl()).openStream(), "UTF-8", getUrl());
 			Element fesBody = document.selectFirst("#mw-content-text > div.mw-parser-output > table.prettytable.wikitable > tbody");
 
 			// Lay danh sach cac le hoi
