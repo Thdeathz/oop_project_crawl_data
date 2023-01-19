@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import com.google.gson.Gson;
@@ -18,177 +19,218 @@ import app.history.dynasty.Dynasty;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
 public class DynastyCrawler extends BaseWebsiteCrawler implements ICrawler {
 
 	public DynastyCrawler()	{
-		super("https://vi.wikipedia.org/wiki/Vua_Vi%E1%BB%87t_Nam", "src/app/history/store/json");
+		super("https://nguoikesu.com/dong-lich-su/hong-bang-va-van-lang", "src/app/history/store/json");
 	}
+	
+	/** hàm tìm thời gian tồn tại triều đại.
+	 * 
+	 * @param link
+	 * @return String.
+	 */
+	public String findExitedTime(String link)
+	{
+		String time = ""; // tạo 1 biến time lưu kết quả crawl.
+		// việc crawl có thể thành công hoặc không nên cần đặt trong try catch.
+		try
+		{
+			Document ggInfo = Jsoup.connect(link).get(); // kết nối với trang web và lấy file html về.
+        	String exitedTime = ggInfo.select("span.hgKElc > b").text(); // chọn thẻ và lấy text thẻ đó.
+        	// nếu không tìm được thông tin gì thì trả về chưa có dữ liệu.
+        	if (exitedTime.equals(""))
+        	{
+        		time = "chưa có dữ liệu";
+        	}
+        	// ngược lại thì lưu vào time.
+        	else
+        	{
+        		time = exitedTime;
+        	}
+		}
+		catch (IOException e)
+		{
+			
+		}
+		return time;
+	}
+	
+	/** hàm tìm các vị vua của từng triều đại.
+	 * 
+	 * @param link
+	 * @return List<String>
+	 */
+	public List <String> findKing(String link)
+	{
+		List<String> kingName = new ArrayList <> (); // tạo list lưu kết 
+		Document docPage;
+		try {
+			docPage = Jsoup.connect(link).get(); // kết nối với link và lấy thông tin.
+			Elements h2Info = docPage.select("h2[itemprop=name]");
+			// chọn lấy thông tin từ thẻ h2 và có [itemprop=name].
+			// dùng vòng for đọc thông tin.
+	    	for (int i = 0; i < h2Info.size(); i++)
+	    	{
+	    		String originalString = h2Info.get(i).text();
+	    		// nếu xâu có định dạng a - b thì tách và lưu trữ 2 xâu a và b
+	    		// ví dụ: Triệu Vũ Vương - Triệu Đà 
+	    		if (originalString.contains("-")) {
+	    		    String[] parts = originalString.split("-");
+	    		    String part1 = parts[0].trim(); 
+	    		    String part2 = parts[1].trim(); 
+	    		    part2 = part2.replaceFirst("^\\s+", ""); 
+	    		    // xoá mấy dấu cách thừa đầu xâu 2 bằng cái này.
+	    		    kingName.add(part1);
+	    		    kingName.add(part2);
+	    		}
+	    		else
+	    		{
+	    			// ngược lại thì lưu luôn xâu.
+	    			kingName.add(originalString);
+	    		}
+	    	}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return kingName;
+	}
+	
+	/**
+	 * hàm tìm kinh thành của triều đại.
+	 * @param link
+	 * @return String.
+	 */
+	public String findCapital(String link)
+	{
+		String capital = ""; // tạo xâu chứa kết quả crawl.
+		try
+    	{ 
+			// đọc dữ liệu từ link.
+        	Document docPage = Jsoup.connect(link).get();
+        	try 
+        	{
+        		String thuDo = docPage.select("th:contains(Thủ đô)").first().nextElementSibling().text();
+        		// docPage.select("th:contains(Thủ đô)") sẽ trả về một danh sách các thẻ <th> trong trang HTML có nội dung chứa chuỗi "Thủ đô".
+        		// .first() sẽ trả về phần tử đầu tiên trong danh sách trả về.
+        		// .nextElementSibling().text() sẽ trả về nội dung văn bản của phần tử kế tiếp sau phần tử <th> đã tìm được (thông qua phương thức nextElementSibling).
+        		capital = thuDo;
+        	}
+        	catch (NullPointerException e)
+        	{
+        		// nếu mà docPage.select("th:contains(Thủ đô)").first().nextElementSibling().text(); trả về null 
+        		// thì sẽ gán là chưa có dữ liệu.
+        		capital = "chưa có dữ liệu";
+        	}
+        	
+    	}
+    	catch (IOException e)
+    	{
+    		// nếu đọc dữ liệu từ link thất bại thì sẽ báo là chưa có dữ liệu.
+    		capital = "chưa có dữ liệu";
+    	}
+		return capital;
+	}
+	
+	/**
+	 * hàm tạo và ghi ra file json.
+	 * @param dynastyNameList
+	 * @param exitedTimeList
+	 * @param kingNameList
+	 * @param capitalList
+	 */
+	public void writeJsonFile(List <String> dynastyNameList, List <String> exitedTimeList, List <List <String>> kingNameList, List <String> capitalList)
+	{
+		List<Dynasty> dataList = new ArrayList<>(); // tạo List chứa các object dynasty.
+		DynastyCrawler dynastyCrawler = new DynastyCrawler(); 
+		// dùng vòng for để tạo và lưu các dynasty vào list.
+		for (int i = 0; i < dynastyNameList.size(); i++) {
+			String dynasty = dynastyNameList.get(i);
+			String capital = capitalList.get(i);
+			List kingL = kingNameList.get(i);
+			String time = exitedTimeList.get(i);
+			Dynasty dynastiesData = new Dynasty();
+			dynastiesData.setCapital(capital);
+			dynastiesData.setExitedTime(time);
+			dynastiesData.setName(dynasty);
+			dynastiesData.setKingNameL(kingL);
+			dataList.add(dynastiesData);
+		}
 
-	public void crawl() {
+		// // Chuyển đổi danh sách thành JSON
+		Gson gson = new Gson();
+		String json = gson.toJson(dataList);
+
+		// Ghi JSON vào file
+		try (FileWriter writer = new FileWriter(dynastyCrawler.getJsonStoreUrls() + "/dynasty.json")) {
+			writer.write(json);
+			System.out.println("Successfully wrote JSON to file.");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	public void crawl()
+	{
 		DynastyCrawler dynastyCrawler = new DynastyCrawler();
 		String url = dynastyCrawler.getUrl();
 		try {
 			Document doc = Jsoup.connect(url).get();
+			Elements elements = doc.select("#Mod88 > div > div > ul > li > ul > li > a:contains(nhà), #Mod88 > div > div > ul > li > a:contains(nhà)"); 
 
-			Elements elements = doc.getElementsByTag("h3");
-			Elements elements3 = doc
-					.select("#mw-content-text > div.mw-parser-output > table > tbody > tr:nth-child(2) > td:nth-child(6)");
-			Elements elements4 = doc.select("#mw-content-text > div.mw-parser-output > table > tbody > tr > td:nth-child(6)");
-			Elements elements5 = doc
-					.select("#mw-content-text > div.mw-parser-output > table:nth-child(91) > tbody > tr > td:nth-child(4)");
-			Elements elements7 = doc.select("#mw-content-text > div.mw-parser-output > table > tbody > tr > td:nth-child(4)");
+			List<String> dynastyDataList = new ArrayList<>();
+			List <String> dynastyLinkList = new ArrayList<> ();
+			List <String> exitedTimeList = new ArrayList <String>();
+	        List <String> dynastyNameList = new ArrayList <String> ();
+	        List <String> capitalList = new ArrayList <String> ();
+	        List <List <String>> kingNameList = new ArrayList <> ();
+	       
+	        // tìm các triều đại (gồm tên và đường dẫn)
+	        for (int j = 0; j < elements.size() - 1; j++) {
+	        	if (j == 2 || j == 3 || j == 4 || j == 13) continue;
+	        	else
+	        	{
+	        		dynastyDataList.add(elements.get(j).text());
+		            dynastyLinkList.add(elements.get(j).attr("href"));
+	        	}          
+	           
+	        }
+	        
+	        // hàm để tìm exitedTime .
+	        for (int j = 0; j < dynastyDataList.size(); j++) {
+	        	String name = dynastyDataList.get(j);
+	        	dynastyNameList.add(name);
+	        	String ggLink = "https://www.google.com/search?q=" + "thời gian tồn tại của " + name;
+	        	exitedTimeList.add(findExitedTime(ggLink));
+	        }
+	       
 
-			List<String> dynastyName = new ArrayList<String>();
-			List<String> ele3ToString = new ArrayList<String>(); // list các vua đầu tiên của từng triều đại.
-			List<String> ele4ToString = new ArrayList<String>(); // list tất cả vua crawl được.
-			List<String> capital = new ArrayList<String>();
-			List<String> thuyHieuFu = new ArrayList<String>(); // lấy thuỵ hiệu all
-
-			List<ArrayList<String>> listKing = new ArrayList<>();
-			List<String> king = new ArrayList<>();
-			List<ArrayList<String>> listThuyHieu = new ArrayList<>();
-			List<String> thuyHieu = new ArrayList<>();
-			int start = 0;
-
-			List<String> exitedTimeL = new ArrayList<String>();
-
-			// loại bỏ [] thừa của data. ex Bắc Ninh[gk] thì bỏ [gk].
-			for (int j = 0; j < elements.size(); j++) {
-				String result = elements.get(j).text();
-				result = result.replaceAll("\\[.*?\\]", "");
-				dynastyName.add(result);
+	        // tìm vua ứng với từng triều đại.
+	        for (int j = 0; j < dynastyDataList.size(); j++) {
+	        	String link = "https://nguoikesu.com" + dynastyLinkList.get(j);
+	        	kingNameList.add(findKing(link));
+	        }
+	        
+	        // tìm kinh thành ứng với từng triều đại.
+	        for (int j = 0; j < dynastyNameList.size(); j++)
+	        {
+	        	String link = "https://vi.m.wikipedia.org/wiki/" + dynastyNameList.get(j);
+	        	capitalList.add(findCapital(link));
+	        }
+	        
+	        // tạo và viết vào file json.
+	        writeJsonFile(dynastyNameList, exitedTimeList, kingNameList, capitalList);
+	        
 			}
-			for (int j = 0; j < elements3.size(); j++) {
-				String result = elements3.get(j).text();
-				result = result.replaceAll("\\[.*?\\]", "");
-				ele3ToString.add(result);
-			}
-
-			for (int j = 0; j < elements4.size(); j++) {
-				String result = elements4.get(j).text();
-				result = result.replaceAll("\\[.*?\\]", "");
-				ele4ToString.add(result);
-			}
-
-			for (int j = 0; j < elements7.size() - 25; j++) {
-				String result = elements7.get(j).text();
-				result = result.replaceAll("\\[.*?\\]", "");
-				if (result.equals("") || result.equals("1945"))
-					continue;
-				thuyHieuFu.add(result);
-				// System.out.println(result );
-				// k++;
-			}
-			// System.out.println(thuyHieuFu.size() + " " + ele4ToString.size());
-
-			// tìm danh sách các vua ứng với từng triều đại.
-			// do tên huý các vua đều có và không trùng nhau
-			// còn thuỵ hiệu các vua có người có người không, người không thì là xâu"không
-			// có" rất dễ trùng
-			// nên khó phân biệt mốc giữa các triều của thuỵ hiệu
-			// -> thông qua tên huý (id) để làm.
-			for (int j = 0; j < ele4ToString.size(); j++) {
-				String ele4 = ele4ToString.get(j);
-				String ele7 = thuyHieuFu.get(j);
-				if (ele4.equals("không rõ"))
-					continue; // một số chỗ crawl ra cái này thì bỏ qua.
-				int index = ele3ToString.indexOf(ele4);
-				if (index > -1) // nếu vua hiện tại trùng với vua đầu tiên của triều đại thì tức là đã sang tới
-												// triều đại mới.
-				{
-					if (start == 0) {
-						start += 1;
-					} else {
-						listKing.add((ArrayList<String>) king);
-						king = new ArrayList<>();
-						listThuyHieu.add((ArrayList<String>) thuyHieu);
-						thuyHieu = new ArrayList<>();
-					}
-				}
-				king.add(ele4);
-				thuyHieu.add(ele7);
-			}
-			listKing.add((ArrayList<String>) king); // bổ sung nốt thông tin về triều đại cuối.
-			listThuyHieu.add((ArrayList<String>) thuyHieu);
-
-			// for (int i = 0; i < listThuyHieu.size(); i++)
-			// {
-			// System.out.println((i + 1) + " " + dynastyName.get(i));
-			// for (int j = 0; j < listThuyHieu.get(i).size(); j++)
-			// {
-			// System.out.println(listThuyHieu.get(i).get(j));
-			// }
-			// System.out.println("");
-			// }
-			// tách xâu crawl được gồm tên + thời gian thành 2 xâu tên và thời gian riêng
-			// biệt.
-			for (int i = 0; i < dynastyName.size(); i++) {
-				String s = dynastyName.get(i);
-				Pattern p = Pattern.compile("\\(([^)]+)\\)");
-				Matcher m = p.matcher(s);
-				// System.out.print(i + " ");
-				if (m.find()) {
-					exitedTimeL.add(m.group(1));
-					// System.out.println(m.group(1));
-				} else {
-					exitedTimeL.add("chưa có dữ liệu");
-					// System.out.println("Không tách được");
-				}
-				s = s.replaceAll("\\s*\\(.*?\\)\\s*", ""); // replaceAll(pattern, replacement)
-				s = s.replace("hoặc", "");
-				s = s.replace("và", " và");
-				dynastyName.set(i, s);
-			}
-
-			// crawl về kinh thành.
-			for (int j = 1; j < elements5.size(); j++) {
-				if (j == 5)
-					continue; // trường hợp đặc biệt khi bảng triều đại gộp luôn "Nhà Tiền Lý và Triệu Việt
-										// Vương"
-				// còn bảng kinh thành không gộp, may là nó trùng kinh thành.
-				String s = elements5.get(j).text();
-				s = s.replaceAll("\\[.*?\\]", "");
-				capital.add(s);
-			}
-			// trường hợp đặc biệt bảng kinh thành match cột thiếu với bảng triều đại - vua.
-			capital.add(17, "chưa có dữ liệu");
-			capital.add(20, "chưa có dữ liệu");
-
-			List<Dynasty> dataList = new ArrayList<>();
-			for (int i = 0; i < dynastyName.size(); i++) {
-				String dynasty = dynastyName.get(i);
-				String place = capital.get(i);
-				List kingL = listKing.get(i);
-				List thuyH = listThuyHieu.get(i);
-				String time = exitedTimeL.get(i);
-				Dynasty dynastiesData = new Dynasty();
-				dynastiesData.setCapital(place);
-				dynastiesData.setExitedTime(time);
-				dynastiesData.setKingNameL(thuyH);
-				dynastiesData.setName(dynasty);
-				dataList.add(dynastiesData);
-			}
-
-			// // Chuyển đổi danh sách thành JSON
-			Gson gson = new Gson();
-			String json = gson.toJson(dataList);
-
-			// Ghi JSON vào file
-			try (FileWriter writer = new FileWriter(dynastyCrawler.getJsonStoreUrls() + "/dynasty.json")) {
-				writer.write(json);
-				System.out.println("Successfully wrote JSON to file.");
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-
-		}
-		//
-
+		
 		catch (IOException e) {
+			e.printStackTrace();
 		}
-		//
 	}
-
+	
+	
 	public static void main(String[] args) {
 		DynastyCrawler dynastyCrawler = new DynastyCrawler();
 		dynastyCrawler.crawl();
