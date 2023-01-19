@@ -160,7 +160,7 @@ public class RelicCrawler extends BaseWebsiteCrawler implements ICrawler {
 			// Lặp các trang
 
 			for (int k = 0; k <= 20; k += 10) {
-				doc1 = Jsoup.connect(url + "/di-tich-lich-su?start=" + k).get();
+				doc1 = Jsoup.connect(getUrl() + "/di-tich-lich-su?start=" + k).get();
 				// Lấy các thẻ liên quan đến name
 				Elements titles = doc1
 						.select("#content > div.com-tags-tag.tag-category > div.com-tags__items > ul > li > h3 > a");
