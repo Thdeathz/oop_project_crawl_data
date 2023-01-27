@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import com.google.gson.Gson;
@@ -21,151 +22,118 @@ import java.util.regex.Pattern;
 public class DynastyCrawler extends BaseWebsiteCrawler implements ICrawler {
 
 	public DynastyCrawler()	{
-		super("https://vi.wikipedia.org/wiki/Vua_Vi%E1%BB%87t_Nam", "src/app/history/store/json");
+		super("https://nguoikesu.com/dong-lich-su/hong-bang-va-van-lang", "src/app/history/store/json");
 	}
-
-	public void crawl() {
+	
+	public void crawl()
+	{
 		DynastyCrawler dynastyCrawler = new DynastyCrawler();
 		String url = dynastyCrawler.getUrl();
 		try {
 			Document doc = Jsoup.connect(url).get();
+			Elements elements = doc.select("#Mod88 > div > div > ul > li > ul > li > a:contains(nhà), #Mod88 > div > div > ul > li > a:contains(nhà)"); 
 
-			Elements elements = doc.getElementsByTag("h3");
-			Elements elements3 = doc
-					.select("#mw-content-text > div.mw-parser-output > table > tbody > tr:nth-child(2) > td:nth-child(6)");
-			Elements elements4 = doc.select("#mw-content-text > div.mw-parser-output > table > tbody > tr > td:nth-child(6)");
-			Elements elements5 = doc
-					.select("#mw-content-text > div.mw-parser-output > table:nth-child(91) > tbody > tr > td:nth-child(4)");
-			Elements elements7 = doc.select("#mw-content-text > div.mw-parser-output > table > tbody > tr > td:nth-child(4)");
+			List<String> dynastyDataList = new ArrayList<>();
+			List <String> dynastyLinkList = new ArrayList<> ();
+			List <String> exitedTimeList = new ArrayList <String>();
+	        List <String> dynastyNameList = new ArrayList <String> ();
+	        List <String> capitalList = new ArrayList <String> ();
+	        List <List <String>> kingNameList = new ArrayList <> ();
+	        List<String> kingName = new ArrayList <> ();
+			
+	       // for (org.jsoup.nodes.Element element : elements3) {
+	        for (int j = 0; j < elements.size() - 1; j++) {
+	        	if (j == 2 || j == 3 || j == 4 || j == 13) continue;
+	        	else
+	        	{
+	        		dynastyDataList.add(elements.get(j).text());
+		            dynastyLinkList.add(elements.get(j).attr("href"));
+	        	}          
+	           
+	        }
+	        
+	        // hàm để tìm exitedTime .
+	        for (int j = 0; j < dynastyDataList.size(); j++) {
+	        	String name = dynastyDataList.get(j);
+	        	dynastyNameList.add(name);
+	        	String ggLink = "https://www.google.com/search?q=" + "thời gian tồn tại của " + name;
+	        	Document ggInfo = Jsoup.connect(ggLink).get();
+	        	String exitedTime = ggInfo.select("span.hgKElc > b").text();
+	        	if (exitedTime.equals(""))
+	        	{
+	        		exitedTimeList.add("chưa có dữ liệu");
+	        	}
+	        		
+	        	else
+	        	{
+	        		exitedTimeList.add(exitedTime);
+	        	}
 
-			List<String> dynastyName = new ArrayList<String>();
-			List<String> ele3ToString = new ArrayList<String>(); // list các vua đầu tiên của từng triều đại.
-			List<String> ele4ToString = new ArrayList<String>(); // list tất cả vua crawl được.
-			List<String> capital = new ArrayList<String>();
-			List<String> thuyHieuFu = new ArrayList<String>(); // lấy thuỵ hiệu all
+	        }
+	       
 
-			List<ArrayList<String>> listKing = new ArrayList<>();
-			List<String> king = new ArrayList<>();
-			List<ArrayList<String>> listThuyHieu = new ArrayList<>();
-			List<String> thuyHieu = new ArrayList<>();
-			int start = 0;
-
-			List<String> exitedTimeL = new ArrayList<String>();
-
-			// loại bỏ [] thừa của data. ex Bắc Ninh[gk] thì bỏ [gk].
-			for (int j = 0; j < elements.size(); j++) {
-				String result = elements.get(j).text();
-				result = result.replaceAll("\\[.*?\\]", "");
-				dynastyName.add(result);
-			}
-			for (int j = 0; j < elements3.size(); j++) {
-				String result = elements3.get(j).text();
-				result = result.replaceAll("\\[.*?\\]", "");
-				ele3ToString.add(result);
-			}
-
-			for (int j = 0; j < elements4.size(); j++) {
-				String result = elements4.get(j).text();
-				result = result.replaceAll("\\[.*?\\]", "");
-				ele4ToString.add(result);
-			}
-
-			for (int j = 0; j < elements7.size() - 25; j++) {
-				String result = elements7.get(j).text();
-				result = result.replaceAll("\\[.*?\\]", "");
-				if (result.equals("") || result.equals("1945"))
-					continue;
-				thuyHieuFu.add(result);
-				// System.out.println(result );
-				// k++;
-			}
-			// System.out.println(thuyHieuFu.size() + " " + ele4ToString.size());
-
-			// tìm danh sách các vua ứng với từng triều đại.
-			// do tên huý các vua đều có và không trùng nhau
-			// còn thuỵ hiệu các vua có người có người không, người không thì là xâu"không
-			// có" rất dễ trùng
-			// nên khó phân biệt mốc giữa các triều của thuỵ hiệu
-			// -> thông qua tên huý (id) để làm.
-			for (int j = 0; j < ele4ToString.size(); j++) {
-				String ele4 = ele4ToString.get(j);
-				String ele7 = thuyHieuFu.get(j);
-				if (ele4.equals("không rõ"))
-					continue; // một số chỗ crawl ra cái này thì bỏ qua.
-				int index = ele3ToString.indexOf(ele4);
-				if (index > -1) // nếu vua hiện tại trùng với vua đầu tiên của triều đại thì tức là đã sang tới
-												// triều đại mới.
-				{
-					if (start == 0) {
-						start += 1;
-					} else {
-						listKing.add((ArrayList<String>) king);
-						king = new ArrayList<>();
-						listThuyHieu.add((ArrayList<String>) thuyHieu);
-						thuyHieu = new ArrayList<>();
-					}
-				}
-				king.add(ele4);
-				thuyHieu.add(ele7);
-			}
-			listKing.add((ArrayList<String>) king); // bổ sung nốt thông tin về triều đại cuối.
-			listThuyHieu.add((ArrayList<String>) thuyHieu);
-
-			// for (int i = 0; i < listThuyHieu.size(); i++)
-			// {
-			// System.out.println((i + 1) + " " + dynastyName.get(i));
-			// for (int j = 0; j < listThuyHieu.get(i).size(); j++)
-			// {
-			// System.out.println(listThuyHieu.get(i).get(j));
-			// }
-			// System.out.println("");
-			// }
-			// tách xâu crawl được gồm tên + thời gian thành 2 xâu tên và thời gian riêng
-			// biệt.
-			for (int i = 0; i < dynastyName.size(); i++) {
-				String s = dynastyName.get(i);
-				Pattern p = Pattern.compile("\\(([^)]+)\\)");
-				Matcher m = p.matcher(s);
-				// System.out.print(i + " ");
-				if (m.find()) {
-					exitedTimeL.add(m.group(1));
-					// System.out.println(m.group(1));
-				} else {
-					exitedTimeL.add("chưa có dữ liệu");
-					// System.out.println("Không tách được");
-				}
-				s = s.replaceAll("\\s*\\(.*?\\)\\s*", ""); // replaceAll(pattern, replacement)
-				s = s.replace("hoặc", "");
-				s = s.replace("và", " và");
-				dynastyName.set(i, s);
-			}
-
-			// crawl về kinh thành.
-			for (int j = 1; j < elements5.size(); j++) {
-				if (j == 5)
-					continue; // trường hợp đặc biệt khi bảng triều đại gộp luôn "Nhà Tiền Lý và Triệu Việt
-										// Vương"
-				// còn bảng kinh thành không gộp, may là nó trùng kinh thành.
-				String s = elements5.get(j).text();
-				s = s.replaceAll("\\[.*?\\]", "");
-				capital.add(s);
-			}
-			// trường hợp đặc biệt bảng kinh thành match cột thiếu với bảng triều đại - vua.
-			capital.add(17, "chưa có dữ liệu");
-			capital.add(20, "chưa có dữ liệu");
-
-			List<Dynasty> dataList = new ArrayList<>();
-			for (int i = 0; i < dynastyName.size(); i++) {
-				String dynasty = dynastyName.get(i);
-				String place = capital.get(i);
-				List kingL = listKing.get(i);
-				List thuyH = listThuyHieu.get(i);
-				String time = exitedTimeL.get(i);
+	        // tìm vua ứng với từng triều đại.
+	        for (int j = 0; j < dynastyDataList.size(); j++) {
+	        	Document docPage = Jsoup.connect("https://nguoikesu.com" + dynastyLinkList.get(j)).get();
+	        	Elements h2Info = docPage.select("h2[itemprop=name]");
+	        	for (int i = 0; i < h2Info.size(); i++)
+	        	{
+	        		String originalString = h2Info.get(i).text();
+	        		if (originalString.contains("-")) {
+	        		    String[] parts = originalString.split("-");
+	        		    String part1 = parts[0].trim(); 
+	        		    String part2 = parts[1].trim(); 
+	        		    part2 = part2.replaceFirst("^\\s+", "");
+	        		    kingName.add(part1);
+	        		    kingName.add(part2);
+	        		}
+	        		else
+	        		{
+	        			kingName.add(originalString);
+	        		}
+	        		//System.out.println(h2Info.get(i).text());
+	        	}
+	        	kingNameList.add(kingName);
+	        	kingName = new ArrayList <> ();
+	        }
+	        
+			
+	        // tìm kinh thành ứng với từng triều đại.
+	        for (int j = 0; j < dynastyNameList.size(); j++)
+	        {
+	        	try
+	        	{
+	        		String wikiLink = "https://vi.m.wikipedia.org/wiki/" + dynastyNameList.get(j);
+		        	Document docPage = Jsoup.connect(wikiLink).get();
+		        	try 
+		        	{
+		        		String thuDo = docPage.select("th:contains(Thủ đô)").first().nextElementSibling().text();
+		        		capitalList.add(thuDo);
+		        	}
+		        	catch (NullPointerException e)
+		        	{
+		        		capitalList.add("chưa có dữ liệu");
+		        	}
+		        	
+	        	}
+	        	catch (IOException e)
+	        	{
+	        		capitalList.add("chưa có dữ liệu");
+	        	}
+	        }
+	        
+	        
+	        List<Dynasty> dataList = new ArrayList<>();
+			for (int i = 0; i < dynastyNameList.size(); i++) {
+				String dynasty = dynastyNameList.get(i);
+				String capital = capitalList.get(i);
+				List kingL = kingNameList.get(i);
+				String time = exitedTimeList.get(i);
 				Dynasty dynastiesData = new Dynasty();
-				dynastiesData.setCapital(place);
+				dynastiesData.setCapital(capital);
 				dynastiesData.setExitedTime(time);
-				dynastiesData.setKingNameL(thuyH);
 				dynastiesData.setName(dynasty);
+				dynastiesData.setKingNameL(kingL);
 				dataList.add(dynastiesData);
 			}
 
@@ -180,15 +148,15 @@ public class DynastyCrawler extends BaseWebsiteCrawler implements ICrawler {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-
-		}
-		//
-
+			
+			}
+		
 		catch (IOException e) {
+			e.printStackTrace();
 		}
-		//
 	}
-
+	
+	
 	public static void main(String[] args) {
 		DynastyCrawler dynastyCrawler = new DynastyCrawler();
 		dynastyCrawler.crawl();
