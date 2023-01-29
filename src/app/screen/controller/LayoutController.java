@@ -1,5 +1,8 @@
 package app.screen.controller;
 
+import app.history.store.Store;
+import app.screen.controller.dynasty.DynastyDetailController;
+import app.screen.controller.dynasty.DynastyListController;
 import app.screen.controller.person.PersonListController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -43,10 +46,9 @@ public class LayoutController {
 
     @FXML
     void handleDynastyBtnClicked(ActionEvent event) {
-        contentArea.getChildren().clear();
+        DynastyListController dynastyController = new DynastyListController(contentArea);
+        selectPane(contentArea, dynastyBtn, dynastyController);
         currentPane = "dynasty";
-        dynastyBtn.getStyleClass().remove("menu-bar");
-        dynastyBtn.getStyleClass().add("selected-menu");
     }
 
     @FXML
@@ -86,8 +88,9 @@ public class LayoutController {
         Transition.endFadeTransition(dynastyPane);
 
         currentPane = "dynasty";
-        dynastyBtn.getStyleClass().remove("menu-bar");
-        dynastyBtn.getStyleClass().add("selected-menu");
+        DynastyListController dynastyController = new DynastyListController(contentArea);
+        selectPane(contentArea, dynastyBtn, dynastyController);
+        currentPane = "dynasty";
     }
     
     public void selectPane(StackPane contentArea, Button menuBtn, Object controller) {
@@ -114,6 +117,7 @@ public class LayoutController {
                 relicBtn.getStyleClass().add("menu-bar");
                 relicBtn.getStyleClass().remove("selected-menu");
             }
+            default -> {}
         }
 
         // load new pane
