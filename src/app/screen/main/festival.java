@@ -1,8 +1,6 @@
 package app.screen.main;
 
-import app.history.store.Store;
 import app.screen.controller.FestivalListController;
-import app.screen.controller.PersonListController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
