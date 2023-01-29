@@ -15,9 +15,10 @@ public class relic extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            Parent root = FXMLLoader.load(this.getClass().getResource("../fxml/relic.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/app/screen/fxml/detail.fxml"));
+            Scene scene = new Scene(root);
             primaryStage.setTitle("Nguoi Ke Su");
-            primaryStage.setScene(new Scene(root));
+            primaryStage.setScene(scene);
             primaryStage.show();
         }catch (Exception e){
             e.printStackTrace();
