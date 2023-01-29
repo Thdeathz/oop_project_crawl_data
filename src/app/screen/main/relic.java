@@ -1,5 +1,8 @@
 package app.screen.main;
 
+import app.history.store.Store;
+import app.screen.controller.event.EventListController;
+import app.screen.controller.relic.RelicListController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,12 +18,17 @@ public class relic extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/app/screen/fxml/detail.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/screen/fxml/list.fxml"));
+            Store.init();
+            RelicListController relicListController = new RelicListController();
+            loader.setController(relicListController);
+//            (P)loader.getController().
+            Parent root = loader.load();
             Scene scene = new Scene(root);
             primaryStage.setTitle("Nguoi Ke Su");
             primaryStage.setScene(scene);
             primaryStage.show();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

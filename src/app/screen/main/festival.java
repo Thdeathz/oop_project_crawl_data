@@ -1,6 +1,5 @@
 package app.screen.main;
 
-import app.screen.controller.FestivalListController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

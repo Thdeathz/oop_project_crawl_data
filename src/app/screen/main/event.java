@@ -1,7 +1,8 @@
 package app.screen.main;
 
-import app.screen.controller.EventListController;
-import app.screen.controller.FestivalListController;
+import app.history.store.Store;
+import app.screen.controller.event.EventDetailController;
+import app.screen.controller.event.EventListController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,8 +19,8 @@ public class event extends Application {
     public void start(Stage primaryStage) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/screen/fxml/list.fxml"));
+            Store.init();
             EventListController eventListController = new EventListController();
-            eventListController.setStage(primaryStage);
             loader.setController(eventListController);
 //            (P)loader.getController().
             Parent root = loader.load();
