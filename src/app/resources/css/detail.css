@@ -29,8 +29,11 @@
 }
 
 .header-button{
+    -fx-background-image: url(../images/relic/search-icon.png);
     -fx-cursor: hand;
 }
+
+//Body css
 
 .relic-title{
     -fx-font-size: 40px;

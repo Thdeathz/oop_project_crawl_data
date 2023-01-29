@@ -30,7 +30,7 @@ public class Store<T>{
 
   public static void init() throws IOException {
 
-		File directoryDynasty = new File("src/app/history/store/json/dynasty.json");
+		File directoryDynasty = new File("src/app/history/store/json/dynatiesData.json");
 		File directoryPerson = new File("src/app/history/store/json/person.json");
 		File directoryRelic = new File("src/app/history/store/json/relic.json");
 		File directoryFestival = new File("src/app/history/store/json/festival.json");
