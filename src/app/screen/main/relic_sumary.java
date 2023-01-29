@@ -15,7 +15,7 @@ public class relic_sumary extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            Parent root = FXMLLoader.load(this.getClass().getResource("../fxml/relic-sumary.fxml"));
+            Parent root = FXMLLoader.load(this.getClass().getResource("../fxml/list.fxml"));
             primaryStage.setTitle("Nguoi Ke Su");
             primaryStage.setScene(new Scene(root));
             primaryStage.show();
