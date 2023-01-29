@@ -6,3 +6,4 @@
 .idea/*
 *.iml
 classes/*
+src/app/history/store/json/*.*

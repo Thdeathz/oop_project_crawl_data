@@ -44,6 +44,8 @@ public class Event {
 		return time;
 	}
 
+	public String getImgPath() { return imgPath; }
+
 	public void setTime(String time) {
 		this.time = time;
 	}
@@ -64,8 +66,8 @@ public class Event {
 		this.description = description;
 	}
 
-	public List<String> getRelativePersons() {
-		return relativePersonsName;
+	public List<Person> getRelativePersons() {
+		return relativePersons;
 	}
 
 	public void setRelativePersons(List<String> relativePersonsName) {
