@@ -1,213 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Line?>
-<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <!-- Container -->
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1024.0" styleClass="border-pane-background" stylesheets="@../css/detail.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" styleClass="border-pane-background" stylesheets="@../css/detail.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
     <!-- Header -->
-    <top>
-      <HBox alignment="CENTER" prefHeight="65.0" prefWidth="1024.0" BorderPane.alignment="CENTER">
-         <children>
-             <!-- Menu -->
-            <MenuBar prefHeight="51.0" prefWidth="779.0" styleClass="menu-item" stylesheets="@../css/detail.css" HBox.hgrow="ALWAYS">
-               <menus>
-                   <!-- Menu items -->
-                  <Menu mnemonicParsing="false" styleClass="menu-item-active" text="Trang Chủ" />
-                  <Menu mnemonicParsing="false" text="Triều Đại" />
-                  <Menu mnemonicParsing="false" text="Sự Kiện" />
-                  <Menu mnemonicParsing="false" text="Lễ Hội" />
-                  <Menu mnemonicParsing="false" text="Nhân Vật" />
-                  <Menu mnemonicParsing="false" text="Di Tích" />
-               </menus>
-            </MenuBar>
-             <!-- search box -->
-            <VBox alignment="CENTER" prefHeight="38.0" prefWidth="372.0">
-               <children>
-                  <HBox alignment="CENTER" prefHeight="19.0" prefWidth="349.0">
-                      <!-- search box text field -->
-                     <children>
-                        <TextField prefWidth="300.0" promptText="Tìm Kiếm" styleClass="search-box" stylesheets="@../css/detail.css">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </TextField>
-                         <!-- Search button -->
-                        <Button mnemonicParsing="false" styleClass="header-button" stylesheets="@../css/detail.css">
-                           <HBox.margin>
-                              <Insets right="20.0" />
-                           </HBox.margin>
-                           <graphic>
-                              <ImageView fitHeight="30.0" fitWidth="20.0" layoutX="109.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-            <!--                        <Image url="@../images/relic/search-icon.png" />-->
-                                    <Image url="@../images/relic/search-icon.PNG" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                     </children>
-                  </HBox>
-                   <!-- search box under line -->
-                  <Line endX="74.33702087402344" endY="-13.077159881591797" startX="-267.55584716796875" startY="-13.733979225158691" stroke="#a19696">
-                     <VBox.margin>
-                        <Insets right="20.0" />
-                     </VBox.margin>
-                  </Line>
-               </children>
-            </VBox>
-         </children>
-      </HBox>
-   </top>
-
-
-
     <!-- content container -->
    <center>
        <!-- Scrollpane container -->
-      <ScrollPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="655.0" prefWidth="1029.0">
+      <ScrollPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="660.0" prefWidth="1024.0" style="-fx-background-color: FAF5ED;">
          <content>
 
              <!-- Using hbox to devide into 2 part, left center and right tree view -->
-            <HBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="1555.0" prefWidth="1007.0">
+            <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="1004.0" spacing="15.0" style="-fx-background-color: FAF5ED;">
                <children>
 
                    <!-- Main content -->
-                  <VBox fx:id="Detail" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="1617.0" prefWidth="642.0" stylesheets="@../controller/css/detail.css">
-<!--                     <children>-->
-<!--                         &lt;!&ndash; Content title &ndash;&gt;-->
-<!--                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="Chiến khu Tân Trào" />-->
-<!--                         &lt;!&ndash; Content address &ndash;&gt;-->
-<!--                         <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="description" text="QFFF+R7J, Tân Trào, Sơn Dương, Tuyên Quang">-->
-<!--                           <VBox.margin>-->
-<!--                              <Insets bottom="30.0" top="10.0" />-->
-<!--                           </VBox.margin>-->
-<!--                        </Text>-->
-<!--                         &lt;!&ndash; Image &ndash;&gt;-->
-<!--                        <ImageView fitHeight="274.0" fitWidth="416.0" pickOnBounds="true" preserveRatio="true" styleClass="image">-->
-<!--                           <image>-->
-<!--                              <Image url="@../images/relic/demo.jpg" />-->
-<!--                           </image>-->
-<!--                           <viewport>-->
-<!--                              <Rectangle2D />-->
-<!--                           </viewport>-->
-<!--                        </ImageView>-->
-<!--                         &lt;!&ndash; Content detail &ndash;&gt;-->
-<!--                        <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="content" text="Chiến khu Tân Trào là khu di tích lịch sử của cách mạng Việt Nam thời kỳ Cách mạng tháng Tám. Hiện nay, nơi đây đã được thủ tướng chính phủ Việt Nam đưa vào danh sách xếp hạng 23 di tích quốc gia đặc biệt. Tân Trào là thủ đô lâm thời của khu giải phóng, nơi Ðảng Cộng sản Việt Nam tiến hành hội nghị toàn quốc ngày 13 tháng 8 năm 1945 để quyết định tổng khởi nghĩa. Ðại hội quốc dân đã họp tại đây ngày 16 tháng 8 năm 1945, thông qua 10 chính sách lớn của Việt Minh, bầu ra một chính phủ lâm thời do Hồ Chí Minh làm chủ tịch và quân giải phóng Việt Nam làm lễ ra quân. Tân Trào là tên mới, được hợp nhất từ hai xã Tân Lập và Hồng Thái vào năm 1945 (trước đây còn gọi là Kim Long và Kim Châu)." wrappingWidth="641.13671875" VBox.vgrow="ALWAYS">-->
-<!--                           <VBox.margin>-->
-<!--                              <Insets bottom="20.0" top="20.0" />-->
-<!--                           </VBox.margin>-->
-<!--                        </Text>-->
-<!--                         &lt;!&ndash; People( *** &ndash;&gt;-->
-<!--                        <GridPane prefHeight="935.0" prefWidth="642.0">-->
-<!--                          <columnConstraints>-->
-<!--                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />-->
-<!--                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />-->
-<!--                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />-->
-<!--                          </columnConstraints>-->
-<!--                          <rowConstraints>-->
-<!--                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />-->
-<!--                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />-->
-<!--                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />-->
-<!--                          </rowConstraints>-->
-<!--                           <children>-->
-<!--                               &lt;!&ndash; Children &ndash;&gt;-->
-<!--                              <VBox prefHeight="200.0" prefWidth="100.0">-->
-<!--                                 <children>-->
-<!--                                     &lt;!&ndash; Childrend Image &ndash;&gt;-->
-<!--                                    <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">-->
-<!--                                        <image>-->
-<!--                                            <Image url="@../images/relic/ho_chi_minh.jpg" />-->
-<!--                                        </image>-->
-<!--                                    </ImageView>-->
-<!--                                     &lt;!&ndash; People 's name &ndash;&gt;-->
-<!--                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hồ Chí Minh" />-->
-<!--                                 </children>-->
-<!--                              </VBox>-->
-<!--                               &lt;!&ndash; Children &ndash;&gt;-->
-<!--                              <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">-->
-<!--                                 <children>-->
-<!--                                     <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">-->
-<!--                                         <image>-->
-<!--                                             <Image url="@../images/relic/ho_chi_minh.jpg" />-->
-<!--                                         </image>-->
-<!--                                     </ImageView>-->
-<!--                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hồ Chí Minh" />-->
-<!--                                 </children>-->
-<!--                              </VBox>-->
-<!--                              <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">-->
-<!--                                 <children>-->
-<!--                                     <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">-->
-<!--                                         <image>-->
-<!--                                             <Image url="@../images/relic/ho_chi_minh.jpg" />-->
-<!--                                         </image>-->
-<!--                                     </ImageView>-->
-<!--                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hồ Chí Minh" />-->
-<!--                                 </children>-->
-<!--                              </VBox>-->
-<!--                              <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">-->
-<!--                                 <children>-->
-<!--                                     <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">-->
-<!--                                         <image>-->
-<!--                                             <Image url="@../images/relic/ho_chi_minh.jpg" />-->
-<!--                                         </image>-->
-<!--                                     </ImageView>-->
-<!--                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hồ Chí Minh" />-->
-<!--                                 </children>-->
-<!--                              </VBox>-->
-<!--                              <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">-->
-<!--                                 <children>-->
-<!--                                     <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">-->
-<!--                                         <image>-->
-<!--                                             <Image url="@../images/relic/ho_chi_minh.jpg" />-->
-<!--                                         </image>-->
-<!--                                     </ImageView>-->
-<!--                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hồ Chí Minh" />-->
-<!--                                 </children>-->
-<!--                              </VBox>-->
-<!--                              <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1">-->
-<!--                                 <children>-->
-<!--                                     <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">-->
-<!--                                         <image>-->
-<!--                                             <Image url="@../images/relic/ho_chi_minh.jpg" />-->
-<!--                                         </image>-->
-<!--                                     </ImageView>-->
-<!--                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hồ Chí Minh" />-->
-<!--                                 </children>-->
-<!--                              </VBox>-->
-<!--                           </children>-->
-<!--                        </GridPane>-->
-<!--                     </children>-->
+                  <VBox fx:id="mainContent" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="600.0" stylesheets="@../controller/person/css/detail.css">
                   </VBox>
 
                    <!-- SEPERATOR LINE -->
                   <Separator orientation="VERTICAL" prefHeight="200.0" />
 
                    <!-- Tree view -->
-                  <VBox fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="923.0" prefWidth="242.0">
+                  <VBox fx:id="sideBar" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="15.0" stylesheets="@../css/layout.css">
                       <!-- Title -->
                       <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="tree-view-title" text="Các di tích lịch sử">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="tree-view-title" text="Danh sách liên quan">
                            <VBox.margin>
                               <Insets left="8.0" />
                            </VBox.margin>
                         </Text>
-                          <!-- Childrend tree as a button -->
-                        <Button mnemonicParsing="false" styleClass="link-button" stylesheets="@../css/detail.css" text="Hồng Bàng" />
                      </children>
                      <padding>
                         <Insets top="10.0" />

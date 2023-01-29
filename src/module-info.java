@@ -15,9 +15,9 @@ module OopProject {
 	requires org.jsoup;
     requires javafx.graphics;
 	requires javafx.fxml;
-	requires org.json;
 	requires javafx.controls;
 //	requires javafx.web;
+	opens app to javafx.graphics;
     opens app.crawler to com.google.gson;
 	opens app.history.person to com.google.gson;
 	opens app.history.dynasty to com.google.gson;
@@ -25,4 +25,6 @@ module OopProject {
 	opens app.history.festival to com.google.gson;
 	opens app.history.relic to com.google.gson;
 	opens app.screen.controller to javafx.fxml;
+	exports app.screen.controller.person;
+	opens app.screen.controller.person to javafx.fxml;
 }
