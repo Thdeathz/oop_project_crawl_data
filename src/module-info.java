@@ -6,8 +6,8 @@ module OopProject {
 	exports app.history.dynasty;
 	exports app.history.festival;
 	exports app.crawler.base;
-	exports app.screen.main;
 	exports app.screen.controller;
+	exports app.screen.controller.person;
 
 	requires com.google.gson;
 	requires java.desktop;
@@ -25,7 +25,8 @@ module OopProject {
 	opens app.history.festival to com.google.gson;
 	opens app.history.relic to com.google.gson;
 	opens app.screen.controller to javafx.fxml;
-	exports app.screen.controller.person;
 	opens app.screen.controller.person to javafx.fxml;
 	opens app.screen.controller.dynasty to javafx.fxml;
+	opens app.screen.controller.event to javafx.fxml;
+	opens app.screen.controller.relic to javafx.fxml;
 }

@@ -44,6 +44,8 @@ public class Event {
 		return time;
 	}
 
+	public String getImgPath() { return imgPath; }
+
 	public void setTime(String time) {
 		this.time = time;
 	}
