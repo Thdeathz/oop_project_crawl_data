@@ -33,6 +33,7 @@ public class Relic {
 		this.nameList = nameList;
 		this.imgUrl = imgUrl;
 	}
+	public int getId() {return id;}
 
 	public String getTitle() {
 		return title;

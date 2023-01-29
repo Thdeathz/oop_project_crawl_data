@@ -27,4 +27,7 @@ module OopProject {
 	opens app.screen.controller to javafx.fxml;
 	exports app.screen.controller.person;
 	opens app.screen.controller.person to javafx.fxml;
+    exports app.screen.controller.event;
+    opens app.screen.controller.event to javafx.fxml;
+	opens app.screen.controller.relic to javafx.fxml;
 }
