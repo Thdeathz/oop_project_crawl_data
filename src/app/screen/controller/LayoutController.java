@@ -3,7 +3,9 @@ package app.screen.controller;
 import app.history.store.Store;
 import app.screen.controller.dynasty.DynastyDetailController;
 import app.screen.controller.dynasty.DynastyListController;
+import app.screen.controller.event.EventListController;
 import app.screen.controller.person.PersonListController;
+import app.screen.controller.relic.RelicListController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -53,10 +55,9 @@ public class LayoutController {
 
     @FXML
     void handleEventBtnClicked(ActionEvent event) {
-        contentArea.getChildren().clear();
+        EventListController eventController = new EventListController(contentArea);
+        selectPane(contentArea, eventBtn, eventController);
         currentPane = "event";
-        eventBtn.getStyleClass().remove("menu-bar");
-        eventBtn.getStyleClass().add("selected-menu");
     }
 
     @FXML
@@ -76,10 +77,9 @@ public class LayoutController {
 
     @FXML
     void handleRelicBtnClicked(ActionEvent event) {
-        contentArea.getChildren().clear();
+        RelicListController relicController = new RelicListController(contentArea);
+        selectPane(contentArea, relicBtn, relicController);
         currentPane = "relic";
-        relicBtn.getStyleClass().remove("menu-bar");
-        relicBtn.getStyleClass().add("selected-menu");
     }
 
     @FXML

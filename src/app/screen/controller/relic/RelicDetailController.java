@@ -1,64 +1,72 @@
 package app.screen.controller.relic;
 
-import app.history.event.Event;
 import app.history.person.Person;
 import app.history.relic.Relic;
 import app.history.store.Store;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Cursor;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 
-import java.io.FileReader;
-import java.io.IOException;
-import java.lang.reflect.Type;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
+import java.util.Objects;
 
-public class RelicDetailController implements Initializable {
+public class RelicDetailController {
     @FXML
     private VBox mainContent;
-    public int relicID;
+    @FXML
+    private VBox sideBar;
 
-    public void setRelicID(int relicID) {
-        this.relicID = relicID;
+    private Button currentSideBarBtn;
+
+    private final Relic relicData;
+
+    public RelicDetailController(Relic relicData) {
+        this.relicData = relicData;
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    @FXML
+    public void initialize() {
+        initMainContent(this.relicData);
+        initSideBar();
+    }
 
-
-        System.out.println(this.relicID);
-        int currentID = this.relicID;
-        String title = null;
-        String content = null;
-        String address = null;
-        String imgUrl = null;
-
-
-        // filter data
-        for (Relic item : Store.relics) {
-            if (item.getId() == currentID) {
-                title = item.getTitle();
-                content = item.getContent();
-                address = item.getAddress();
-                imgUrl = item.getImgUrl();
-                break;
+    public void initSideBar() {
+        for (Relic item: Store.relics) {
+            Button sideBarBtn = new Button();
+            sideBarBtn.setText("> " + item.getTitle());
+            sideBarBtn.getStyleClass().add("side-bar-btn");
+            if(Objects.equals(item.getId(), relicData.getId())) {
+                currentSideBarBtn = sideBarBtn;
+                sideBarBtn.getStyleClass().add("current-content-btn");
             }
-        }
 
+            sideBarBtn.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    currentSideBarBtn.getStyleClass().remove("current-content-btn");
+                    sideBarBtn.getStyleClass().add("current-content-btn");
+                    currentSideBarBtn = sideBarBtn;
+                    initMainContent(item);
+                }
+            });
+
+            sideBar.getChildren().add(sideBarBtn);
+        }
+    }
+
+    public void initMainContent(Relic relicData) {
         //CREATE UI FROM DATA
         ImageView relicImage = new ImageView();
         Image image = null;
         try {
-            image = new Image("C:/Users/HLEE/Documents/GitHub/oop_project_crawl_data/src/app/screen/images/person/"+ imgUrl);
+            image = new Image("D:/Học linh tinh/Học Java/Projects/oop_project_crawl_data/src/app/history/store/img/relic/"+ relicData.getImgUrl());
         } catch (Exception e) {
             image = null;
         }
@@ -66,23 +74,65 @@ public class RelicDetailController implements Initializable {
         relicImage.setFitWidth(400);
         relicImage.setFitHeight(550);
 
-        Label relicTitle = new Label(title);
+        Label relicTitle = new Label(relicData.getTitle());
         relicTitle.getStylesheets().add(this.getClass().getResource("css/detail.css").toExternalForm());
         relicTitle.getStyleClass().add("title");
         relicTitle.setPadding(new Insets(20, 0, 20, 0));
         relicTitle.setWrapText(true);
 
-        Label relicContent = new Label("Nội dung: " + content);
+        Label relicContent = new Label(""+relicData.getContent());
         relicContent.getStyleClass().add("content");
         relicContent.setPadding(new Insets(0, 0, 10, 0));
         relicContent.setWrapText(true);
 
-        Label relicDestination = new Label("Địa điểm: " + address);
+        Label relicDestination = new Label("Địa điểm: " + relicData.getAddress());
         relicDestination.getStyleClass().add("content");
         relicDestination.setPadding(new Insets(0, 0, 10, 0));
         relicDestination.setWrapText(true);
 
+        GridPane gridPane = new GridPane();
+        gridPane.setVgap(20);
+        int row = 0;
+        int column = 0;
+        for(Person item: relicData.getRelatedHistoricalPerson()) {
+            VBox vBox = new VBox();
+            vBox.setMinWidth(200);
+            GridPane.setRowIndex(vBox, row);
+            GridPane.setColumnIndex(vBox, column);
 
-        mainContent.getChildren().addAll(relicImage, relicTitle, relicDestination, relicContent);
+            Label kingName = new Label(item.getName());
+            kingName.getStylesheets().add(Objects.requireNonNull(this.getClass().getResource("css/detail.css")).toExternalForm());
+            kingName.getStyleClass().add("king-name");
+            kingName.setCursor(Cursor.HAND);
+
+            ImageView avatar = new ImageView();
+            Image personImg = null;
+            try {
+                personImg = new Image("D:/Học linh tinh/Học Java/Projects/oop_project_crawl_data/src/app/history/store/img/person/"+ item.getId() +".png");
+            } catch (Exception e) {
+                personImg = null;
+            }
+            avatar.setImage(personImg);
+            avatar.setFitWidth(150);
+            avatar.setFitHeight(200);
+
+            vBox.getChildren().addAll(avatar, kingName);
+            gridPane.getChildren().add(vBox);
+
+            column++;
+            if (column == 3) {
+                column = 0;
+                row++;
+            }
+        }
+
+        mainContent.getChildren().clear();
+        mainContent.getChildren().addAll(
+                relicTitle,
+                relicDestination,
+                relicImage,
+                relicContent,
+                gridPane
+        );
     }
 }

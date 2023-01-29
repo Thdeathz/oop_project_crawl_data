@@ -21,7 +21,7 @@ import app.history.event.Event;
 public class EventCrawler extends BaseWebsiteCrawler implements ICrawler {
 
 	public EventCrawler() {
-		super("https://nguoikesu.com", "src/app/history/store/json", "src/app/history/store/img/event");
+		super("https://nguoikesu.com", "src/app/history/store/json/event.json", "src/app/history/store/img/event");
 	}
 
 	private void saveImg(String src_image, String name, String dir) {
@@ -124,14 +124,19 @@ public class EventCrawler extends BaseWebsiteCrawler implements ICrawler {
 				}
 			}
 		} catch( Exception e ){
-						e.printStackTrace();
-				}
-		try (FileWriter file = new FileWriter(getJsonStoreUrls() + "event.java")){
+			e.printStackTrace();
+		}
+		try (FileWriter file = new FileWriter(getJsonStoreUrls())){
 			file.write(gson.toJson(list));
 			file.flush();
 			System.out.println("Convert to json complete");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public static void main(String[] args) {
+		EventCrawler eventCrawler = new EventCrawler();
+		eventCrawler.crawl();
 	}
 }
