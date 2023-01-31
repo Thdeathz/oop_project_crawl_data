@@ -17,6 +17,7 @@ public class main extends Application {
         Parent root = loader.load();
         Scene scene = new Scene(root);
         stage.setTitle("DutCanTri");
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }

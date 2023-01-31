@@ -39,7 +39,7 @@ public class PersonDetailController extends DetailBaseController {
     }
 
     public void initSideBar() {
-        for (Person item: Store.persons.subList(0, 100)) {
+        for (Person item: Store.persons) {
             Button sideBarBtn = new Button();
             sideBarBtn.setText("> " + item.getName());
             sideBarBtn.getStyleClass().add("side-bar-btn");
@@ -64,11 +64,7 @@ public class PersonDetailController extends DetailBaseController {
         ImageView avatar = new ImageView();
         Image image = null;
         try {
-            image = new Image(
-                "D:/Học linh tinh/Học Java/Projects/oop_project_crawl_data/src/app/history/store/img/person/" +
-                currentPerson.getId() +
-                ".png"
-            );
+            image = new Image(Objects.requireNonNull(getClass().getResource("/app/history/store/img/person/"+ currentPerson.getId() +".png")).openStream());
         } catch (Exception e) {
             image = null;
         }
@@ -77,7 +73,6 @@ public class PersonDetailController extends DetailBaseController {
         avatar.setFitHeight(550);
 
         Label personName = new Label(currentPerson.getName());
-        personName.getStylesheets().add(Objects.requireNonNull(this.getClass().getResource("css/detail.css")).toExternalForm());
         personName.getStyleClass().add("title");
         personName.setPadding(new Insets(20, 0, 20, 0));
         personName.setWrapText(true);

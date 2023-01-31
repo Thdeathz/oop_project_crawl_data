@@ -23,7 +23,7 @@
                <children>
 
                    <!-- Main content -->
-                  <VBox fx:id="mainContent" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="600.0" stylesheets="@../controller/person/css/detail.css">
+                  <VBox fx:id="mainContent" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="600.0">
                   </VBox>
 
                    <!-- SEPERATOR LINE -->

@@ -10,9 +10,10 @@ import javafx.scene.control.Pagination;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+
+import java.util.Objects;
 
 public class PersonListController {
     @FXML
@@ -22,31 +23,34 @@ public class PersonListController {
 
     @FXML
     public void initialize() {
-        int countPage = Store.persons.size()/12 + 1;
-
         //Create pagination
         Pagination pagination = new Pagination();
-        pagination.setPageCount(countPage);
+        pagination.setPageCount(Store.persons.size()/12 + 1);
         pagination.setCurrentPageIndex(0);
         pagination.setMaxPageIndicatorCount(5);
 
         pagination.setPageFactory((pageIndex) -> {
+            gridPane.getChildren().clear();
+
             int gridCol = 0;
             int gridRow = 0;
-            gridPane.getChildren().clear();
-            for (Person item: Store.persons.subList(12* pagination.getCurrentPageIndex(), 12* pagination.getCurrentPageIndex()+11)){
+
+            int startItemIndex = 12 * pagination.getCurrentPageIndex();
+            int endItemIndex = startItemIndex + 12;
+            if(endItemIndex > Store.persons.size()) endItemIndex = Store.persons.size();
+
+            for (Person item: Store.persons.subList(startItemIndex, endItemIndex)){
                 VBox vBox = new VBox();
                 vBox.setMinWidth(200);
 
                 Label personName = new Label(item.getName().toString());
-                personName.getStylesheets().add(this.getClass().getResource("css/list.css").toExternalForm());
                 personName.getStyleClass().add("text-title");
                 personName.setCursor(Cursor.HAND);
 
                 ImageView avatar = new ImageView();
                 Image image = null;
                 try {
-                    image = new Image("D:/Học linh tinh/Học Java/Projects/oop_project_crawl_data/src/app/history/store/img/person/"+ item.getId() +".png");
+                    image = new Image(Objects.requireNonNull(getClass().getResource("/app/history/store/img/person/"+ item.getId() +".png")).openStream());
                 } catch (Exception e) {
                     image = null;
                 }
