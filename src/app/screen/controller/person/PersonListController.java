@@ -2,10 +2,9 @@ package app.screen.controller.person;
 
 import app.history.person.Person;
 import app.history.store.Store;
+import app.screen.controller.components.ContentController;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
-import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.Pagination;
 import javafx.scene.image.Image;
@@ -15,22 +14,12 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-import java.io.*;
-import java.util.Objects;
-
 public class PersonListController {
     @FXML
     private GridPane gridPane;
     @FXML
     private VBox paginationContainer;
 
-    private final StackPane contentArea;
-
-    public PersonListController(StackPane contentArea) {
-        this.contentArea = contentArea;
-    }
-
-    // Khai báo stage đang hiển thị trên màn hình
     @FXML
     public void initialize() {
         int countPage = Store.persons.size()/12 + 1;
@@ -75,7 +64,7 @@ public class PersonListController {
 
                 vBox.getChildren().addAll(avatar, personName,  dynastyName, date);
 
-                //constrait grid pane col and row index
+                //constraint grid pane col and row index
                 GridPane.setColumnIndex(vBox, gridCol);
                 GridPane.setRowIndex(vBox, gridRow);
 
@@ -88,19 +77,8 @@ public class PersonListController {
 
                 // xu ly su kien click
                 personName.setOnMouseClicked(e -> {
-                    // Lấy layout t file fxml
-                    FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/app/screen/fxml/detail.fxml"));
-                    // Set controller cho detail page
                     PersonDetailController personDetailController = new PersonDetailController(item);
-                    loader.setController(personDetailController);
-                    Parent root = null;
-                    try {
-                        root = loader.load();
-                        contentArea.getChildren().clear();
-                        contentArea.getChildren().setAll(root);
-                    } catch (IOException ex) {
-                        throw new RuntimeException(ex);
-                    }
+                    ContentController.goToDetail(personDetailController);
                 });
             }
             return new VBox(gridPane);
