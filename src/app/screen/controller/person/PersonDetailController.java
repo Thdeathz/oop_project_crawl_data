@@ -1,9 +1,11 @@
 package app.screen.controller.person;
 
+import app.history.dynasty.Dynasty;
 import app.history.person.Person;
 import app.history.store.Store;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import app.screen.controller.base.DetailBaseController;
+import app.screen.controller.components.ContentController;
+import app.screen.controller.dynasty.DynastyDetailController;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -14,7 +16,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import java.util.Objects;
 
-public class PersonDetailController {
+public class PersonDetailController extends DetailBaseController {
 
     @FXML
     private VBox mainContent;
@@ -46,14 +48,11 @@ public class PersonDetailController {
                 sideBarBtn.getStyleClass().add("current-content-btn");
             }
 
-            sideBarBtn.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    currentSideBarBtn.getStyleClass().remove("current-content-btn");
-                    sideBarBtn.getStyleClass().add("current-content-btn");
-                    currentSideBarBtn = sideBarBtn;
-                    initMainContent(item);
-                }
+            sideBarBtn.setOnAction(event -> {
+                currentSideBarBtn.getStyleClass().remove("current-content-btn");
+                sideBarBtn.getStyleClass().add("current-content-btn");
+                currentSideBarBtn = sideBarBtn;
+                initMainContent(item);
             });
 
             sideBar.getChildren().add(sideBarBtn);
@@ -112,8 +111,21 @@ public class PersonDetailController {
         personDescription.getStyleClass().add("description");
         personDescription.setWrappingWidth(500);
 
-        Label personDynasty = new Label("Triều Đại: " + currentPerson.getDynasty());
-        personDynasty.getStyleClass().add("content");
+        Label personDynasty = new Label();
+        Dynasty dynasty = currentPerson.getDynasty();
+        String text = "Triều Đại: ";
+        if(dynasty != null) {
+            text += currentPerson.getDynasty().getName();
+            personDynasty.setOnMouseClicked(event -> {
+                DynastyDetailController dynastyDetailController = new DynastyDetailController(dynasty);
+                ContentController.goToDetail(dynastyDetailController);
+            });
+        } else {
+            text += "Không rõ";
+        }
+
+        personDynasty.setText(text);
+        personDynasty.getStyleClass().add("dynasty");
         personDynasty.setPadding(new Insets(10, 0, 0, 0));
         personDynasty.setWrapText(true);
 

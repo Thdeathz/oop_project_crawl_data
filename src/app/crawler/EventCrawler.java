@@ -21,7 +21,7 @@ import app.history.event.Event;
 public class EventCrawler extends BaseWebsiteCrawler implements ICrawler {
 
 	public EventCrawler() {
-		super("https://nguoikesu.com", "src/app/history/store/json/event.json", "src/app/history/store/img/event");
+		super("https://nguoikesu.com", "src/app/history/store/json", "src/app/history/store/img/event");
 	}
 
 	private void saveImg(String src_image, String name, String dir) {
@@ -51,8 +51,9 @@ public class EventCrawler extends BaseWebsiteCrawler implements ICrawler {
 		Gson gson = new Gson();
 		try {
 			int endIndex = 70;
+			int index = 0;
 
-			for (int i = 0; i <= endIndex; i+=5) {
+			for (int i = 0; i <= endIndex; i += 5) {
 				String url;
 				if (i == 0) {
 					url = getUrl() + "/tu-lieu/quan-su";
@@ -62,39 +63,55 @@ public class EventCrawler extends BaseWebsiteCrawler implements ICrawler {
 				Document document = Jsoup.parse(new URL(url).openStream(), "UTF-8", url);
 				Elements elms = document.getElementsByClass("page-header");
 				Elements elms_descs = document.getElementsByAttributeValue("itemprop", "blogPost");
-				for (int j = 0; j < elms.size(); j++) {
+				for (int j = 0; j < elms.size(); ++j) {
+					++index;
+					int imgIndex;
+					if (j == 1) {
+						imgIndex = 3;
+					} else if (j > 1){
+						imgIndex = j+2;
+					} else {
+						imgIndex = j+1;
+					}
 					// Lay ten cua su kien
 					Elements elm_row = elms.get(j).getElementsByTag("a");
 					String name = elm_row.text();
 
 					// Lay mo ta cua su kien
 					Elements elms_desc = elms_descs.get(j).getElementsByTag("p");
-					String description = elms_desc.text().substring(0, elms_desc.text().length() - 1 - 11); // dung subString loc bo "Xem them..." o cuoi
+					String description = elms_desc.text().substring(0, elms_desc.text().length() - 1 - 11); // dung subString loc bo "Xem them... o cuoi"
 
 					// Lay link anh cua su kien
 					String imgUrl;
-					Element elms_img = document.selectFirst("div.leading-" + j + "> div.pull-none.item-image > a > img");
+					Element elms_img = document
+							.selectFirst("#content > div.com-content-category-blog.blog > div.com-content-category-blog__items.blog-items.items-leading > div:nth-child(" + imgIndex + ") > figure > img");
 					if (elms_img == null) {
 						imgUrl = "";
 					} else {
-						imgUrl = elms_img.attr("data-original");
-						System.out.println(elms_img.attr("loading"));
+						imgUrl = elms_img.attr("data-src");
 					}
-					System.out.println(imgUrl);
-					saveImg(imgUrl, name.replace(" ", "").toLowerCase() + ".png", getImgStoreUrls());
+					
+					// Luu anh cua su kien
+					saveImg(imgUrl, index + ".png", getImgStoreUrls());
 
 					// Lay link chi tiet cua su kien
 					String link_event = elm_row.first().absUrl("href");
 					Document document2 = Jsoup.parse(new URL(link_event).openStream(), "UTF-8", link_event);
 
 					// Lay thoi gian cua su kien
-					String time = document2.select("#jm-maincontent > div > div:nth-child(4) > div.infobox > table > tbody > tr > td > table > tbody > tr:nth-child(4) > td > table > tbody > tr:nth-child(1) > td:nth-child(2)").text();
-					String destination = document2.select("#jm-maincontent > div > div:nth-child(4) > div.infobox > table > tbody > tr > td > table > tbody > tr:nth-child(4) > td > table > tbody > tr:nth-child(2) > td:nth-child(2)").text();
+					String time = document2.select(
+							"#content > div.com-content-article.item-page > div.com-content-article__body > div.infobox > table > tbody > tr > td > table > tbody > tr:nth-child(4) > td > table > tbody > tr:nth-child(1) > td:nth-child(2)")
+							.text();
+					String destination = document2.select(
+							"#content > div.com-content-article.item-page > div.com-content-article__body > div.infobox > table > tbody > tr > td > table > tbody > tr:nth-child(4) > td > table > tbody > tr:nth-child(2) > td:nth-child(2)")
+							.text();
 
 					// Lay danh sach nhung nguoi lien quan den su kien
 					List<String> relativePersons = new ArrayList<String>();
-					Elements first_col = document2.select("#jm-maincontent > div > div:nth-child(4) > div.infobox > table > tbody > tr > td > table > tbody > tr:nth-child(8) > td:nth-child(1)");
-					Elements second_col = document2.select("#jm-maincontent > div > div:nth-child(4) > div.infobox > table > tbody > tr > td > table > tbody > tr:nth-child(8) > td:nth-child(2)");
+					Elements first_col = document2.select(
+							"#content > div.com-content-article.item-page > div.com-content-article__body > div.infobox > table > tbody > tr > td > table > tbody > tr:nth-child(8) > td:nth-child(1)");
+					Elements second_col = document2.select(
+							"#content > div.com-content-article.item-page > div.com-content-article__body > div.infobox > table > tbody > tr > td > table > tbody > tr:nth-child(8) > td:nth-child(2)");
 					if (first_col.size() > 0) {
 						for (int k = 0; k < first_col.size(); k++) {
 							Elements nameList = first_col.get(k).getElementsByTag("a");
@@ -115,7 +132,8 @@ public class EventCrawler extends BaseWebsiteCrawler implements ICrawler {
 					}
 
 					// Tao su kien
-					Event event = new Event(name, time, destination, description, getImgStoreUrls() + "/" + name.replace(" ", "").toLowerCase()+ ".png", relativePersons);
+					Event event = new Event(name, time, destination, description,
+							index + ".png", relativePersons);
 
 					// Them su kien vao danh sach su kien
 					if (!list.contains(event)) {
@@ -123,10 +141,10 @@ public class EventCrawler extends BaseWebsiteCrawler implements ICrawler {
 					}
 				}
 			}
-		} catch( Exception e ){
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		try (FileWriter file = new FileWriter(getJsonStoreUrls())){
+		try (FileWriter file = new FileWriter(getJsonStoreUrls() + "/event.json")) {
 			file.write(gson.toJson(list));
 			file.flush();
 			System.out.println("Convert to json complete");

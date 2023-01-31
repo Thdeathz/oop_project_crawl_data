@@ -1,20 +1,3 @@
-.primary-background{
-    -fx-background-color: #FAF5ED;
-}
-
-.border-pane-background{
-    -fx-background-color: #FAF5ED;
-}
-
-.search-box{
-    -fx-outline: none;
-    -fx-background-color: transparent;
-}
-
-.header-button{
-    -fx-cursor: hand;
-}
-
 .title{
     -fx-font-size: 40px;
     -fx-font-weight: 700;
@@ -25,6 +8,12 @@
     -fx-font-size:20px;
     -fx-font-weight:600;
     -fx-font-fill: #000000;
+}
+
+.dynasty {
+    -fx-font-size:20px;
+    -fx-font-weight:700;
+    -fx-cursor: hand;
 }
 
 .content{

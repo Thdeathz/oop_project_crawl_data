@@ -23,7 +23,7 @@ public class Event {
 	public Event() {}
 
 	public Event(String name, String time, String destination, String description, String imgPath, List<String> relativePersonsName) {
-		this.id = cnt++;
+		this.id = ++cnt;
 		this.time = time;
 		this.destination = destination;
 		this.description = description;
@@ -66,8 +66,8 @@ public class Event {
 		this.description = description;
 	}
 
-	public List<String> getRelativePersons() {
-		return relativePersonsName;
+	public List<Person> getRelativePersons() {
+		return relativePersons;
 	}
 
 	public void setRelativePersons(List<String> relativePersonsName) {

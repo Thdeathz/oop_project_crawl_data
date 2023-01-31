@@ -2,17 +2,15 @@ package app.screen.controller.dynasty;
 
 import app.history.dynasty.Dynasty;
 import app.history.store.Store;
+import app.screen.controller.components.ContentController;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
-import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.Pagination;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
-import java.io.IOException;
+import java.util.Objects;
 
 public class DynastyListController {
     @FXML
@@ -20,13 +18,6 @@ public class DynastyListController {
     @FXML
     private VBox paginationContainer;
 
-    private final StackPane contentArea;
-
-    public DynastyListController(StackPane contentArea) {
-        this.contentArea = contentArea;
-    }
-
-    // Khai báo stage đang hiển thị trên màn hình
     @FXML
     public void initialize() {
         int countPage = Store.dynasties.size()/12 + 1;
@@ -46,13 +37,13 @@ public class DynastyListController {
                 vBox.setMinWidth(200);
 
                 Label dynastyName = new Label(item.getName());
-                dynastyName.getStylesheets().add(this.getClass().getResource("css/list.css").toExternalForm());
+                dynastyName.getStylesheets().add(Objects.requireNonNull(this.getClass().getResource("css/list.css")).toExternalForm());
                 dynastyName.getStyleClass().add("text-title");
                 dynastyName.setCursor(Cursor.HAND);
 
                 vBox.getChildren().addAll(dynastyName);
 
-                //constrait grid pane col and row index
+                //constraint grid pane col and row index
                 GridPane.setColumnIndex(vBox, gridCol);
                 GridPane.setRowIndex(vBox, gridRow);
 
@@ -65,19 +56,8 @@ public class DynastyListController {
 
                 // xu ly su kien click
                 dynastyName.setOnMouseClicked(e -> {
-                    // Lấy layout t file fxml
-                    FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/app/screen/fxml/detail.fxml"));
-                    // Set controller cho detail page
                     DynastyDetailController dynastyDetailController = new DynastyDetailController(item);
-                    loader.setController(dynastyDetailController);
-                    Parent root = null;
-                    try {
-                        root = loader.load();
-                        contentArea.getChildren().clear();
-                        contentArea.getChildren().setAll(root);
-                    } catch (IOException ex) {
-                        throw new RuntimeException(ex);
-                    }
+                    ContentController.goToDetail(dynastyDetailController);
                 });
             }
             return new VBox(gridPane);

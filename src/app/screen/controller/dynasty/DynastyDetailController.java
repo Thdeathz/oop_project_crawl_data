@@ -3,8 +3,9 @@ package app.screen.controller.dynasty;
 import app.history.dynasty.Dynasty;
 import app.history.person.Person;
 import app.history.store.Store;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import app.screen.controller.base.DetailBaseController;
+import app.screen.controller.components.ContentController;
+import app.screen.controller.person.PersonDetailController;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.Cursor;
@@ -17,7 +18,7 @@ import javafx.scene.layout.VBox;
 
 import java.util.Objects;
 
-public class DynastyDetailController {
+public class DynastyDetailController extends DetailBaseController {
 
     @FXML
     private VBox mainContent;
@@ -49,14 +50,11 @@ public class DynastyDetailController {
                 sideBarBtn.getStyleClass().add("current-content-btn");
             }
 
-            sideBarBtn.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    currentSideBarBtn.getStyleClass().remove("current-content-btn");
-                    sideBarBtn.getStyleClass().add("current-content-btn");
-                    currentSideBarBtn = sideBarBtn;
-                    initMainContent(item);
-                }
+            sideBarBtn.setOnAction(event -> {
+                currentSideBarBtn.getStyleClass().remove("current-content-btn");
+                sideBarBtn.getStyleClass().add("current-content-btn");
+                currentSideBarBtn = sideBarBtn;
+                initMainContent(item);
             });
 
             sideBar.getChildren().add(sideBarBtn);
@@ -96,6 +94,11 @@ public class DynastyDetailController {
             kingName.getStylesheets().add(Objects.requireNonNull(this.getClass().getResource("css/detail.css")).toExternalForm());
             kingName.getStyleClass().add("king-name");
             kingName.setCursor(Cursor.HAND);
+
+            kingName.setOnMouseClicked(e -> {
+                PersonDetailController personDetailController = new PersonDetailController(item);
+                ContentController.goToDetail(personDetailController);
+            });
 
             ImageView avatar = new ImageView();
             Image image = null;
