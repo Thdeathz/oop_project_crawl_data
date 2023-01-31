@@ -3,29 +3,22 @@ package app.screen.controller.event;
 import app.history.event.Event;
 import app.history.person.Person;
 import app.history.store.Store;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import app.screen.controller.base.DetailBaseController;
+import app.screen.controller.components.ContentController;
+import app.screen.controller.person.PersonDetailController;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 
-import java.io.FileReader;
-import java.io.IOException;
-import java.lang.reflect.Type;
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.Objects;
-import java.util.ResourceBundle;
 
-public class EventDetailController {
+public class EventDetailController extends DetailBaseController {
     @FXML
     private VBox mainContent;
     @FXML
@@ -56,14 +49,11 @@ public class EventDetailController {
                 sideBarBtn.getStyleClass().add("current-content-btn");
             }
 
-            sideBarBtn.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    currentSideBarBtn.getStyleClass().remove("current-content-btn");
-                    sideBarBtn.getStyleClass().add("current-content-btn");
-                    currentSideBarBtn = sideBarBtn;
-                    initMainContent(item);
-                }
+            sideBarBtn.setOnAction(event -> {
+                currentSideBarBtn.getStyleClass().remove("current-content-btn");
+                sideBarBtn.getStyleClass().add("current-content-btn");
+                currentSideBarBtn = sideBarBtn;
+                initMainContent(item);
             });
 
             sideBar.getChildren().add(sideBarBtn);
@@ -104,13 +94,55 @@ public class EventDetailController {
         eventDescription.setPadding(new Insets(0, 0, 10, 0));
         eventDescription.setWrapText(true);
 
+        GridPane gridPane = new GridPane();
+        gridPane.setVgap(20);
+        int row = 0;
+        int column = 0;
+        for(Person item: eventData.getRelativePersons()) {
+            VBox vBox = new VBox();
+            vBox.setMinWidth(200);
+            GridPane.setRowIndex(vBox, row);
+            GridPane.setColumnIndex(vBox, column);
+
+            Label kingName = new Label(item.getName());
+            kingName.getStylesheets().add(Objects.requireNonNull(this.getClass().getResource("css/detail.css")).toExternalForm());
+            kingName.getStyleClass().add("king-name");
+            kingName.setCursor(Cursor.HAND);
+
+            kingName.setOnMouseClicked(e -> {
+                PersonDetailController personDetailController = new PersonDetailController(item);
+                ContentController.goToDetail(personDetailController);
+            });
+
+            ImageView avatar = new ImageView();
+            Image image2 = null;
+            try {
+                image2 = new Image("D:/Học linh tinh/Học Java/Projects/oop_project_crawl_data/src/app/history/store/img/person/"+ item.getId() +".png");
+            } catch (Exception e) {
+                image2 = null;
+            }
+            avatar.setImage(image2);
+            avatar.setFitWidth(150);
+            avatar.setFitHeight(200);
+
+            vBox.getChildren().addAll(avatar, kingName);
+            gridPane.getChildren().add(vBox);
+
+            column++;
+            if (column == 3) {
+                column = 0;
+                row++;
+            }
+        }
+
         mainContent.getChildren().clear();
         mainContent.getChildren().addAll(
                 eventName,
                 eventTime,
                 eventDestination,
                 eventImage,
-                eventDescription
+                eventDescription,
+                gridPane
         );
     }
 }

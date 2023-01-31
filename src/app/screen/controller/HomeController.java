@@ -1,5 +1,6 @@
 package app.screen.controller;
 
+import app.screen.controller.components.Transition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.layout.BorderPane;

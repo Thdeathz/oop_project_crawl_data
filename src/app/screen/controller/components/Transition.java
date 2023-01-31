@@ -1,4 +1,4 @@
-package app.screen.controller;
+package app.screen.controller.components;
 
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;

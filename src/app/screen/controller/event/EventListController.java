@@ -2,16 +2,14 @@ package app.screen.controller.event;
 
 import app.history.event.Event;
 import app.history.store.Store;
+import app.screen.controller.components.ContentController;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
-import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.Pagination;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
@@ -22,12 +20,6 @@ public class EventListController {
     private GridPane gridPane;
     @FXML
     private VBox paginationContainer;
-
-    private final StackPane contentArea;
-
-    public EventListController(StackPane contentArea) {
-        this.contentArea = contentArea;
-    }
 
     // CREATE UI FROM DATA
     @FXML
@@ -86,20 +78,8 @@ public class EventListController {
 
                 // xu ly su kien click
                 eventName.setOnMouseClicked(e -> {
-                    // Lấy layout t file fxml
-                    FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/app/screen/fxml/detail.fxml"));
-                    // Set controller cho detail page
                     EventDetailController eventDetailController = new EventDetailController(item);
-                    loader.setController(eventDetailController);
-
-                    Parent root = null;
-                    try {
-                        root = loader.load();
-                        contentArea.getChildren().clear();
-                        contentArea.getChildren().setAll(root);
-                    } catch (IOException ex) {
-                        throw new RuntimeException(ex);
-                    }
+                    ContentController.goToDetail(eventDetailController);
                 });
             }
             return new VBox(gridPane);
