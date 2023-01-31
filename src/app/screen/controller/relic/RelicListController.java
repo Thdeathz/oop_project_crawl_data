@@ -12,7 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
-import java.io.*;
+import java.util.Objects;
 
 public class RelicListController {
     @FXML
@@ -22,25 +22,27 @@ public class RelicListController {
 
     @FXML
     public void initialize() {
-        // CREATE UI FROM DATA
-        int countPage = Store.relics.size()/12 + 1;
-
         //Create pagination
         Pagination pagination = new Pagination();
-        pagination.setPageCount(countPage);
+        pagination.setPageCount(Store.relics.size()/12 + 1);
         pagination.setCurrentPageIndex(0);
         pagination.setMaxPageIndicatorCount(5);
 
         pagination.setPageFactory((pageIndex) -> {
+            gridPane.getChildren().clear();
+
             int gridCol = 0;
             int gridRow = 0;
-            gridPane.getChildren().clear();
-            for (Relic item: Store.relics.subList(12* pagination.getCurrentPageIndex(), 12* pagination.getCurrentPageIndex()+11)){
+
+            int startItemIndex = 12 * pagination.getCurrentPageIndex();
+            int endItemIndex = startItemIndex + 12;
+            if(endItemIndex > Store.relics.size()) endItemIndex = Store.relics.size();
+
+            for (Relic item: Store.relics.subList(startItemIndex, endItemIndex)){
                 VBox vBox = new VBox();
                 vBox.setMinWidth(200);
 
                 Label relicTitle = new Label(item.getTitle());
-                relicTitle.getStylesheets().add(this.getClass().getResource("css/list.css").toExternalForm());
                 relicTitle.getStyleClass().add("text-title");
                 relicTitle.setCursor(Cursor.HAND);
                 relicTitle.setMaxWidth(200);
@@ -49,7 +51,7 @@ public class RelicListController {
                 ImageView relicImage = new ImageView();
                 Image image = null;
                 try {
-                    image = new Image("D:/Học linh tinh/Học Java/Projects/oop_project_crawl_data/src/app/history/store/img/relic/"+ item.getImgUrl());
+                    image = new Image(Objects.requireNonNull(getClass().getResource("/app/history/store/img/relic/"+ item.getImgUrl())).openStream());
                 } catch (Exception e) {
                     image = null;
                 }
@@ -60,7 +62,7 @@ public class RelicListController {
                 vBox.getChildren().addAll(relicImage, relicTitle);
                 vBox.setMaxWidth(200);
 
-                //constrait grid pane col and row index
+                //constraint grid pane col and row index
                 GridPane.setColumnIndex(vBox, gridCol);
                 GridPane.setRowIndex(vBox, gridRow);
 

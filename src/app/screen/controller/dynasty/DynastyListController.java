@@ -10,8 +10,6 @@ import javafx.scene.control.Pagination;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
-import java.util.Objects;
-
 public class DynastyListController {
     @FXML
     private GridPane gridPane;
@@ -37,7 +35,6 @@ public class DynastyListController {
                 vBox.setMinWidth(200);
 
                 Label dynastyName = new Label(item.getName());
-                dynastyName.getStylesheets().add(Objects.requireNonNull(this.getClass().getResource("css/list.css")).toExternalForm());
                 dynastyName.getStyleClass().add("text-title");
                 dynastyName.setCursor(Cursor.HAND);
 

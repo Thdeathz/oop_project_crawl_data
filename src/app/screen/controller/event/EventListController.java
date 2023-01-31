@@ -13,7 +13,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-import java.io.*;
+import java.io.IOException;
+import java.util.Objects;
 
 public class EventListController {
     @FXML
@@ -24,24 +25,27 @@ public class EventListController {
     // CREATE UI FROM DATA
     @FXML
     public void initialize() {
-        int countPage = Store.events.size()/12 + 1;
-
         //Create pagination
         Pagination pagination = new Pagination();
-        pagination.setPageCount(countPage);
+        pagination.setPageCount(Store.events.size()/12 + 1);
         pagination.setCurrentPageIndex(0);
         pagination.setMaxPageIndicatorCount(5);
 
         pagination.setPageFactory((pageIndex) -> {
+            gridPane.getChildren().clear();
+
             int gridCol = 0;
             int gridRow = 0;
-            gridPane.getChildren().clear();
-            for (Event item: Store.events.subList(12* pagination.getCurrentPageIndex(), 12* pagination.getCurrentPageIndex()+11)){
+
+            int startItemIndex = 12 * pagination.getCurrentPageIndex();
+            int endItemIndex = startItemIndex + 12;
+            if(endItemIndex > Store.events.size()) endItemIndex = Store.events.size();
+
+            for (Event item: Store.events.subList(startItemIndex, endItemIndex)){
                 VBox vBox = new VBox();
                 vBox.setMinWidth(200);
 
-                Label eventName = new Label(item.getName().toString());
-                eventName.getStylesheets().add(this.getClass().getResource("css/list.css").toExternalForm());
+                Label eventName = new Label(item.getName());
                 eventName.getStyleClass().add("text-title");
                 eventName.setCursor(Cursor.HAND);
                 eventName.setMaxWidth(200);
@@ -50,7 +54,7 @@ public class EventListController {
                 ImageView eventImage = new ImageView();
                 Image image = null;
                 try {
-                    image = new Image("D:/Học linh tinh/Học Java/Projects/oop_project_crawl_data/"+ item.getImgPath());
+                    image = new Image(Objects.requireNonNull(getClass().getResource("/app/history/store/img/event/" + item.getImgPath())).openStream());
                 } catch (Exception e) {
                     image = null;
                 }

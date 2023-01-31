@@ -1,14 +1,11 @@
 package app.screen.controller.event;
 
 import app.history.event.Event;
-import app.history.person.Person;
 import app.history.store.Store;
 import app.screen.controller.base.DetailBaseController;
-import app.screen.controller.components.ContentController;
-import app.screen.controller.person.PersonDetailController;
+import app.screen.controller.components.Components;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
-import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -65,7 +62,7 @@ public class EventDetailController extends DetailBaseController {
         ImageView eventImage = new ImageView();
         Image image = null;
         try {
-            image = new Image("D:/Học linh tinh/Học Java/Projects/oop_project_crawl_data/"+ eventData.getImgPath());
+            image = new Image(Objects.requireNonNull(getClass().getResource("/app/history/store/img/event/" + eventData.getImgPath())).openStream());
         } catch (Exception e) {
             image = null;
         }
@@ -74,7 +71,6 @@ public class EventDetailController extends DetailBaseController {
         eventImage.setFitHeight(550);
 
         Label eventName = new Label(eventData.getName());
-        eventName.getStylesheets().add(this.getClass().getResource("css/detail.css").toExternalForm());
         eventName.getStyleClass().add("title");
         eventName.setPadding(new Insets(20, 0, 20, 0));
         eventName.setWrapText(true);
@@ -94,46 +90,7 @@ public class EventDetailController extends DetailBaseController {
         eventDescription.setPadding(new Insets(0, 0, 10, 0));
         eventDescription.setWrapText(true);
 
-        GridPane gridPane = new GridPane();
-        gridPane.setVgap(20);
-        int row = 0;
-        int column = 0;
-        for(Person item: eventData.getRelativePersons()) {
-            VBox vBox = new VBox();
-            vBox.setMinWidth(200);
-            GridPane.setRowIndex(vBox, row);
-            GridPane.setColumnIndex(vBox, column);
-
-            Label kingName = new Label(item.getName());
-            kingName.getStylesheets().add(Objects.requireNonNull(this.getClass().getResource("css/detail.css")).toExternalForm());
-            kingName.getStyleClass().add("king-name");
-            kingName.setCursor(Cursor.HAND);
-
-            kingName.setOnMouseClicked(e -> {
-                PersonDetailController personDetailController = new PersonDetailController(item);
-                ContentController.goToDetail(personDetailController);
-            });
-
-            ImageView avatar = new ImageView();
-            Image image2 = null;
-            try {
-                image2 = new Image("D:/Học linh tinh/Học Java/Projects/oop_project_crawl_data/src/app/history/store/img/person/"+ item.getId() +".png");
-            } catch (Exception e) {
-                image2 = null;
-            }
-            avatar.setImage(image2);
-            avatar.setFitWidth(150);
-            avatar.setFitHeight(200);
-
-            vBox.getChildren().addAll(avatar, kingName);
-            gridPane.getChildren().add(vBox);
-
-            column++;
-            if (column == 3) {
-                column = 0;
-                row++;
-            }
-        }
+        GridPane personList = Components.personList(eventData.getRelativePersons());
 
         mainContent.getChildren().clear();
         mainContent.getChildren().addAll(
@@ -142,7 +99,7 @@ public class EventDetailController extends DetailBaseController {
                 eventDestination,
                 eventImage,
                 eventDescription,
-                gridPane
+                personList
         );
     }
 }
