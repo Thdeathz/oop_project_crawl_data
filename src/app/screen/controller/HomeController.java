@@ -12,7 +12,7 @@ public class HomeController {
 
     @FXML
     void handleStartCrawl(ActionEvent event) {
-
+        Transition.startFadeTransition(homePane, "/app/screen/fxml/crawler.fxml");
     }
 
     @FXML

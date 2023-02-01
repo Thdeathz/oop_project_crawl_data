@@ -13,6 +13,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
+import java.io.IOException;
 import java.util.Objects;
 
 public class PersonListController {
@@ -52,7 +53,11 @@ public class PersonListController {
                 try {
                     image = new Image(Objects.requireNonNull(getClass().getResource("/app/history/store/img/person/"+ item.getId() +".png")).openStream());
                 } catch (Exception e) {
-                    image = null;
+                    try {
+                        image = new Image(Objects.requireNonNull(getClass().getResource("/app/history/store/img/person/no_image.png")).openStream());
+                    } catch (IOException ex) {
+                        image = null;
+                    }
                 }
                 avatar.setImage(image);
                 avatar.setFitWidth(200);

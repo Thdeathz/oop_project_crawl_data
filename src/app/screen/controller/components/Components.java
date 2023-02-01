@@ -3,13 +3,13 @@ package app.screen.controller.components;
 import app.history.person.Person;
 import app.screen.controller.person.PersonDetailController;
 import javafx.scene.Cursor;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
@@ -40,7 +40,11 @@ public class Components {
             try {
                 image = new Image(Objects.requireNonNull(Components.class.getResource("/app/history/store/img/person/"+ item.getId() +".png")).openStream());
             } catch (Exception e) {
-                image = null;
+                try {
+                    image = new Image(Objects.requireNonNull(Components.class.getResource("/app/history/store/img/person/no_image.png")).openStream());
+                } catch (IOException ex) {
+                    image = null;
+                }
             }
             avatar.setImage(image);
             avatar.setFitWidth(150);
