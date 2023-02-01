@@ -8,6 +8,7 @@ module OopProject {
 	exports app.crawler.base;
 	exports app.screen.controller;
 	exports app.screen.controller.base;
+	exports app.screen.controller.components;
 
 	requires com.google.gson;
 	requires java.desktop;
@@ -29,6 +30,6 @@ module OopProject {
 	opens app.screen.controller.dynasty to javafx.fxml;
 	opens app.screen.controller.event to javafx.fxml;
 	opens app.screen.controller.relic to javafx.fxml;
-    exports app.screen.controller.components;
+	opens app.screen.controller.festival to javafx.fxml;
     opens app.screen.controller.components to javafx.fxml;
 }

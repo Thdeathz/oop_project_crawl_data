@@ -14,6 +14,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+
+import java.io.IOException;
 import java.util.Objects;
 
 public class PersonDetailController extends DetailBaseController {
@@ -66,7 +68,11 @@ public class PersonDetailController extends DetailBaseController {
         try {
             image = new Image(Objects.requireNonNull(getClass().getResource("/app/history/store/img/person/"+ currentPerson.getId() +".png")).openStream());
         } catch (Exception e) {
-            image = null;
+            try {
+                image = new Image(Objects.requireNonNull(getClass().getResource("/app/history/store/img/person/no_image.png")).openStream());
+            } catch (IOException ex) {
+                image = null;
+            }
         }
         avatar.setImage(image);
         avatar.setFitWidth(400);

@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 
 import java.util.Objects;
 
-public class main extends Application {
+public class app extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Store.init();

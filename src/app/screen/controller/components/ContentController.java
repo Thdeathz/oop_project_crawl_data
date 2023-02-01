@@ -5,6 +5,7 @@ import app.screen.controller.dynasty.DynastyDetailController;
 import app.screen.controller.dynasty.DynastyListController;
 import app.screen.controller.event.EventDetailController;
 import app.screen.controller.event.EventListController;
+import app.screen.controller.festival.FestivalController;
 import app.screen.controller.person.PersonDetailController;
 import app.screen.controller.person.PersonListController;
 import app.screen.controller.relic.RelicDetailController;
@@ -92,10 +93,22 @@ public class ContentController {
     }
 
     public static void goToFestival() {
+        selectMenu(festivalBtn);
+
+        // clear current pane content
         contentArea.getChildren().clear();
+
+        // load new pane
+        FXMLLoader loader = new FXMLLoader(ContentController.class.getResource("/app/screen/fxml/festival.fxml"));
+        Parent root = null;
+        try {
+            root = loader.load();
+            contentArea.getChildren().setAll(root);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
         currentPane = "festival";
-        festivalBtn.getStyleClass().remove("menu-bar");
-        festivalBtn.getStyleClass().add("selected-menu");
     }
 
     public static void goToPerson() {
