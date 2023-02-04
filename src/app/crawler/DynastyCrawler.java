@@ -141,27 +141,12 @@ public class DynastyCrawler extends BaseWebsiteCrawler implements ICrawler {
 	 * @param kingNameList
 	 * @param capitalList
 	 */
-	public void writeJsonFile(List <String> dynastyNameList, List <String> exitedTimeList, List <List <String>> kingNameList, List <String> capitalList)
+	public void writeJsonFile(List <Dynasty> dynastyList)
 	{
-		List<Dynasty> dataList = new ArrayList<>(); // tạo List chứa các object dynasty.
 		DynastyCrawler dynastyCrawler = new DynastyCrawler(); 
-		// dùng vòng for để tạo và lưu các dynasty vào list.
-		for (int i = 0; i < dynastyNameList.size(); i++) {
-			String dynasty = dynastyNameList.get(i);
-			String capital = capitalList.get(i);
-			List kingL = kingNameList.get(i);
-			String time = exitedTimeList.get(i);
-			Dynasty dynastiesData = new Dynasty();
-			dynastiesData.setCapital(capital);
-			dynastiesData.setExitedTime(time);
-			dynastiesData.setName(dynasty);
-			dynastiesData.setKingNameL(kingL);
-			dataList.add(dynastiesData);
-		}
-
 		// // Chuyển đổi danh sách thành JSON
 		Gson gson = new Gson();
-		String json = gson.toJson(dataList);
+		String json = gson.toJson(dynastyList);
 
 		// Ghi JSON vào file
 		try (FileWriter writer = new FileWriter(dynastyCrawler.getJsonStoreUrls() + "/dynasty.json")) {
@@ -221,7 +206,21 @@ public class DynastyCrawler extends BaseWebsiteCrawler implements ICrawler {
 	        }
 	        
 	        // tạo và viết vào file json.
-	        writeJsonFile(dynastyNameList, exitedTimeList, kingNameList, capitalList);
+	        List<Dynasty> dataList = new ArrayList<>(); // tạo List chứa các object dynasty.
+	     // dùng vòng for để tạo và lưu các dynasty vào list.
+			for (int i = 0; i < dynastyNameList.size(); i++) {
+				String dynasty = dynastyNameList.get(i);
+				String capital = capitalList.get(i);
+				List kingL = kingNameList.get(i);
+				String time = exitedTimeList.get(i);
+				Dynasty dynastiesData = new Dynasty();
+				dynastiesData.setCapital(capital);
+				dynastiesData.setExitedTime(time);
+				dynastiesData.setName(dynasty);
+				dynastiesData.setKingNameL(kingL);
+				dataList.add(dynastiesData);
+			}
+	        writeJsonFile(dataList);
 	        
 			}
 		
