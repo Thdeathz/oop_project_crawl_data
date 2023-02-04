@@ -2,9 +2,12 @@ package app.screen.controller;
 
 import app.screen.controller.components.ContentController;
 import app.screen.controller.components.Transition;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 
@@ -31,6 +34,9 @@ public class LayoutController {
 
     @FXML
     private Button relicBtn;
+
+    @FXML
+    private TextField tfSearch;
 
     @FXML
     void handleBackToHome(ActionEvent event) {
@@ -73,7 +79,15 @@ public class LayoutController {
         ContentController.setFestivalBtn(festivalBtn);
         ContentController.setPersonBtn(personBtn);
         ContentController.setRelicBtn(relicBtn);
+        ContentController.setTfSearch(tfSearch);
 
         ContentController.goToDynasty();
+
+        tfSearch.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableVa, String oldValue, String newValue) {
+                ContentController.handleSearch(newValue);
+            }
+        });
     }
 }

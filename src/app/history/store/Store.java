@@ -17,6 +17,8 @@ import app.history.person.Person;
 import app.history.relic.Relic;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -27,6 +29,42 @@ public class Store<T>{
   public static ObservableList<Event> events = FXCollections.observableArrayList();
   public static ObservableList<Festival> festivals = FXCollections.observableArrayList();
   public static ObservableList<Dynasty> dynasties = FXCollections.observableArrayList();
+  public static FilteredList<Person> filteredPersons = new FilteredList<>(persons, p -> true);
+  public static FilteredList<Relic> filteredRelics = new FilteredList<>(relics, p -> true);
+  public static FilteredList<Event> filteredEvents = new FilteredList<>(events, p -> true);
+  public static FilteredList<Festival> filteredFestivals = new FilteredList<>(festivals, p -> true);
+  public static FilteredList<Dynasty> filteredDynasties = new FilteredList<>(dynasties, p -> true);
+  public static void searchPerson(String value) {
+
+	  filteredPersons.setPredicate(person -> {
+		  String newValue = value.toLowerCase();
+		  return person.getName().toLowerCase().contains(newValue);
+	  });
+  }
+  public static void searchRelic(String value) {
+	  filteredRelics.setPredicate(relic -> {
+		  String newValue = value.toLowerCase();
+		  return relic.getTitle().toLowerCase().contains(newValue);
+	  });
+  }
+  public static void searchEvent(String value) {
+	  filteredEvents.setPredicate(event -> {
+		  String newValue = value.toLowerCase();
+		  return event.getName().toLowerCase().contains(newValue);
+	  });
+  }
+  public static void searchFestival(String value) {
+	  filteredFestivals.setPredicate(festival -> {
+		  String newValue = value.toLowerCase();
+		  return festival.getName().toLowerCase().contains(newValue);
+	  });
+  }
+  public static void searchDynasty(String value) {
+	  filteredDynasties.setPredicate(dynasty -> {
+		  String newValue = value.toLowerCase();
+		  return dynasty.getName().toLowerCase().contains(newValue);
+	  });
+  }
 
   public static void init() throws IOException {
 
@@ -72,7 +110,12 @@ public class Store<T>{
 		for (int i = 0; i < relics.size(); i++) {
 			relics.get(i).addPerson();
 		}
-	}
+	    filteredDynasties = new FilteredList<>(dynasties, dynasty -> true);
+		filteredEvents = new FilteredList<>(events, event -> true);
+		filteredFestivals = new FilteredList<>(festivals, festival -> true);
+		filteredPersons = new FilteredList<>(persons, person -> true);
+		filteredRelics = new FilteredList<>(relics, relic -> true);
+  }
 
   public static <T> ObservableList<T> readFromFile(String fileName, Class<T[]> clazz) {
     FileReader reader;
@@ -87,10 +130,5 @@ public class Store<T>{
 			e.printStackTrace();
 			return null;
 		}
-  }
-
-  public static void main(String[] args) throws IOException {
-	  init();
-		// dynasties.get(0).addKing();
   }
 }
