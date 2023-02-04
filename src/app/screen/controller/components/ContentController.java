@@ -1,5 +1,6 @@
 package app.screen.controller.components;
 
+import app.history.store.Store;
 import app.screen.controller.base.DetailBaseController;
 import app.screen.controller.dynasty.DynastyDetailController;
 import app.screen.controller.dynasty.DynastyListController;
@@ -14,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 
 import java.io.IOException;
@@ -38,6 +40,9 @@ public class ContentController {
     @FXML
     private static Button relicBtn;
 
+    @FXML
+    private static TextField tfSearch;
+
     private static String currentPane = "unknown";
 
     public static void setContentArea(StackPane contentArea) { ContentController.contentArea = contentArea; }
@@ -46,6 +51,7 @@ public class ContentController {
     public static void setFestivalBtn(Button festivalBtn) { ContentController.festivalBtn = festivalBtn; }
     public static void setPersonBtn(Button personBtn) { ContentController.personBtn = personBtn; }
     public static void setRelicBtn(Button relicBtn) { ContentController.relicBtn = relicBtn; }
+    public static void setTfSearch(TextField tfSearch) { ContentController.tfSearch = tfSearch; }
 
     public static void goToDetail(DetailBaseController controller) {
         if(controller instanceof DynastyDetailController) {
@@ -79,6 +85,9 @@ public class ContentController {
     }
 
     public static void goToDynasty() {
+        // reset search input
+        tfSearch.setText("");
+
         DynastyListController dynastyController = new DynastyListController();
         selectMenu(dynastyBtn);
         loadPane(dynastyController);
@@ -86,6 +95,9 @@ public class ContentController {
     }
 
     public static void goToEvent() {
+        // reset search input
+        tfSearch.setText("");
+
         EventListController eventController = new EventListController();
         selectMenu(eventBtn);
         loadPane(eventController);
@@ -93,6 +105,9 @@ public class ContentController {
     }
 
     public static void goToFestival() {
+        // reset search input
+        tfSearch.setText("");
+
         selectMenu(festivalBtn);
 
         // clear current pane content
@@ -112,6 +127,9 @@ public class ContentController {
     }
 
     public static void goToPerson() {
+        // reset search input
+        tfSearch.setText("");
+
         PersonListController personController = new PersonListController();
         selectMenu(personBtn);
         loadPane(personController);
@@ -119,10 +137,34 @@ public class ContentController {
     }
 
     public static void goToRelic() {
+        // reset search input
+        tfSearch.setText("");
+
         RelicListController relicController = new RelicListController();
         selectMenu(relicBtn);
         loadPane(relicController);
         currentPane = "relic";
+    }
+
+    public static void handleSearch(String searchString) {
+        switch (currentPane) {
+            case "dynasty" -> {
+                Store.searchDynasty(searchString);
+            }
+            case "event" -> {
+                Store.searchEvent(searchString);
+            }
+            case "festival" -> {
+                Store.searchFestival(searchString);
+            }
+            case "person" -> {
+                Store.searchPerson(searchString);
+            }
+            case "relic" -> {
+                Store.searchRelic(searchString);
+            }
+            default -> {}
+        }
     }
 
     private static void selectMenu(Button menuBtn) {

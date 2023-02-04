@@ -23,14 +23,14 @@
                <children>
 
                    <!-- Main content -->
-                  <VBox fx:id="mainContent" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="600.0">
+                  <VBox fx:id="mainContent" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="625.0">
                   </VBox>
 
                    <!-- SEPERATOR LINE -->
                   <Separator orientation="VERTICAL" prefHeight="200.0" />
 
                    <!-- Tree view -->
-                  <VBox fx:id="sideBar" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="15.0" stylesheets="@../css/layout.css">
+                  <VBox fillWidth="false" prefHeight="655.0" prefWidth="300.0" spacing="15.0" stylesheets="@../css/layout.css">
                       <!-- Title -->
                       <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="tree-view-title" text="Danh sách liên quan">
@@ -38,9 +38,14 @@
                               <Insets left="8.0" />
                            </VBox.margin>
                         </Text>
+                        <VBox fx:id="sideBar" spacing="15.0">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </VBox>
                      </children>
                      <padding>
-                        <Insets top="10.0" />
+                        <Insets bottom="10.0" top="10.0" />
                      </padding>
                   </VBox>
 

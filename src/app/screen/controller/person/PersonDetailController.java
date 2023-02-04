@@ -6,6 +6,7 @@ import app.history.store.Store;
 import app.screen.controller.base.DetailBaseController;
 import app.screen.controller.components.ContentController;
 import app.screen.controller.dynasty.DynastyDetailController;
+import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -36,12 +37,24 @@ public class PersonDetailController extends DetailBaseController {
 
     @FXML
     public void initialize() {
-        initMainContent(this.personData);
         initSideBar();
+        initMainContent(this.personData);
+        Store.filteredPersons.addListener((ListChangeListener<Person>) c -> {
+            initSideBar();
+        });
     }
 
     public void initSideBar() {
-        for (Person item: Store.persons) {
+        // clear old data
+        sideBar.getChildren().clear();
+
+        if(Store.filteredPersons.isEmpty()) {
+            Label emptyLabel = new Label();
+            emptyLabel.getStyleClass().add("empty-label");
+            emptyLabel.setText("Danh sách trống ><!");
+            sideBar.getChildren().add(emptyLabel);
+        }
+        for (Person item: Store.filteredPersons) {
             Button sideBarBtn = new Button();
             sideBarBtn.setText("> " + item.getName());
             sideBarBtn.getStyleClass().add("side-bar-btn");

@@ -4,6 +4,7 @@ import app.history.relic.Relic;
 import app.history.store.Store;
 import app.screen.controller.base.DetailBaseController;
 import app.screen.controller.components.Components;
+import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -33,12 +34,24 @@ public class RelicDetailController extends DetailBaseController {
 
     @FXML
     public void initialize() {
-        initMainContent(this.relicData);
         initSideBar();
+        initMainContent(this.relicData);
+        Store.filteredRelics.addListener((ListChangeListener<Relic>) c -> {
+            initSideBar();
+        });
     }
 
     public void initSideBar() {
-        for (Relic item: Store.relics) {
+        // clear old data
+        sideBar.getChildren().clear();
+
+        if(Store.filteredRelics.isEmpty()) {
+            Label emptyLabel = new Label();
+            emptyLabel.getStyleClass().add("empty-label");
+            emptyLabel.setText("Danh sách trống ><!");
+            sideBar.getChildren().add(emptyLabel);
+        }
+        for (Relic item: Store.filteredRelics) {
             Button sideBarBtn = new Button();
             sideBarBtn.setText("> " + item.getTitle());
             sideBarBtn.getStyleClass().add("side-bar-btn");
