@@ -48,7 +48,6 @@ public class EventCrawler extends BaseWebsiteCrawler implements ICrawler {
 
 	public void crawl() {
 		List<Event> list = new ArrayList<Event>();
-		Gson gson = new Gson();
 		try {
 			int endIndex = 70;
 			int index = 0;
@@ -79,13 +78,8 @@ public class EventCrawler extends BaseWebsiteCrawler implements ICrawler {
 
 					// Lay mo ta cua su kien
 					Elements elms_desc = elms_descs.get(j).getElementsByTag("p");
-					String description = elms_desc.text().substring(0, elms_desc.text().length() - 1 - 11); // dung
-																											// subString
-																											// loc bo
-																											// "Xem
-																											// them... o
-																											// cuoi"
-
+					String description = elms_desc.text().substring(0, elms_desc.text().length() - 1 - 11); // Dung subString loc "Xem cuoi..." 
+					
 					// Lay link anh cua su kien
 					String imgUrl;
 					Element elms_img = document
@@ -151,6 +145,11 @@ public class EventCrawler extends BaseWebsiteCrawler implements ICrawler {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		writeJsonFile(list);
+	}
+
+	public void writeJsonFile(List<Event> list) {
+		Gson gson = new Gson();
 		try (FileWriter file = new FileWriter(getJsonStoreUrls() + "/event.json")) {
 			file.write(gson.toJson(list));
 			file.flush();
@@ -158,10 +157,5 @@ public class EventCrawler extends BaseWebsiteCrawler implements ICrawler {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
-
-	public static void main(String[] args) {
-		EventCrawler eventCrawler = new EventCrawler();
-		eventCrawler.crawl();
 	}
 }

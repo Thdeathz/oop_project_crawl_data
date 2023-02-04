@@ -24,7 +24,6 @@ public class FestivalCrawler extends BaseWebsiteCrawler implements ICrawler {
 	}
 
 	public void crawl() {
-		Gson gson = new Gson();
 		List<Festival> list = new ArrayList<Festival>();
 		try {
 			Document document = Jsoup.parse(new URL(getUrl()).openStream(), "UTF-8", getUrl());
@@ -64,6 +63,10 @@ public class FestivalCrawler extends BaseWebsiteCrawler implements ICrawler {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+		writeJsonFile(list);
+	}
+	public void writeJsonFile(List<Festival> list) {
+		Gson gson = new Gson();
 		try (FileWriter file = new FileWriter(getJsonStoreUrls() + "festival.json")){
 			file.write(gson.toJson(list));
 			file.flush();
