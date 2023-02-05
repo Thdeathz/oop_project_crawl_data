@@ -14,6 +14,12 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class Transition {
+    public static Stage rootStage;
+
+    public static void setRootStage(Stage rootStage) {
+        Transition.rootStage = rootStage;
+    }
+
     public static void startFadeTransition(BorderPane rootPane, String nextPaneSrc) {
         FadeTransition fadeTransition = new FadeTransition();
         fadeTransition.setDuration(Duration.millis(500));
@@ -29,7 +35,7 @@ public class Transition {
                     Scene newScene = new Scene(nextPane);
                     Stage currentStage = (Stage) rootPane.getScene().getWindow();
 
-                    currentStage.setScene(newScene);
+                    rootStage.setScene(newScene);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
