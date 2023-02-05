@@ -4,12 +4,13 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import app.crawler.DynastyCrawler;
-import app.crawler.EventCrawler;
-import app.crawler.FestivalCrawler;
-import app.crawler.PersonCrawler;
-import app.crawler.RelicCrawler;
+
 import app.crawler.base.ICrawler;
+import app.crawler.dynasty.DynastyCrawler;
+import app.crawler.event.EventCrawler;
+import app.crawler.festival.FestivalCrawler;
+import app.crawler.person.PersonCrawler;
+import app.crawler.relic.RelicCrawler;
 import app.history.dynasty.Dynasty;
 import app.history.event.Event;
 import app.history.festival.Festival;

@@ -1,4 +1,4 @@
-package app.crawler;
+package app.crawler.relic;
 
 import java.awt.image.BufferedImage;
 import java.io.File;

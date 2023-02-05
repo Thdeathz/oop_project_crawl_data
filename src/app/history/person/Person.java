@@ -92,4 +92,28 @@ public class Person {
 		}
 		return false;
 	}
+
+	public void setGivenName(String givenName) {
+		this.givenName = givenName;
+	}
+
+	public void setDateOfBirth(String dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+
+	public void setDateOfDeath(String dateOfDeath) {
+		this.dateOfDeath = dateOfDeath;
+	}
+
+	public void setFather(String father) {
+		this.father = father;
+	}
+
+	public void setDynastyName(String dynastyName) {
+		this.dynastyName = dynastyName;
+	}
+
+	public void setReign(String reign) {
+		this.reign = reign;
+	}
 }
