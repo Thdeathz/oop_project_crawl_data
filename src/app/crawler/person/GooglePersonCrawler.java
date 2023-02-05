@@ -7,10 +7,9 @@ import java.nio.charset.StandardCharsets;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
-import app.crawler.base.ICrawler;
 import app.history.person.Person;
 
-public class GooglePersonCrawler implements ICrawler {
+public class GooglePersonCrawler extends PersonCrawler {
 
 	private Document getGGDoc(String query) {
 		String url;
