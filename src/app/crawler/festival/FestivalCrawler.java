@@ -1,4 +1,4 @@
-package app.crawler;
+package app.crawler.festival;
 
 import java.io.FileWriter;
 import java.io.IOException;

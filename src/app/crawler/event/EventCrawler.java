@@ -1,4 +1,4 @@
-package app.crawler;
+package app.crawler.event;
 
 import java.io.*;
 import java.net.URL;
