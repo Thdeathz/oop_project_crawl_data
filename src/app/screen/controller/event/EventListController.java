@@ -1,8 +1,7 @@
 package app.screen.controller.event;
 
-import app.history.dynasty.Dynasty;
 import app.history.event.Event;
-import app.history.store.Store;
+import app.history.storage.Storage;
 import app.screen.controller.components.ContentController;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
@@ -26,7 +25,7 @@ public class EventListController {
     @FXML
     public void initialize() {
         initContent();
-        Store.filteredEvents.addListener((ListChangeListener<Event>) c -> {
+        Storage.filteredEvents.addListener((ListChangeListener<Event>) c -> {
             initContent();
         });
     }
@@ -36,7 +35,7 @@ public class EventListController {
         // clear old data
         paginationContainer.getChildren().clear();
 
-        if(Store.filteredEvents.isEmpty()) {
+        if(Storage.filteredEvents.isEmpty()) {
             Label emptyLabel = new Label();
             emptyLabel.getStyleClass().add("text-title");
             emptyLabel.setText("Không có kết quả nào ><!");
@@ -46,7 +45,7 @@ public class EventListController {
         } else {
             //Create pagination
             Pagination pagination = new Pagination();
-            pagination.setPageCount(Store.filteredEvents.size()/12 + 1);
+            pagination.setPageCount(Storage.filteredEvents.size()/12 + 1);
             pagination.setCurrentPageIndex(0);
             pagination.setMaxPageIndicatorCount(5);
 
@@ -58,9 +57,9 @@ public class EventListController {
 
                 int startItemIndex = 12 * pagination.getCurrentPageIndex();
                 int endItemIndex = startItemIndex + 12;
-                if(endItemIndex > Store.filteredEvents.size()) endItemIndex = Store.filteredEvents.size();
+                if(endItemIndex > Storage.filteredEvents.size()) endItemIndex = Storage.filteredEvents.size();
 
-                for (Event item: Store.filteredEvents.subList(startItemIndex, endItemIndex)){
+                for (Event item: Storage.filteredEvents.subList(startItemIndex, endItemIndex)){
                     VBox vBox = new VBox();
                     vBox.setMinWidth(200);
 
@@ -73,7 +72,7 @@ public class EventListController {
                     ImageView eventImage = new ImageView();
                     Image image = null;
                     try {
-                        image = new Image(Objects.requireNonNull(getClass().getResource("/app/history/store/img/event/" + item.getImgPath())).openStream());
+                        image = new Image(Objects.requireNonNull(getClass().getResource("/app/data/img/event/" + item.getImgPath())).openStream());
                     } catch (Exception e) {
                         image = null;
                     }

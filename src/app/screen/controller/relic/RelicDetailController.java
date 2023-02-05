@@ -1,7 +1,7 @@
 package app.screen.controller.relic;
 
 import app.history.relic.Relic;
-import app.history.store.Store;
+import app.history.storage.Storage;
 import app.screen.controller.base.DetailBaseController;
 import app.screen.controller.components.Components;
 import javafx.collections.ListChangeListener;
@@ -34,7 +34,7 @@ public class RelicDetailController extends DetailBaseController {
     public void initialize() {
         initSideBar();
         initMainContent(this.relicData);
-        Store.filteredRelics.addListener((ListChangeListener<Relic>) c -> {
+        Storage.filteredRelics.addListener((ListChangeListener<Relic>) c -> {
             initSideBar();
         });
     }
@@ -43,13 +43,13 @@ public class RelicDetailController extends DetailBaseController {
         // clear old data
         sideBar.getChildren().clear();
 
-        if(Store.filteredRelics.isEmpty()) {
+        if(Storage.filteredRelics.isEmpty()) {
             Label emptyLabel = new Label();
             emptyLabel.getStyleClass().add("empty-label");
             emptyLabel.setText("Danh sách trống ><!");
             sideBar.getChildren().add(emptyLabel);
         }
-        for (Relic item: Store.filteredRelics) {
+        for (Relic item: Storage.filteredRelics) {
             Button sideBarBtn = new Button();
             sideBarBtn.setText("> " + item.getTitle());
             sideBarBtn.getStyleClass().add("side-bar-btn");
@@ -74,7 +74,7 @@ public class RelicDetailController extends DetailBaseController {
         ImageView relicImage = new ImageView();
         Image image = null;
         try {
-            image = new Image(Objects.requireNonNull(getClass().getResource("/app/history/store/img/relic/"+ relicData.getImgUrl())).openStream());
+            image = new Image(Objects.requireNonNull(getClass().getResource("/app/data/img/relic/"+ relicData.getImgUrl())).openStream());
         } catch (Exception e) {
             image = null;
         }

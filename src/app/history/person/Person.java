@@ -2,7 +2,7 @@ package app.history.person;
 
 
 import app.history.dynasty.Dynasty;
-import app.history.store.Store;
+import app.history.storage.Storage;
 
 public class Person {
 	private int id;
@@ -57,9 +57,9 @@ public class Person {
 	}
 
 	public void setDynasty() {
-		int index = Store.dynasties.indexOf(new Dynasty(dynastyName));
+		int index = Storage.dynasties.indexOf(new Dynasty(dynastyName));
 		if (index != -1){
-			dynasty = Store.dynasties.get(index);
+			dynasty = Storage.dynasties.get(index);
 			System.out.println("Them thanh cong " + dynastyName);
 		} else {
 			System.out.println("Khong thanh cong" + dynastyName);

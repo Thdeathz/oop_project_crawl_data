@@ -20,7 +20,7 @@ import app.history.festival.Festival;
 public class FestivalCrawler extends BaseWebsiteCrawler implements ICrawler {
 
 	public FestivalCrawler() {
-		super("https://vi.wikipedia.org/wiki/L%E1%BB%85_h%E1%BB%99i_Vi%E1%BB%87t_Nam", "src/app/history/store/json");
+		super("https://vi.wikipedia.org/wiki/L%E1%BB%85_h%E1%BB%99i_Vi%E1%BB%87t_Nam", "src/app/data/json");
 	}
 
 	public void crawl() {

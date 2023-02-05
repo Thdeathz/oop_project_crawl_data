@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.history.person.Person;
-import app.history.store.Store;
+import app.history.storage.Storage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -80,9 +80,9 @@ public class Relic {
 	public void addPerson() {
 		for (String name : nameList) {
 			Person person = new Person(name);
-			int index = Store.persons.indexOf(person);
+			int index = Storage.persons.indexOf(person);
 			if (index != -1 && !relatedHistoricalPerson.contains(person)) {
-				relatedHistoricalPerson.add(Store.persons.get(index));
+				relatedHistoricalPerson.add(Storage.persons.get(index));
 				System.out.println("Them thanh cong " + name);
 			} else {
 				System.out.println("Khong thanh cong " + name);

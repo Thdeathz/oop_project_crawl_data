@@ -21,7 +21,7 @@ import app.history.event.Event;
 public class EventCrawler extends BaseWebsiteCrawler implements ICrawler {
 
 	public EventCrawler() {
-		super("https://nguoikesu.com", "src/app/history/store/json", "src/app/history/store/img/event");
+		super("https://nguoikesu.com", "src/app/data/json", "src/app/data/img/event");
 	}
 
 	private void saveImg(String src_image, String name, String dir) {

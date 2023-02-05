@@ -3,7 +3,7 @@ package app.history.dynasty;
 import java.util.List;
 
 import app.history.person.Person;
-import app.history.store.Store;
+import app.history.storage.Storage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -74,9 +74,9 @@ public class Dynasty {
 	public void addKing() {
 		for (String name: kingNameL) {
 			Person person = new Person(name);
-			int index = Store.persons.indexOf(person);
+			int index = Storage.persons.indexOf(person);
 			if (index != -1 && !listOfKing.contains(person)) {
-				listOfKing.add(Store.persons.get(index));
+				listOfKing.add(Storage.persons.get(index));
 				System.out.println("Them thanh cong " + name);
 			} else {
 				System.out.println("Khong thanh cong " + name);

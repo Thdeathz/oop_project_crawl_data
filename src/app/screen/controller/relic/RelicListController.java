@@ -1,7 +1,7 @@
 package app.screen.controller.relic;
 
 import app.history.relic.Relic;
-import app.history.store.Store;
+import app.history.storage.Storage;
 import app.screen.controller.components.ContentController;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
@@ -24,7 +24,7 @@ public class RelicListController {
     @FXML
     public void initialize() {
         initContent();
-        Store.filteredRelics.addListener((ListChangeListener<Relic>) c -> {
+        Storage.filteredRelics.addListener((ListChangeListener<Relic>) c -> {
             initContent();
         });
     }
@@ -33,7 +33,7 @@ public class RelicListController {
         // clear old data
         paginationContainer.getChildren().clear();
 
-        if(Store.filteredRelics.isEmpty()) {
+        if(Storage.filteredRelics.isEmpty()) {
             Label emptyLabel = new Label();
             emptyLabel.getStyleClass().add("text-title");
             emptyLabel.setText("Không có kết quả nào ><!");
@@ -43,7 +43,7 @@ public class RelicListController {
         } else {
             //Create pagination
             Pagination pagination = new Pagination();
-            pagination.setPageCount(Store.filteredRelics.size()/12 + 1);
+            pagination.setPageCount(Storage.filteredRelics.size()/12 + 1);
             pagination.setCurrentPageIndex(0);
             pagination.setMaxPageIndicatorCount(5);
 
@@ -55,9 +55,9 @@ public class RelicListController {
 
                 int startItemIndex = 12 * pagination.getCurrentPageIndex();
                 int endItemIndex = startItemIndex + 12;
-                if(endItemIndex > Store.filteredRelics.size()) endItemIndex = Store.filteredRelics.size();
+                if(endItemIndex > Storage.filteredRelics.size()) endItemIndex = Storage.filteredRelics.size();
 
-                for (Relic item: Store.filteredRelics.subList(startItemIndex, endItemIndex)){
+                for (Relic item: Storage.filteredRelics.subList(startItemIndex, endItemIndex)){
                     VBox vBox = new VBox();
                     vBox.setMinWidth(200);
 
@@ -70,7 +70,7 @@ public class RelicListController {
                     ImageView relicImage = new ImageView();
                     Image image = null;
                     try {
-                        image = new Image(Objects.requireNonNull(getClass().getResource("/app/history/store/img/relic/"+ item.getImgUrl())).openStream());
+                        image = new Image(Objects.requireNonNull(getClass().getResource("/app/data/img/relic/"+ item.getImgUrl())).openStream());
                     } catch (Exception e) {
                         image = null;
                     }

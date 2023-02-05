@@ -1,7 +1,7 @@
 package app.screen.controller.person;
 
 import app.history.person.Person;
-import app.history.store.Store;
+import app.history.storage.Storage;
 import app.screen.controller.components.ContentController;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
@@ -26,7 +26,7 @@ public class PersonListController {
     @FXML
     public void initialize() {
         initContent();
-        Store.filteredPersons.addListener((ListChangeListener<Person>) c -> {
+        Storage.filteredPersons.addListener((ListChangeListener<Person>) c -> {
             initContent();
         });
     }
@@ -35,7 +35,7 @@ public class PersonListController {
         // clear old data
         paginationContainer.getChildren().clear();
 
-        if(Store.filteredPersons.isEmpty()) {
+        if(Storage.filteredPersons.isEmpty()) {
             Label emptyLabel = new Label();
             emptyLabel.getStyleClass().add("text-title");
             emptyLabel.setText("Không có kết quả nào ><!");
@@ -45,7 +45,7 @@ public class PersonListController {
         } else {
             //Create pagination
             Pagination pagination = new Pagination();
-            pagination.setPageCount(Store.filteredPersons.size()/12 + 1);
+            pagination.setPageCount(Storage.filteredPersons.size()/12 + 1);
             pagination.setCurrentPageIndex(0);
             pagination.setMaxPageIndicatorCount(5);
 
@@ -57,9 +57,9 @@ public class PersonListController {
 
                 int startItemIndex = 12 * pagination.getCurrentPageIndex();
                 int endItemIndex = startItemIndex + 12;
-                if(endItemIndex > Store.filteredPersons.size()) endItemIndex = Store.filteredPersons.size();
+                if(endItemIndex > Storage.filteredPersons.size()) endItemIndex = Storage.filteredPersons.size();
 
-                for (Person item: Store.filteredPersons.subList(startItemIndex, endItemIndex)){
+                for (Person item: Storage.filteredPersons.subList(startItemIndex, endItemIndex)){
                     VBox vBox = new VBox();
                     vBox.setMinWidth(200);
 
@@ -70,10 +70,10 @@ public class PersonListController {
                     ImageView avatar = new ImageView();
                     Image image = null;
                     try {
-                        image = new Image(Objects.requireNonNull(getClass().getResource("/app/history/store/img/person/"+ item.getId() +".png")).openStream());
+                        image = new Image(Objects.requireNonNull(getClass().getResource("/app/data/img/person/"+ item.getId() +".png")).openStream());
                     } catch (Exception e) {
                         try {
-                            image = new Image(Objects.requireNonNull(getClass().getResource("/app/history/store/img/person/no_image.png")).openStream());
+                            image = new Image(Objects.requireNonNull(getClass().getResource("/app/data/img/person/no_image.png")).openStream());
                         } catch (IOException ex) {
                             image = null;
                         }

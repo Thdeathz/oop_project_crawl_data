@@ -83,7 +83,7 @@ public class WikiPersonCrawler implements ICrawler {
 				person.setReign(getData(docWiki, "th:containsOwn(Trị vì), th:containsOwn(Tại vị)"));
 			}
 
-			if (checkImageExists("src/app/history/store/img/person/" + person.getId() + ".png") == false) {
+			if (!checkImageExists("src/app/data/img/person/" + person.getId() + ".png")) {
 				try {
 					String src = docWiki.select("table.infobox td > span > a > img").first().attr("src");
 					saveImg("https:" + src, "src/app/history/store/img/person/" + person.getId() + ".png");
