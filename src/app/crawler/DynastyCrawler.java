@@ -7,7 +7,6 @@ import java.util.List;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import com.google.gson.Gson;
@@ -15,9 +14,6 @@ import com.google.gson.Gson;
 import app.crawler.base.BaseWebsiteCrawler;
 import app.crawler.base.ICrawler;
 import app.history.dynasty.Dynasty;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 
 public class DynastyCrawler extends BaseWebsiteCrawler implements ICrawler {
@@ -136,10 +132,6 @@ public class DynastyCrawler extends BaseWebsiteCrawler implements ICrawler {
 	
 	/**
 	 * hàm tạo và ghi ra file json.
-	 * @param dynastyNameList
-	 * @param exitedTimeList
-	 * @param kingNameList
-	 * @param capitalList
 	 */
 	public void writeJsonFile(List <Dynasty> dynastyList)
 	{
@@ -227,11 +219,5 @@ public class DynastyCrawler extends BaseWebsiteCrawler implements ICrawler {
 		catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
-	
-	
-	public static void main(String[] args) {
-		DynastyCrawler dynastyCrawler = new DynastyCrawler();
-		dynastyCrawler.crawl();
 	}
 }

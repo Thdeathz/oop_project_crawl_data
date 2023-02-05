@@ -1,6 +1,5 @@
 package app.screen.controller.relic;
 
-import app.history.person.Person;
 import app.history.relic.Relic;
 import app.history.store.Store;
 import app.screen.controller.components.ContentController;

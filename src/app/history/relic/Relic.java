@@ -22,8 +22,7 @@ public class Relic {
 	// danh sách ảnh liên quan đến di tích
 	String imgUrl;
 
-	public Relic() {
-	}
+	public Relic() {}
 
 	public Relic(String title, String content, String address, List<String> nameList, String imgUrl) {
 		this.id = ++cnt;

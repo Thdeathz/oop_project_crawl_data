@@ -15,6 +15,9 @@ import java.util.Objects;
 
 public class Components {
 
+    /**
+     * Hàm trả về 1 gridPane chứa danh sách nhân vật gồm 1 image và tên bên dưới
+     * */
     public static GridPane personList(List<Person> personObservableList) {
         GridPane gridPane = new GridPane();
         gridPane.setVgap(20);

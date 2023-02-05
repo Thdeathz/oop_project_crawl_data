@@ -98,13 +98,4 @@ public class Dynasty {
 		}
 		return false;
 	}
-
-	//hàm main chạy thử thôi
-	public static void main(String[] args) {
-		Dynasty dynasty = new Dynasty("Ly", "", null, null);
-		System.out.println(dynasty.getName() + " "  + (dynasty.getId() + 3));
-		Dynasty dynasty2 = new Dynasty("Ly2", "", null, null);
-		System.out.println(dynasty2.getName() + " "  + dynasty2.getId());
-		System.out.println(dynasty.equals(dynasty2));
-	}
 }

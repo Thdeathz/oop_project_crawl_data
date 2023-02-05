@@ -1,6 +1,5 @@
 package app.screen.controller.person;
 
-import app.history.dynasty.Dynasty;
 import app.history.person.Person;
 import app.history.store.Store;
 import app.screen.controller.components.ContentController;
