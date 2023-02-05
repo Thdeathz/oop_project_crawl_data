@@ -15,16 +15,25 @@ public class HomeController {
 
     @FXML
     void handleStartCrawl(ActionEvent event) {
-        // try {
-        //     Storage.crawl();
-        // } catch (IOException e) {
-        //     e.printStackTrace();
-        // }
+        Thread thread1 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Storage.crawl();
+                    Storage.init();
+                    Transition.startFadeTransition(homePane, "/app/screen/fxml/layout.fxml");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        thread1.start();
         Transition.startFadeTransition(homePane, "/app/screen/fxml/crawler.fxml");
     }
 
     @FXML
-    void handleStartView(ActionEvent event) {
+    void handleStartView(ActionEvent event) throws IOException {
+        Storage.init();
         Transition.startFadeTransition(homePane, "/app/screen/fxml/layout.fxml");
     }
 }

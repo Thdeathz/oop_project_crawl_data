@@ -72,15 +72,16 @@ public class Storage<T> {
 	}
 
 	public static void crawl() throws IOException {
-		// Person.resetId();
-		// Relic.resetId();
-		// Event.resetId();
-		// Festival.resetId();
+		Person.resetId();
+		Relic.resetId();
+		Event.resetId();
+		Festival.resetId();
 		Dynasty.resetId();
-		// new PersonCrawler().crawl();
-		// new RelicCrawler().crawl();
-		// new EventCrawler().crawl();
-		// new FestivalCrawler().crawl();
+
+		new PersonCrawler().crawl();
+		new RelicCrawler().crawl();
+		new EventCrawler().crawl();
+		new FestivalCrawler().crawl();
 		new DynastyCrawler().crawl();
 	}
 

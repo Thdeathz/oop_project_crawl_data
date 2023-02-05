@@ -21,7 +21,7 @@ public class LayoutController {
     private Button dynastyBtn;
 
     @FXML
-    private BorderPane dynastyPane;
+    private BorderPane layoutPane;
 
     @FXML
     private Button eventBtn;
@@ -40,7 +40,7 @@ public class LayoutController {
 
     @FXML
     void handleBackToHome(ActionEvent event) {
-        Transition.startFadeTransition(dynastyPane, "/app/screen/fxml/home.fxml");
+        Transition.startFadeTransition(layoutPane, "/app/screen/fxml/home.fxml");
     }
 
     @FXML
@@ -70,8 +70,8 @@ public class LayoutController {
 
     @FXML
     public void initialize() {
-        dynastyPane.setOpacity(0);
-        Transition.endFadeTransition(dynastyPane);
+        layoutPane.setOpacity(0);
+        Transition.endFadeTransition(layoutPane);
 
         ContentController.setContentArea(contentArea);
         ContentController.setDynastyBtn(dynastyBtn);
