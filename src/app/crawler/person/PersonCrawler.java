@@ -69,4 +69,12 @@ public class PersonCrawler extends BaseWebsiteCrawler implements ICrawler {
 			e.printStackTrace();
 		}
 	}
+
+	public static void main(String[] args) {
+		try {
+			new PersonCrawler().crawl();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }
