@@ -6,7 +6,6 @@ import app.screen.controller.dynasty.DynastyDetailController;
 import app.screen.controller.dynasty.DynastyListController;
 import app.screen.controller.event.EventDetailController;
 import app.screen.controller.event.EventListController;
-import app.screen.controller.festival.FestivalController;
 import app.screen.controller.person.PersonDetailController;
 import app.screen.controller.person.PersonListController;
 import app.screen.controller.relic.RelicDetailController;
@@ -54,6 +53,9 @@ public class ContentController {
     public static void setTfSearch(TextField tfSearch) { ContentController.tfSearch = tfSearch; }
 
     public static void goToDetail(DetailBaseController controller) {
+        // xóa từ khóa đang tìm kiếm trong text field search
+        tfSearch.setText("");
+
         if(controller instanceof DynastyDetailController) {
             selectMenu(dynastyBtn);
             currentPane = "dynasty";
@@ -105,15 +107,14 @@ public class ContentController {
     }
 
     public static void goToFestival() {
-        // reset search input
+        // xóa từ khóa đang tìm kiếm trong text field search
         tfSearch.setText("");
-
         selectMenu(festivalBtn);
 
-        // clear current pane content
+        // xóa dữ liệu đang hiển thị trong content area
         contentArea.getChildren().clear();
 
-        // load new pane
+        // render dữ liệu mới vào trong content area
         FXMLLoader loader = new FXMLLoader(ContentController.class.getResource("/app/screen/fxml/festival.fxml"));
         Parent root = null;
         try {
@@ -127,7 +128,7 @@ public class ContentController {
     }
 
     public static void goToPerson() {
-        // reset search input
+        // xóa từ khóa đang tìm kiếm trong text field search
         tfSearch.setText("");
 
         PersonListController personController = new PersonListController();
@@ -137,7 +138,7 @@ public class ContentController {
     }
 
     public static void goToRelic() {
-        // reset search input
+        // xóa từ khóa đang tìm kiếm trong text field search
         tfSearch.setText("");
 
         RelicListController relicController = new RelicListController();
@@ -167,6 +168,9 @@ public class ContentController {
         }
     }
 
+    /**
+     * Hàm reset trạng thái css của menu đang được chọn trong head bar và đặt trạng thái mới cho menu được chọn
+     * */
     private static void selectMenu(Button menuBtn) {
         // clear current navBar selected menu css
         switch (currentPane) {
@@ -198,11 +202,14 @@ public class ContentController {
         menuBtn.getStyleClass().add("selected-menu");
     }
 
+    /**
+     * Hàm render dữ liệu mới vào trong content area
+     * */
     private static void loadPane(Object controller) {
-        // clear current pane content
+        // xóa dữ liệu đang hiển thị trong content area
         contentArea.getChildren().clear();
 
-        // load new pane
+        // render dữ liệu mới vào trong content area
         FXMLLoader loader = new FXMLLoader(ContentController.class.getResource("/app/screen/fxml/list.fxml"));
         loader.setController(controller);
         Parent root = null;

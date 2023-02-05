@@ -5,8 +5,6 @@ import app.history.store.Store;
 import app.screen.controller.base.DetailBaseController;
 import app.screen.controller.components.Components;
 import javafx.collections.ListChangeListener;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
