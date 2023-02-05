@@ -34,6 +34,7 @@ public class PersonCrawler extends BaseWebsiteCrawler implements ICrawler {
 	 * @throws IOException if there is an error connecting to the website
 	 */
 	public void crawl() throws IOException {
+		list.clear();
 		new NguoikesuPersonCrawler().crawl();
 		new WikiPersonCrawler().crawl();
 		new GooglePersonCrawler().crawl();

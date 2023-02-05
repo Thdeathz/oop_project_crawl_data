@@ -100,6 +100,9 @@ public class Relic {
 			relatedHistoricalPerson.add(person);
 		} else
 			System.out.print("This person has existed");
+	}
 
+	public static void resetId() {
+		cnt = 0;
 	}
 }

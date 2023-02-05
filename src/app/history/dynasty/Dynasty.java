@@ -84,6 +84,10 @@ public class Dynasty {
 		}
 	}
 
+	public static void resetId() {
+		cnt = 0;
+	}
+
 	/**
 	 * Đinh nghĩa bằng nhau khi name của chúng bằng nhau
 	 *

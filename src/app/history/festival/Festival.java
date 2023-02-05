@@ -62,4 +62,8 @@ public class Festival {
 		}
 		return false;
 	}
+
+	public static void resetId() {
+		cnt = 0;
+	}
 }

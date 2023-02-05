@@ -99,4 +99,7 @@ public class Event {
 		return false;
 	}
 
+	public static void resetId() {
+		cnt = 0;
+	}
 }
