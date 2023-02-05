@@ -116,4 +116,8 @@ public class Person {
 	public void setReign(String reign) {
 		this.reign = reign;
 	}
+
+	public static void resetId() {
+		nbPerson = 0;
+	}
 }

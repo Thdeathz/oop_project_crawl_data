@@ -71,6 +71,19 @@ public class Storage<T> {
 		});
 	}
 
+	public static void crawl() throws IOException {
+		// Person.resetId();
+		// Relic.resetId();
+		// Event.resetId();
+		// Festival.resetId();
+		Dynasty.resetId();
+		// new PersonCrawler().crawl();
+		// new RelicCrawler().crawl();
+		// new EventCrawler().crawl();
+		// new FestivalCrawler().crawl();
+		new DynastyCrawler().crawl();
+	}
+
 	public static void init() throws IOException {
 		File directoryDynasty = new File("src/app/data/json/dynasty.json");
 		File directoryPerson = new File("src/app/data/json/person.json");

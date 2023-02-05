@@ -1,5 +1,8 @@
 package app.screen.controller;
 
+import java.io.IOException;
+
+import app.history.storage.Storage;
 import app.screen.controller.components.Transition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,6 +15,11 @@ public class HomeController {
 
     @FXML
     void handleStartCrawl(ActionEvent event) {
+        // try {
+        //     Storage.crawl();
+        // } catch (IOException e) {
+        //     e.printStackTrace();
+        // }
         Transition.startFadeTransition(homePane, "/app/screen/fxml/crawler.fxml");
     }
 
