@@ -1,7 +1,7 @@
 package app.screen.controller.dynasty;
 
 import app.history.dynasty.Dynasty;
-import app.history.store.Store;
+import app.history.storage.Storage;
 import app.screen.controller.components.ContentController;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
@@ -17,7 +17,7 @@ public class DynastyListController {
     @FXML
     public void initialize() {
         initContent();
-        Store.filteredDynasties.addListener((ListChangeListener<Dynasty>) c -> {
+        Storage.filteredDynasties.addListener((ListChangeListener<Dynasty>) c -> {
             initContent();
         });
     }
@@ -26,7 +26,7 @@ public class DynastyListController {
         // clear old data
         gridPane.getChildren().clear();
 
-        if(Store.filteredDynasties.isEmpty()) {
+        if(Storage.filteredDynasties.isEmpty()) {
             Label emptyLabel = new Label();
             emptyLabel.getStyleClass().add("text-title");
             emptyLabel.setText("Không có kết quả nào ><!");
@@ -34,7 +34,7 @@ public class DynastyListController {
         } else {
             int gridCol = 0;
             int gridRow = 0;
-            for (Dynasty item: Store.filteredDynasties){
+            for (Dynasty item: Storage.filteredDynasties){
                 VBox vBox = new VBox();
                 vBox.setMinWidth(200);
 

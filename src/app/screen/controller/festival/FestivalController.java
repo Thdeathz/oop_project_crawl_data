@@ -1,7 +1,7 @@
 package app.screen.controller.festival;
 
 import app.history.festival.Festival;
-import app.history.store.Store;
+import app.history.storage.Storage;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -42,7 +42,7 @@ public class FestivalController {
                 new PropertyValueFactory<Festival, String>("description")
         );
 
-        tblView.setItems(Store.festivals);
+        tblView.setItems(Storage.festivals);
     }
 
 }

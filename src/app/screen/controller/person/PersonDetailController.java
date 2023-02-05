@@ -2,7 +2,7 @@ package app.screen.controller.person;
 
 import app.history.dynasty.Dynasty;
 import app.history.person.Person;
-import app.history.store.Store;
+import app.history.storage.Storage;
 import app.screen.controller.base.DetailBaseController;
 import app.screen.controller.components.ContentController;
 import app.screen.controller.dynasty.DynastyDetailController;
@@ -39,7 +39,7 @@ public class PersonDetailController extends DetailBaseController {
     public void initialize() {
         initSideBar();
         initMainContent(this.personData);
-        Store.filteredPersons.addListener((ListChangeListener<Person>) c -> {
+        Storage.filteredPersons.addListener((ListChangeListener<Person>) c -> {
             initSideBar();
         });
     }
@@ -48,13 +48,13 @@ public class PersonDetailController extends DetailBaseController {
         // clear old data
         sideBar.getChildren().clear();
 
-        if(Store.filteredPersons.isEmpty()) {
+        if(Storage.filteredPersons.isEmpty()) {
             Label emptyLabel = new Label();
             emptyLabel.getStyleClass().add("empty-label");
             emptyLabel.setText("Danh sách trống ><!");
             sideBar.getChildren().add(emptyLabel);
         }
-        for (Person item: Store.filteredPersons) {
+        for (Person item: Storage.filteredPersons) {
             Button sideBarBtn = new Button();
             sideBarBtn.setText("> " + item.getName());
             sideBarBtn.getStyleClass().add("side-bar-btn");
@@ -79,10 +79,10 @@ public class PersonDetailController extends DetailBaseController {
         ImageView avatar = new ImageView();
         Image image = null;
         try {
-            image = new Image(Objects.requireNonNull(getClass().getResource("/app/history/store/img/person/"+ currentPerson.getId() +".png")).openStream());
+            image = new Image(Objects.requireNonNull(getClass().getResource("/app/data/img/person/"+ currentPerson.getId() +".png")).openStream());
         } catch (Exception e) {
             try {
-                image = new Image(Objects.requireNonNull(getClass().getResource("/app/history/store/img/person/no_image.png")).openStream());
+                image = new Image(Objects.requireNonNull(getClass().getResource("/app/data/img/person/no_image.png")).openStream());
             } catch (IOException ex) {
                 image = null;
             }

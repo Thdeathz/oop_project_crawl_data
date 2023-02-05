@@ -77,7 +77,7 @@ public class NguoikesuPersonCrawler implements ICrawler{
 
 				try {
 					saveImg("https://nguoikesu.com/" + persons.get(k).select("img").first().attr("data-src"),
-									"src/app/history/store/img/person/" + person.getId() + ".png");
+									"src/app/data/img/person/" + person.getId() + ".png");
 				} catch (Exception e) {}
 			}
 		}

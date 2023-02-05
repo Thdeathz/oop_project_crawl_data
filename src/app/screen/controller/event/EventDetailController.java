@@ -1,7 +1,7 @@
 package app.screen.controller.event;
 
 import app.history.event.Event;
-import app.history.store.Store;
+import app.history.storage.Storage;
 import app.screen.controller.base.DetailBaseController;
 import app.screen.controller.components.Components;
 import javafx.collections.ListChangeListener;
@@ -34,7 +34,7 @@ public class EventDetailController extends DetailBaseController {
     public void initialize() {
         initSideBar();
         initMainContent(this.eventData);
-        Store.filteredEvents.addListener((ListChangeListener<Event>) c -> {
+        Storage.filteredEvents.addListener((ListChangeListener<Event>) c -> {
             initSideBar();
         });
     }
@@ -43,13 +43,13 @@ public class EventDetailController extends DetailBaseController {
         // clear old data
         sideBar.getChildren().clear();
 
-        if(Store.filteredEvents.isEmpty()) {
+        if(Storage.filteredEvents.isEmpty()) {
             Label emptyLabel = new Label();
             emptyLabel.getStyleClass().add("empty-label");
             emptyLabel.setText("Danh sách trống ><!");
             sideBar.getChildren().add(emptyLabel);
         }
-        for (Event item: Store.filteredEvents) {
+        for (Event item: Storage.filteredEvents) {
             Button sideBarBtn = new Button();
             sideBarBtn.setText("> " + item.getName());
             sideBarBtn.getStyleClass().add("side-bar-btn");
@@ -74,7 +74,7 @@ public class EventDetailController extends DetailBaseController {
         ImageView eventImage = new ImageView();
         Image image = null;
         try {
-            image = new Image(Objects.requireNonNull(getClass().getResource("/app/history/store/img/event/" + eventData.getImgPath())).openStream());
+            image = new Image(Objects.requireNonNull(getClass().getResource("/app/data/img/event/" + eventData.getImgPath())).openStream());
         } catch (Exception e) {
             image = null;
         }

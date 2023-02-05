@@ -1,6 +1,6 @@
 package app;
 
-import app.history.store.Store;
+import app.history.storage.Storage;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,7 +12,7 @@ import java.util.Objects;
 public class app extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        Store.init();
+        Storage.init();
         FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/app/screen/fxml/home.fxml")));
         Parent root = loader.load();
         Scene scene = new Scene(root);

@@ -23,7 +23,7 @@ import app.history.relic.Relic;
 public class RelicCrawler extends BaseWebsiteCrawler implements ICrawler {
 
 	public RelicCrawler() {
-		super("https://nguoikesu.com", "src/app/history/store/json", "src/app/history/store/img/relic");
+		super("https://nguoikesu.com", "src/app/data/store/json", "src/app/data/img/relic");
 	}
 
 	// dùng title để get addr

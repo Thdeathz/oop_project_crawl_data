@@ -1,7 +1,7 @@
 package app.screen.controller.dynasty;
 
 import app.history.dynasty.Dynasty;
-import app.history.store.Store;
+import app.history.storage.Storage;
 import app.screen.controller.base.DetailBaseController;
 import app.screen.controller.components.Components;
 import javafx.collections.ListChangeListener;
@@ -34,7 +34,7 @@ public class DynastyDetailController extends DetailBaseController {
     public void initialize() {
         initSideBar();
         initMainContent(this.dynastyData);
-        Store.filteredDynasties.addListener((ListChangeListener<Dynasty>) c -> {
+        Storage.filteredDynasties.addListener((ListChangeListener<Dynasty>) c -> {
             initSideBar();
         });
     }
@@ -43,13 +43,13 @@ public class DynastyDetailController extends DetailBaseController {
         // clear old data
         sideBar.getChildren().clear();
 
-        if(Store.filteredDynasties.isEmpty()) {
+        if(Storage.filteredDynasties.isEmpty()) {
             Label emptyLabel = new Label();
             emptyLabel.getStyleClass().add("empty-label");
             emptyLabel.setText("Danh sách trống ><!");
             sideBar.getChildren().add(emptyLabel);
         }
-        for (Dynasty item: Store.filteredDynasties) {
+        for (Dynasty item: Storage.filteredDynasties) {
             Button sideBarBtn = new Button();
             sideBarBtn.setText("> " + item.getName());
             sideBarBtn.getStyleClass().add("side-bar-btn");

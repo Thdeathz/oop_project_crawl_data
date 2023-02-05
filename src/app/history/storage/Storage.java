@@ -1,7 +1,8 @@
-package app.history.store;
+package app.history.storage;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -23,7 +24,7 @@ import javafx.collections.transformation.FilteredList;
 import java.io.File;
 import java.io.IOException;
 
-public class Store<T> {
+public class Storage<T> {
 	public static ObservableList<Person> persons = FXCollections.observableArrayList();
 	public static ObservableList<Relic> relics = FXCollections.observableArrayList();
 	public static ObservableList<Event> events = FXCollections.observableArrayList();
@@ -71,11 +72,11 @@ public class Store<T> {
 	}
 
 	public static void init() throws IOException {
-		File directoryDynasty = new File("src/app/history/store/json/dynasty.json");
-		File directoryPerson = new File("src/app/history/store/json/person.json");
-		File directoryRelic = new File("src/app/history/store/json/relic.json");
-		File directoryFestival = new File("src/app/history/store/json/festival.json");
-		File directoryEvent = new File("src/app/history/store/json/event.json");
+		File directoryDynasty = new File("src/app/data/json/dynasty.json");
+		File directoryPerson = new File("src/app/data/json/person.json");
+		File directoryRelic = new File("src/app/data/json/relic.json");
+		File directoryFestival = new File("src/app/data/json/festival.json");
+		File directoryEvent = new File("src/app/data/json/event.json");
 
 		if (!directoryDynasty.exists()) {
 			ICrawler dynastyCrawler = new DynastyCrawler();
@@ -98,11 +99,11 @@ public class Store<T> {
 			eventCrawler.crawl();
 		}
 
-		dynasties = readFromFile("src/app/history/store/json/dynasty.json", Dynasty[].class);
-		persons = readFromFile("src/app/history/store/json/person.json", Person[].class);
-		events = readFromFile("src/app/history/store/json/event.json", Event[].class);
-		relics = readFromFile("src/app/history/store/json/relic.json", Relic[].class);
-		festivals = readFromFile("src/app/history/store/json/festival.json", Festival[].class);
+		dynasties = readFromFile("src/app/data/json/dynasty.json", Dynasty[].class);
+		persons = readFromFile("src/app/data/json/person.json", Person[].class);
+		events = readFromFile("src/app/data/json/event.json", Event[].class);
+		relics = readFromFile("src/app/data/json/relic.json", Relic[].class);
+		festivals = readFromFile("src/app/data/json/festival.json", Festival[].class);
 
 		for (int i = 0; i < dynasties.size(); i++) {
 			dynasties.get(i).addKing();

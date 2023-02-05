@@ -22,8 +22,8 @@ public class PersonCrawler extends BaseWebsiteCrawler implements ICrawler {
 	public static List<Person> list = new ArrayList<>();
 
 	public PersonCrawler() {
-		super("https://nguoikesu.com/nhan-vat", "src/app/history/store/json/person.json",
-				"src/app/history/store/img/person/");
+		super("https://nguoikesu.com/nhan-vat", "src/app/data/json/person.json",
+				"src/app/data/img/person/");
 	}
 
 	/**

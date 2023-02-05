@@ -41,10 +41,10 @@ public class Components {
             ImageView avatar = new ImageView();
             Image image = null;
             try {
-                image = new Image(Objects.requireNonNull(Components.class.getResource("/app/history/store/img/person/"+ item.getId() +".png")).openStream());
+                image = new Image(Objects.requireNonNull(Components.class.getResource("/app/data/img/person/"+ item.getId() +".png")).openStream());
             } catch (Exception e) {
                 try {
-                    image = new Image(Objects.requireNonNull(Components.class.getResource("/app/history/store/img/person/no_image.png")).openStream());
+                    image = new Image(Objects.requireNonNull(Components.class.getResource("/app/data/img/person/no_image.png")).openStream());
                 } catch (IOException ex) {
                     image = null;
                 }

@@ -1,6 +1,6 @@
 package app.screen.controller.components;
 
-import app.history.store.Store;
+import app.history.storage.Storage;
 import app.screen.controller.base.DetailBaseController;
 import app.screen.controller.dynasty.DynastyDetailController;
 import app.screen.controller.dynasty.DynastyListController;
@@ -150,19 +150,19 @@ public class ContentController {
     public static void handleSearch(String searchString) {
         switch (currentPane) {
             case "dynasty" -> {
-                Store.searchDynasty(searchString);
+                Storage.searchDynasty(searchString);
             }
             case "event" -> {
-                Store.searchEvent(searchString);
+                Storage.searchEvent(searchString);
             }
             case "festival" -> {
-                Store.searchFestival(searchString);
+                Storage.searchFestival(searchString);
             }
             case "person" -> {
-                Store.searchPerson(searchString);
+                Storage.searchPerson(searchString);
             }
             case "relic" -> {
-                Store.searchRelic(searchString);
+                Storage.searchRelic(searchString);
             }
             default -> {}
         }

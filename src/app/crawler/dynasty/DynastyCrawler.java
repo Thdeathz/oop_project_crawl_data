@@ -19,7 +19,7 @@ import app.history.dynasty.Dynasty;
 public class DynastyCrawler extends BaseWebsiteCrawler implements ICrawler {
 
 	public DynastyCrawler()	{
-		super("https://nguoikesu.com/dong-lich-su/hong-bang-va-van-lang", "src/app/history/store/json");
+		super("https://nguoikesu.com/dong-lich-su/hong-bang-va-van-lang", "src/app/data/json");
 	}
 	
 	/** hàm tìm thời gian tồn tại triều đại.

@@ -1,4 +1,4 @@
-package app.history.store;
+package app.history.storage;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
